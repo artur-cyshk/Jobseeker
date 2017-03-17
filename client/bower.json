@@ -20,6 +20,7 @@
     "lodash": "^4.5.1",
     "angular-ui-router": "^0.2.18",
     "socket.io-client": "^1.4.5",
-    "font-awesome": "fontawesome#^4.5.0"
+    "font-awesome": "fontawesome#^4.5.0",
+    "jquery": "^3.2.0"
   }
 }

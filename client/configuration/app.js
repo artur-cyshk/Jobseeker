@@ -5,6 +5,3 @@ var app = angular.module('jobseeker',
         'ngAnimate'
     ]);
 
-app.run(['', function() {
-	//angular init func
-}]);
