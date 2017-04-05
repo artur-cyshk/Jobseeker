@@ -1,0 +1,49 @@
+@import './loading.style.styl';
+@import 'nib';
+global-reset()
+
+html
+	height 100%
+
+body
+	position relative
+	height 100%
+	background #ddd
+	font: 12px "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	font-weight: 300;
+
+*
+	box-sizing border-box
+
+a
+	text-decoration none
+	color white !important
+	&:hover
+		text-decoration underline
+	&:hover, &:active
+		color white
+
+h1 
+	font-weight 700
+	font-size 32px
+	
+h2 
+	font-weight 400
+	font-size 24px
+
+h3 
+	font-weight 400
+	font-size 16px
+	
+button
+	cursor pointer
+	background none
+	border none
+	&:focus
+		outline none
+.clear
+	clear both
+.capitalize
+	text-transform capitalize
+.cursor
+	cursor pointer		

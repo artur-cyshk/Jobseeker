@@ -4,3 +4,6 @@ build/
 dist/
 client/bower_components/
 server/node_modules/
+**/node_modules/**
+/dist/
+.idea/

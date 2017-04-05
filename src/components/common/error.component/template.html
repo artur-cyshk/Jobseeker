@@ -1,0 +1,8 @@
+<div class="errors">
+    <div class="one-error" ng-repeat="error in $ctrl.errors">
+        <div class="header-block">
+            <span class="header-text">{{error.header}}</span>
+            <span ng-click="$ctrl.removeError(error.id)" class="glyphicon glyphicon-trash"></span></div>
+        <div class="body-block">{{error.value}}</div>
+    </div>
+</div>
