@@ -1,7 +1,7 @@
 export const API = {
-	host : 'http://localhost:3000',
+	host : 'http://localhost:3000/api',
 	routes : {
-		'logout' : {
+		'login' : {
 			method : 'post',
 			url : '/login'
 		}		

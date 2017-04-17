@@ -4,8 +4,8 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "node server/app | ng serve --open",
+    "build": "ng build && node server/app",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

@@ -9,6 +9,6 @@ import { HttpWrapperService } from '../../../general/services/httpWrapper.servic
 export class LoginComponent {
   	title = 'login';
   	constructor(private httpWrapperService: HttpWrapperService){
-  		httpWrapperService.sendRequest('logout');
+  		httpWrapperService.sendRequest('login');
   	}
 }

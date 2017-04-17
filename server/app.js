@@ -1,5 +1,6 @@
 var express = require('express'),
     morgan = require('morgan'),
+    path = require('path'),
     bodyParser = require('body-parser'),
     cookieParser = require('cookie-parser'),
     router = require('./application/router/router'),
@@ -8,7 +9,7 @@ var express = require('express'),
     app = express(),
     socketRouter = require('./application/socketRouter/router');
 
-app.use(express.static('../dist'));
+app.use(express.static('./dist'));
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({'extended':'true'}));
 app.use(bodyParser.json());
@@ -29,5 +30,8 @@ var server = app.listen(port, function() {
 var io = require('socket.io').listen(server);
 socketRouter(io);
 
-app.use('/',router);
+app.use('/api',router);
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../dist/index.html'));
+});
 app.use(errorHandler.handler);
