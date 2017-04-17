@@ -1,4 +1,3 @@
 module.exports = function (req, res) {
-    //req.session.destroy();
-    res.status(200).end();
+    res.status(200).send('LALA');
 };
