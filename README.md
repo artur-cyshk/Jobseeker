@@ -4,11 +4,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Development server
 
-  Run npm start.
+  Run npm start && open http://localhost:4200.
   
 ## Build
 
-  Run "npm run build".
+  Run "npm run build" && open http://localhost:3000 .
 
 ## Code scaffolding
 
