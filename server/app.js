@@ -1,13 +1,13 @@
-var express = require('express'),
-    morgan = require('morgan'),
-    path = require('path'),
-    bodyParser = require('body-parser'),
-    cookieParser = require('cookie-parser'),
-    router = require('./application/router/router'),
-    errorHandler = require('./configuration/errorHandler'),
-    port = require('./configuration/config').port,
-    app = express(),
-    socketRouter = require('./application/socketRouter/router');
+const express = require('express');
+const morgan = require('morgan');
+const path = require('path');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const router = require('./application/router/router');
+const errorHandler = require('./configuration/errorHandler');
+const port = require('./configuration/config').port;
+const socketRouter = require('./application/socketRouter/router');
+const app = express();
 
 app.use(express.static('./dist'));
 app.use(morgan('dev'));
