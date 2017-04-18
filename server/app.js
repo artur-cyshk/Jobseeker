@@ -7,6 +7,7 @@ const router = require('./application/router/router');
 const errorHandler = require('./configuration/errorHandler');
 const port = require('./configuration/config').port;
 const socketRouter = require('./application/socketRouter/router');
+const auth = require("./configuration/jwt/jwtAuth.js")();  
 const app = express();
 
 app.use(express.static('./dist'));
@@ -22,6 +23,7 @@ app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Credentials', true);
     next();
 });
+app.use(auth.initialize());
 
 var server = app.listen(port, function() {
     console.log(`server listening on port ${port}`);

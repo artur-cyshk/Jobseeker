@@ -1,12 +1,26 @@
 var connection = require('../../../configuration/database/connection');
+var encrypt = require('../../encrypt');
+var jwt = require("jwt-simple");  
+var cfg = require("../../../configuration/jwt/jwtConfig.js");  
 module.exports = function (req, res, next) {
-    var query = 'select * from users';
-    connection.query(query, function(err, data) {
-    	console.log(data);
-        if(err) {
-            return next(true);
-        }
-         res.status(200).send(data);
-    });
-
+    if (req.body.name && req.body.password) {
+        var query = 'select id, name from users where name = "' + req.body.name +
+            '" and password = "' + encrypt(req.body.password) + '" limit 1';
+        connection.query(query, (error, users) => {
+        	console.log(error, users);
+	        if (users && users[0]) {
+	            var payload = {
+	                id: users[0].id
+	            };
+	            var token = jwt.encode(payload, cfg.jwtSecret);
+	            res.json({
+	                token: token
+	            });
+	        }else{
+	        	return next({status : 401});
+	        }
+        })
+    } else {
+        return next({status : 401});
+    }
 };
