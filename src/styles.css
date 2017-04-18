@@ -20,7 +20,9 @@ md-toolbar.mat-toolbar{
 
 router-outlet + *{
 	width: 100%;
+	display: flex;
     position: absolute;
     background: #E1F5FE;
     height: calc(100% - 64px);
 }
+
