@@ -19,6 +19,7 @@ import { appRoutes } from './app.routes';
 
 //custom services
 import { HttpWrapperService } from '../../general/services/httpWrapper.service';
+import { LocalStorageWrapperService } from '../../general/services/localStorageWrapper.service';
 
 @NgModule({
     declarations: [
@@ -39,7 +40,8 @@ import { HttpWrapperService } from '../../general/services/httpWrapper.service';
         LoginModule
     ],
     providers: [
-        HttpWrapperService
+        HttpWrapperService,
+        LocalStorageWrapperService
     ],
     bootstrap: [AppComponent]
 })
