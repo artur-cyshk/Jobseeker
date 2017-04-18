@@ -47,7 +47,6 @@ export class HttpWrapperService{
 
 	private sendExistingRequest(currentRoute : any) : Observable<any> {
 		let httpParams = [currentRoute.url, currentRoute.body, currentRoute.options].filter( (item) => item != undefined );
-		console.log(httpParams);
 		return this.http[currentRoute.method].apply(this.http, httpParams)
 			.map(this.extractData)
 			.catch(this.handleError)

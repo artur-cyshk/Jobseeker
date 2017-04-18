@@ -6,9 +6,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component/app.component';
 
 //material modules
-import 'hammerjs';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MdButtonModule, MdCheckboxModule } from '@angular/material';
+import {MaterialModule} from '../material.module/material.module';
 
 //internal modules
 import {WorkflowModule} from '../workflow.module/workflow.module';
@@ -30,8 +28,7 @@ import { LocalStorageWrapperService } from '../../general/services/localStorageW
         BrowserModule,
         FormsModule,
         HttpModule,
-        BrowserAnimationsModule,
-        MdCheckboxModule,
+        MaterialModule,
         WorkflowModule,
         LoginModule
     ],

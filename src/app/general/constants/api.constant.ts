@@ -4,6 +4,10 @@ export const API = {
 		'login' : {
 			method : 'post',
 			url : '/login'
+		},
+		'registration' : {
+			method : 'post',
+			url : '/registration'
 		}		
 	}
 }
