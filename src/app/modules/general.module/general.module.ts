@@ -6,7 +6,7 @@ import { HttpModule } from '@angular/http';
 //material modules
 import 'hammerjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MdProgressBarModule, MdButtonModule, MdInputModule, MdCheckboxModule, MdToolbarModule, MdSidenavModule } from '@angular/material';
+import { MdProgressBarModule, MdButtonModule, MdInputModule, MdCheckboxModule, MdToolbarModule, MdSidenavModule, MdSnackBarModule } from '@angular/material';
 
 @NgModule({
     imports: [
@@ -19,6 +19,7 @@ import { MdProgressBarModule, MdButtonModule, MdInputModule, MdCheckboxModule, M
         MdCheckboxModule,
         MdToolbarModule,
         MdSidenavModule,
+        MdSnackBarModule,
         MdProgressBarModule
     ],
     exports: [
@@ -31,6 +32,7 @@ import { MdProgressBarModule, MdButtonModule, MdInputModule, MdCheckboxModule, M
         MdCheckboxModule,
         MdToolbarModule,
         MdSidenavModule,
+        MdSnackBarModule,
         MdProgressBarModule
     ]
 })
