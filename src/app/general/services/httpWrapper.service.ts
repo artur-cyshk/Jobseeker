@@ -27,10 +27,13 @@ export class HttpWrapperService{
 	sendRequest({route, callback, body, params, urlParams} : { route : string, callback : any, body ?: any, params ?: any, urlParams? : any}) {
 		const currentRoute = API.routes[route];
 		if(currentRoute){
-			currentRoute.url = this.generateUrlString(API.host, currentRoute.url, urlParams);
-			currentRoute.body = body;
-			currentRoute.options = this.getRequestOptions(params);
-			this.sendExistingRequest(currentRoute).subscribe(callback);
+			const routeInfo = {
+				url : this.generateUrlString(API.host, currentRoute.url, urlParams),
+				method : currentRoute.method,
+				body : body,
+				options : this.getRequestOptions(params)
+			};
+			this.sendExistingRequest(routeInfo).subscribe(callback);
 		}
 	}
 
@@ -60,12 +63,10 @@ export class HttpWrapperService{
 	private handleError (error : Response | any){
 		let errMsg : string;
 		if(error instanceof Response){
-			const body = error.json() || '';
-			const err = body.error|| JSON.stringify(body);
-			errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-		}else{
-			errMsg = error.message ? error.message : error.toString();
+			const body = error.json();
+			errMsg = body ? body : error.statusText;
 		}
+		errMsg = errMsg ? errMsg : error;
 		console.log(errMsg);
 		return Observable.throw(errMsg);
 	}

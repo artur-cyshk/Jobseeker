@@ -1,0 +1,50 @@
+.authorization-form{
+	width: 40%;
+	width: 400px;
+	height: 300px;
+	display: flex;
+	flex-direction: column;
+	border: 1px solid rgba(0,0,0,.03);
+    border-radius: 5px;
+	margin: auto;
+	background: #B3E5FC;
+}
+
+.authorization-form > .authorization-form-header{
+	height: 56px;
+	width: 100%;
+	border-top: 1px solid rgba(0,0,0,.03);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+	justify-content: flex-start;
+	align-items: center;
+	text-transform: capitalize;
+	font-size: 14px;
+	padding-left : 15px;
+	display: flex;
+	color: white;
+	background: #0288D1;
+}
+
+.authorization-form > .authorization-form-body{
+	width: 100%;
+	flex-direction: column;
+	flex: 1;
+	display: flex;
+	justify-content: space-around;
+	padding : 15px;
+}
+.authorization-form > .authorization-form-body > .inputs{
+	display: flex;
+	flex-direction: column;
+}
+.authorization-form > .authorization-form-body > .actions-buttons-row{
+	height: 40px;
+}
+.authorization-form > .authorization-form-body > .actions-buttons-row button[md-mini-fab]{
+	float: right;
+}
+.authorization-form > .authorization-form-body > .actions-buttons-row button[md-raised-button]{
+	width : calc(100% - 60px);
+	height: 100%;
+}

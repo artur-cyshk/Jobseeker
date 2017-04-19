@@ -23,6 +23,6 @@ router-outlet + *{
 	display: flex;
     position: absolute;
     background: #E1F5FE;
-    height: calc(100% - 64px);
+    bottom: 0;
+    top: 56px;
 }
-

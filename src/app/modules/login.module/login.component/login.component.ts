@@ -8,6 +8,11 @@ import { User } from '../../../general/models/User';
  	styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+    user : User = {
+      name : '',
+      password : ''
+    };
+
   	constructor(private httpWrapperService: HttpWrapperService,
   	 			private localStorageWrapperService : LocalStorageWrapperService){
   	}
@@ -23,4 +28,10 @@ export class LoginComponent {
   			body : user
   		});
   	}
+
+    onSubmit(validated : boolean){
+      if(validated){
+        this.login(this.user);
+      }
+    }
 }

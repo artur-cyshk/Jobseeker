@@ -32,10 +32,7 @@ import { LocalStorageWrapperService } from '../../general/services/localStorageW
         WorkflowModule,
         LoginModule
     ],
-    exports : [
-        WorkflowModule,
-        LoginModule
-    ],
+    exports : [],
     providers: [
         HttpWrapperService,
         LocalStorageWrapperService
