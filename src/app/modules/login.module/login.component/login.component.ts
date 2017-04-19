@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { HttpWrapperService } from '../../../general/services/httpWrapper.service';
 import { LocalStorageWrapperService } from '../../../general/services/localStorageWrapper.service';
 import { SharedService } from '../../../general/services/shared.service';
@@ -22,6 +23,7 @@ export class LoginComponent {
   	constructor(private httpWrapperService: HttpWrapperService,
                 private sharedService : SharedService,
                 private snackBar : MdSnackBar,
+                private router : Router,
   	 			private localStorageWrapperService : LocalStorageWrapperService) {
   	}
 
@@ -31,7 +33,14 @@ export class LoginComponent {
         this.snackBar.open(message, 'close', {
             duration: 0,
         });
+        if(error === null){
+            this.navigateOnWorkflow();
+        }
   	}
+
+    navigateOnWorkflow(){
+         this.router.navigate(['/workflow']);
+    }
 
   	login(user : User) : void {
         this.sharedService.toogleLoading();
