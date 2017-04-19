@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import {WorkflowComponent} from './workflow.component/workflow.component';
-import {MaterialModule} from '../material.module/material.module';
+import {GeneralModule} from '../general.module/general.module';
 
 @NgModule({
     declarations: [
         WorkflowComponent
     ],
     imports: [
-    	MaterialModule
+    	GeneralModule
     ],
     providers: [],
     bootstrap: [WorkflowComponent]

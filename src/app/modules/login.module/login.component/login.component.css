@@ -4,8 +4,9 @@
 	height: 300px;
 	display: flex;
 	flex-direction: column;
-	border: 1px solid rgba(0,0,0,.03);
+	border: 1px solid rgb(2, 136, 209);
     border-radius: 5px;
+    overflow: hidden;
 	margin: auto;
 	background: #B3E5FC;
 }
@@ -13,9 +14,6 @@
 .authorization-form > .authorization-form-header{
 	height: 56px;
 	width: 100%;
-	border-top: 1px solid rgba(0,0,0,.03);
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
 	justify-content: flex-start;
 	align-items: center;
 	text-transform: capitalize;

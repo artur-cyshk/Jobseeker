@@ -33,7 +33,7 @@ export class HttpWrapperService{
 				body : body,
 				options : this.getRequestOptions(params)
 			};
-			this.sendExistingRequest(routeInfo).subscribe(callback);
+			this.sendExistingRequest(routeInfo).subscribe((response) => callback(response, null), (response) => callback(null, response));
 		}
 	}
 
@@ -67,7 +67,6 @@ export class HttpWrapperService{
 			errMsg = body ? body : error.statusText;
 		}
 		errMsg = errMsg ? errMsg : error;
-		console.log(errMsg);
 		return Observable.throw(errMsg);
 	}
 }

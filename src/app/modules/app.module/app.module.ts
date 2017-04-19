@@ -1,12 +1,10 @@
-//main modules
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+//components
 import { AppComponent } from './app.component/app.component';
+import {LoadingSectionComponent} from './loadingSection.component/loadingSection.component';
 
-//material modules
-import {MaterialModule} from '../material.module/material.module';
+//general modules
+import { NgModule } from '@angular/core';
+import {GeneralModule} from '../general.module/general.module';
 
 //internal modules
 import {WorkflowModule} from '../workflow.module/workflow.module';
@@ -18,24 +16,24 @@ import { appRoutes } from './app.routes';
 //custom services
 import { HttpWrapperService } from '../../general/services/httpWrapper.service';
 import { LocalStorageWrapperService } from '../../general/services/localStorageWrapper.service';
+import { SharedService } from '../../general/services/shared.service';
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        LoadingSectionComponent
     ],
     imports: [
         RouterModule.forRoot(appRoutes),
-        BrowserModule,
-        FormsModule,
-        HttpModule,
-        MaterialModule,
+        GeneralModule,
         WorkflowModule,
         LoginModule
     ],
     exports : [],
     providers: [
         HttpWrapperService,
-        LocalStorageWrapperService
+        LocalStorageWrapperService,
+        SharedService
     ],
     bootstrap: [AppComponent]
 })

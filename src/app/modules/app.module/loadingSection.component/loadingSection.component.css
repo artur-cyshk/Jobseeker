@@ -1,0 +1,6 @@
+:host md-progress-bar{
+	position: absolute;
+    bottom: 0;
+    z-index: 1;
+    height: 7px;
+}

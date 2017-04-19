@@ -1,15 +1,14 @@
+//main modules
 import { NgModule } from '@angular/core';
 import {LoginComponent} from './login.component/login.component';
-import {MaterialModule} from '../material.module/material.module';
-import { FormsModule } from '@angular/forms';
+import {GeneralModule} from '../general.module/general.module';
 
 @NgModule({
     declarations: [
         LoginComponent
     ],
     imports: [
-    	MaterialModule,
-    	FormsModule
+    	GeneralModule
     ],
     providers: [],
     bootstrap: [LoginComponent]

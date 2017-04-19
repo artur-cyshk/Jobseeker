@@ -6,7 +6,4 @@ import { HttpWrapperService } from '../../../general/services/httpWrapper.servic
 	templateUrl: './app.component.html',
  	styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  	title = 'app works!';
-  	constructor(private httpWrapperService : HttpWrapperService){}
-}
+export class AppComponent {}

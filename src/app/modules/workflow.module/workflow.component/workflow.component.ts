@@ -5,6 +5,4 @@ import { Component } from '@angular/core';
 	templateUrl: './workflow.component.html',
  	styleUrls: ['./workflow.component.css']
 })
-export class WorkflowComponent {
-  	title = 'workflow';
-}
+export class WorkflowComponent {}
