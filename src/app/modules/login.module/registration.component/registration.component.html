@@ -1,0 +1,21 @@
+<form class="authorization-form" #signUpForm="ngForm" (ngSubmit)="onSubmit(signUpForm.form.valid)">
+	<div class="authorization-form-header">
+		Sign Up form
+	</div>
+	<div class="authorization-form-body">
+		<div class="inputs">
+			<md-input-container>
+		  		<input mdInput placeholder="username" minlength="4" maxlength="20" [(ngModel)]="user.name" id="username" name="username" required>
+			</md-input-container>
+			<md-input-container>
+		  		<input mdInput placeholder="password" minlength="8" maxlength="200" [(ngModel)]="user.password" id="password" name="password" required>
+			</md-input-container>
+			<md-input-container>
+		  		<input mdInput placeholder="repeat password" minlength="8" maxlength="200" (input)="comparePasswords(signUpForm)" [(ngModel)]="user.repeatedPassword" id="repeatedPassword" name="repeatedPassword" required>
+			</md-input-container>							
+		</div>
+		<div class="actions-buttons-row">
+    		<button type="submit" [disabled]="!signUpForm.form.valid" color="accent" md-raised-button>Sign Up</button>
+		</div>	
+	</div>
+</form>

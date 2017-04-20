@@ -5,7 +5,7 @@ export const API = {
 			method : 'post',
 			url : '/login'
 		},
-		'registration' : {
+		'signUp' : {
 			method : 'post',
 			url : '/registration'
 		}		

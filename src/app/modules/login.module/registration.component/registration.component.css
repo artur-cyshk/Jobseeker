@@ -9,5 +9,5 @@
 }
 
 .authorization-form > .authorization-form-body > .actions-buttons-row button[md-raised-button]{
-	width : calc(100% - 60px);
+	width : 100%;
 }

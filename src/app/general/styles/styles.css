@@ -1,3 +1,4 @@
+/* main items styles*/
 body{
 	font-family: 'Roboto', sans-serif;
 	font-size: 13px;
@@ -14,10 +15,6 @@ body *{
 	box-sizing: border-box;
 }
 
-md-toolbar.mat-toolbar{
-	background: #01579B;
-}
-
 router-outlet + *{
 	width: 100%;
 	display: flex;
@@ -25,4 +22,13 @@ router-outlet + *{
     background: #E1F5FE;
     bottom: 0;
     top: 56px;
+}
+/*material styles overriding*/
+.cdk-overlay-container .mat-dialog-container{
+	box-shadow: none;
+	background: transparent;
+}
+
+md-toolbar.mat-toolbar{
+	background: #01579B;
 }

@@ -20,6 +20,7 @@ module.exports = function (req, res, next) {
     var quering = function(user) {
         var query = 'insert into users set ?' ;
         connection.query(query, {name : user.name, password : encrypt(user.password)}, function(err) {
+            console.log(err);
             if(err) {
                 if(err.code == "ER_DUP_ENTRY") {
                     next({
