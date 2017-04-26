@@ -4,4 +4,5 @@ const auth = require("../../configuration/jwt/jwtAuth.js")();
 // auth.authenticate() - set second param to router functions if route need authorized user
 router.post('/login', require('./routes/login'));
 router.post('/registration', require('./routes/registration'));
+router.get('/authorized',auth.authenticate(), require('./routes/authorized'));
 module.exports = router;

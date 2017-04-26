@@ -8,6 +8,10 @@ export const API = {
 		'signUp' : {
 			method : 'post',
 			url : '/registration'
+		},
+		'authorized' : {
+			method : 'get',
+			url : '/authorized'
 		}		
 	}
 }

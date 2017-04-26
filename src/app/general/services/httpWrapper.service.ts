@@ -4,24 +4,47 @@ import { Http, Response, RequestOptions, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
-
+import  { Headers } from '@angular/http';
 import { API } from '../constants/api.constant';
-
+import { LocalStorageWrapperService } from './localStorageWrapper.service';
+import { JWTService } from './jwt.service';
 @Injectable()
 export class HttpWrapperService{
 
-	constructor(private http : Http){}
+	constructor(private http : Http,
+				private localStorageWrapperService : LocalStorageWrapperService,
+				private jwtService : JWTService){}
 
 	getRequestOptions(params : any) {
+		let requestOptions = new RequestOptions();
+		requestOptions.search = this.getSearchParams(params);
+		requestOptions.headers = this.getHeaders();
+		return requestOptions;
+	}
+
+	getSearchParams(params : any) {
 		if(params && params.length > 0) {
 			let urlSearchParams : URLSearchParams = new URLSearchParams();
 			for(let key in params){
 				urlSearchParams.set(key, params[key]);
 			}
-			let requestOptions = new RequestOptions();
-			requestOptions.search = urlSearchParams;
-			return requestOptions;
+			return urlSearchParams;
 		}
+	}
+
+	getToken() {
+		return this.jwtService.getToken();
+	}
+
+	setAuthorizationHeader(headers : Headers) {
+		const token = this.getToken();
+		headers.append('Authorization', `JWT ${token}`);
+	}
+
+	getHeaders() {
+		let headers = new Headers();
+		this.setAuthorizationHeader(headers);
+		return headers;
 	}
 
 	sendRequest({route, callback, body, params, urlParams} : { route : string, callback : any, body ?: any, params ?: any, urlParams? : any}) {
@@ -56,15 +79,16 @@ export class HttpWrapperService{
 	}
 
 	private extractData(res : Response){
-		console.log(res)
+		console.log(res);
 		let body = res.json();
-		return body || [];
+		return body || {};
 	}
 
 	private handleError (error : Response | any){
 		let errMsg : string;
 		if(error instanceof Response){
-			const body = error.json();
+			console.log(error);
+			const body = error.text();
 			errMsg = body ? body : error.statusText;
 		}
 		errMsg = errMsg ? errMsg : error;

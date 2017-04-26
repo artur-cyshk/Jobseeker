@@ -17,6 +17,7 @@ import { appRoutes } from './app.routes';
 import { HttpWrapperService } from '../../general/services/httpWrapper.service';
 import { LocalStorageWrapperService } from '../../general/services/localStorageWrapper.service';
 import { SharedService } from '../../general/services/shared.service';
+import { JWTService } from '../../general/services/jwt.service';
 
 @NgModule({
     declarations: [
@@ -32,6 +33,7 @@ import { SharedService } from '../../general/services/shared.service';
     exports : [],
     providers: [
         HttpWrapperService,
+        JWTService,
         LocalStorageWrapperService,
         SharedService
     ],

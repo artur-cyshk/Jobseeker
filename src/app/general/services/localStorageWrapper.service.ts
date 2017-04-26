@@ -16,4 +16,8 @@ export class LocalStorageWrapperService{
 		return (result) ? JSON.parse(result) : null;
 	}
 
+	removeItem(key){
+		this.localStorage.removeItem(key);
+	}
+
 }

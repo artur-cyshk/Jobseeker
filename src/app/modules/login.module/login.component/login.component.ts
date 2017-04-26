@@ -6,7 +6,7 @@ import { SharedService } from '../../../general/services/shared.service';
 import {MdSnackBar} from '@angular/material';
 import {MdDialog} from '@angular/material';
 import { RegistrationComponent } from '../registration.component/registration.component';
-
+import { JWTService } from '../../../general/services/jwt.service';
 
 import { User } from '../../../general/models/User';
 
@@ -25,6 +25,7 @@ export class LoginComponent {
                 private sharedService : SharedService,
                 private snackBar : MdSnackBar,
                 private router : Router,
+                private jwtService : JWTService,
                 private dialog : MdDialog,
   	 			private localStorageWrapperService : LocalStorageWrapperService) {
   	}
@@ -35,15 +36,11 @@ export class LoginComponent {
         this.snackBar.open(message, 'close', {
             duration: 5000,
         });
-
         if(error === null){
             this.navigateOnWorkflow();
+            this.jwtService.setToken(response.token);
         }
   	}
-
-    setTokenToLS(token : String) {
-        this.localStorageWrapperService.setItem('userToken', token);
-    }
 
     openSignUpDialog() {
         const dialog = this.dialog.open(RegistrationComponent);
