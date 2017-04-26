@@ -41,7 +41,10 @@ export class LoginComponent {
   	}
 
     openSignUpDialog() {
-        this.dialog.open(RegistrationComponent);
+        const dialog = this.dialog.open(RegistrationComponent);
+    }
+    closeSignUpDialog() {
+        this.dialog.closeAll();
     }      
 
     navigateOnWorkflow(){

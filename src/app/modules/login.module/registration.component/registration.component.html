@@ -11,7 +11,7 @@
 		  		<input mdInput placeholder="password" minlength="8" maxlength="200" [(ngModel)]="user.password" id="password" name="password" required>
 			</md-input-container>
 			<md-input-container>
-		  		<input mdInput placeholder="repeat password" minlength="8" maxlength="200" (input)="comparePasswords(signUpForm)" [(ngModel)]="user.repeatedPassword" id="repeatedPassword" name="repeatedPassword" required>
+		  		<input mdInput placeholder="confirm password" minlength="8" maxlength="200" (input)="comparePasswords(signUpForm)" [(ngModel)]="user.repeatedPassword" id="repeatedPassword" name="repeatedPassword" required>
 			</md-input-container>							
 		</div>
 		<div class="actions-buttons-row">

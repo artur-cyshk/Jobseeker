@@ -3,6 +3,7 @@ import { HttpWrapperService } from '../../../general/services/httpWrapper.servic
 import { SharedService } from '../../../general/services/shared.service';
 import {MdSnackBar} from '@angular/material';
 import { User } from '../../../general/models/User';
+import {MdDialog} from '@angular/material';
 
 @Component({
  	selector: 'registration',
@@ -17,16 +18,20 @@ export class RegistrationComponent {
     };
    
   	constructor(private httpWrapperService: HttpWrapperService,
-                private sharedService : SharedService,
-                private snackBar : MdSnackBar) {
+                 private sharedService : SharedService,
+                 private dialog : MdDialog,
+                 private snackBar : MdSnackBar) {
   	}
 
   	signUpResponseHandler(response, error) : void {
         this.sharedService.toogleLoading();
-        const message = (error) ? error : 'Welcome on board';
+        const message = (error) ? error : "Hello, let's sign in";
         this.snackBar.open(message, 'close', {
             duration: 2000,
         });
+        if(!error){
+             this.dialog.closeAll();
+        }
   	}
 
   	signUp(user : User) : void {
