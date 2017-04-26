@@ -25,7 +25,7 @@ export class LoginComponent {
                 private sharedService : SharedService,
                 private snackBar : MdSnackBar,
                 private router : Router,
-                public dialog : MdDialog,
+                private dialog : MdDialog,
   	 			private localStorageWrapperService : LocalStorageWrapperService) {
   	}
 
@@ -35,10 +35,15 @@ export class LoginComponent {
         this.snackBar.open(message, 'close', {
             duration: 5000,
         });
+
         if(error === null){
             this.navigateOnWorkflow();
         }
   	}
+
+    setTokenToLS(token : String) {
+        this.localStorageWrapperService.setItem('userToken', token);
+    }
 
     openSignUpDialog() {
         const dialog = this.dialog.open(RegistrationComponent);
