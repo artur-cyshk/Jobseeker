@@ -43,14 +43,17 @@ export class RegistrationComponent {
   		});
   	}
 
-    comparePasswords(form : any){
-        if(form.value.password !== form.value.repeatedPassword){
-           console.log(form);
-        }
+    comparePasswords(user : User){
+        return (user.password === user.repeatedPassword);
     }
 
     onSubmit(validated : boolean) {
         if(validated) {
+            if(!this.comparePasswords(this.user)){
+                return  this.snackBar.open('Passwords must be equal', 'close', {
+                    duration: 2000,
+                });
+            }
             this.signUp(this.user);
         }
     }
