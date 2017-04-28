@@ -8,10 +8,15 @@ import  { Headers } from '@angular/http';
 import { API } from '../constants/api.constant';
 import { LocalStorageWrapperService } from './localStorageWrapper.service';
 import { JWTService } from './jwt.service';
+import {MdSnackBar} from '@angular/material';
+import { SharedService } from './shared.service';
+
 @Injectable()
 export class HttpWrapperService{
 
 	constructor(private http : Http,
+				private snackBar : MdSnackBar,
+				private sharedService : SharedService,
 				private localStorageWrapperService : LocalStorageWrapperService,
 				private jwtService : JWTService){}
 
@@ -47,7 +52,8 @@ export class HttpWrapperService{
 		return headers;
 	}
 
-	sendRequest({route, callback, body, params, urlParams} : { route : string, callback : any, body ?: any, params ?: any, urlParams? : any}) {
+	sendRequest({route, callback, body, params, urlParams, isErrorDisplayingNeeded, successMessage} : { route : string, callback : any, body ?: any, params ?: any, urlParams? : any, isErrorDisplayingNeeded ?: boolean, successMessage ?: string}) {
+        this.sharedService.toogleLoading();
 		const currentRoute = API.routes[route];
 		if(currentRoute){
 			const routeInfo = {
@@ -56,8 +62,24 @@ export class HttpWrapperService{
 				body : body,
 				options : this.getRequestOptions(params)
 			};
-			this.sendExistingRequest(routeInfo).subscribe((response) => callback(response, null), (response) => callback(null, response));
+			this.sendExistingRequest(routeInfo).subscribe((response) => this.responseHandler(callback, isErrorDisplayingNeeded, successMessage, response, null), (response) => this.responseHandler(callback, isErrorDisplayingNeeded, successMessage, null, response));
 		}
+	}
+
+	responseHandler(callback, isErrorDisplayingNeeded, successMessage, response, error) {
+		if(error && isErrorDisplayingNeeded) {
+			this.openSnackBar(error);
+		}else if(successMessage) {
+			this.openSnackBar(successMessage);
+		}
+		this.sharedService.toogleLoading();
+		callback(response, error);
+	}
+
+	openSnackBar(message) {
+        this.snackBar.open(message, 'close', {
+            duration: 5000,
+        });
 	}
 
 	getDynamicParams(url : any, params : any) {
@@ -79,7 +101,6 @@ export class HttpWrapperService{
 	}
 
 	private extractData(res : Response){
-		console.log(res);
 		let body = res.json();
 		return body || {};
 	}
@@ -87,8 +108,7 @@ export class HttpWrapperService{
 	private handleError (error : Response | any){
 		let errMsg : string;
 		if(error instanceof Response){
-			console.log(error);
-			const body = error.text();
+			const body = error.json();
 			errMsg = body ? body : error.statusText;
 		}
 		errMsg = errMsg ? errMsg : error;

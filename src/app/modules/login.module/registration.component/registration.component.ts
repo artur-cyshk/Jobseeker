@@ -24,22 +24,17 @@ export class RegistrationComponent {
   	}
 
   	signUpResponseHandler(response, error) : void {
-        this.sharedService.toogleLoading();
-        const message = (error) ? error : "Hello, let's sign in";
-        this.snackBar.open(message, 'close', {
-            duration: 2000,
-        });
         if(!error){
              this.dialog.closeAll();
         }
   	}
 
   	signUp(user : User) : void {
-        this.sharedService.toogleLoading();
   		this.httpWrapperService.sendRequest({
   			route : 'signUp',
   			callback : this.signUpResponseHandler.bind(this),
-  			body : user
+  			body : user,
+            successMessage : "Hello, let's sign in"
   		});
   	}
 

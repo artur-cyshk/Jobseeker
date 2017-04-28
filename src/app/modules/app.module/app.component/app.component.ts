@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpWrapperService } from '../../../general/services/httpWrapper.service';
-import { Router, NavigationStart } from '@angular/router';
+import { Router, RoutesRecognized } from '@angular/router';
 import { Response } from '@angular/http';
 import { LocalStorageWrapperService } from '../../../general/services/localStorageWrapper.service';
 
@@ -14,14 +14,19 @@ export class AppComponent implements OnInit{
     			private httpWrapperService : HttpWrapperService,
     			private localStorageWrapperService : LocalStorageWrapperService) {}	
 
-    authorizedHandler(response, error) {
-    	console.log(response, error);
-    }
-
     ngOnInit(){
   		this.router.events
-		    .filter(event => event instanceof NavigationStart)
+		    .filter(event => event instanceof RoutesRecognized)
 		    .subscribe(this.routeChangedHandler.bind(this));
+    }
+
+    routeChangedHandler(event : any) {
+        const availableUrls = ['/login', '/workflow'];
+        const isCurrentUrl = availableUrls.find( (url) => url == event.url );
+        const isAfterRedirects = availableUrls.find( (url) => url == event.urlAfterRedirects );
+        if( isCurrentUrl ||  isAfterRedirects) {
+            this.checkUserAuthorization(isCurrentUrl || isAfterRedirects);
+        }          
     }
 
     checkUserAuthorization(currentUrl : String) {
@@ -31,10 +36,9 @@ export class AppComponent implements OnInit{
         });
     }
 
-    routeChangedHandler(event : any) {
-        const currentUrl = event.url;
-        if( currentUrl === "/login" || currentUrl === "/workflow" ) {
-            this.checkUserAuthorization(currentUrl);
-        }  		
+    authorizedHandler(response, error) {
+        const navRoute = (error) ? '/login' : '/workflow';
+        this.router.navigate([navRoute]);
     }
+
 }

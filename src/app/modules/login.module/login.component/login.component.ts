@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpWrapperService } from '../../../general/services/httpWrapper.service';
 import { LocalStorageWrapperService } from '../../../general/services/localStorageWrapper.service';
-import { SharedService } from '../../../general/services/shared.service';
-import {MdSnackBar} from '@angular/material';
 import {MdDialog} from '@angular/material';
 import { RegistrationComponent } from '../registration.component/registration.component';
 import { JWTService } from '../../../general/services/jwt.service';
@@ -22,8 +20,6 @@ export class LoginComponent {
     };
     
   	constructor(private httpWrapperService: HttpWrapperService,
-                private sharedService : SharedService,
-                private snackBar : MdSnackBar,
                 private router : Router,
                 private jwtService : JWTService,
                 private dialog : MdDialog,
@@ -31,11 +27,6 @@ export class LoginComponent {
   	}
 
   	loginResponseHandler(response, error) : void {
-        this.sharedService.toogleLoading();
-        const message = (error) ? error : 'Welcome on board';
-        this.snackBar.open(message, 'close', {
-            duration: 5000,
-        });
         if(error === null){
             this.navigateOnWorkflow();
             this.jwtService.setToken(response.token);
@@ -54,11 +45,12 @@ export class LoginComponent {
     }
 
   	login(user : User) : void {
-        this.sharedService.toogleLoading();
   		this.httpWrapperService.sendRequest({
   			route : 'login',
   			callback : this.loginResponseHandler.bind(this),
-  			body : user
+  			body : user,
+        isErrorDisplayingNeeded : true,
+        successMessage : 'Welcome on board'
   		});
   	}
 
