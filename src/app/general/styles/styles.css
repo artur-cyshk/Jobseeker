@@ -3,6 +3,7 @@ body{
 	font-family: 'Roboto', sans-serif;
 	font-size: 13px;
 	font-weight: 400;
+	overflow : hidden;
 }
 body, html{
 	width: 100%;
@@ -23,6 +24,11 @@ router-outlet + *{
     bottom: 0;
     top: 64px;
 }
+
+ul{
+	list-style: none;
+	margin : 0;
+}
 /*material styles overriding*/
 .cdk-overlay-container .mat-dialog-container{
 	box-shadow: none;
@@ -37,4 +43,28 @@ router-outlet + *{
 
 .mat-simple-snackbar-message:first-letter{
 	text-transform: capitalize;
+}
+
+/* Let's get this party started */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 13px;
+}
+ 
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    background: rgb(63, 81, 181); 
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+::-webkit-scrollbar-thumb:window-inactive {
+	background: rgb(132, 178, 255); 
 }

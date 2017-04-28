@@ -1,0 +1,10 @@
+:host  > div{
+    height: 100%;
+    display: block;
+    display: inline-block;
+    width: 250px;
+    margin-right: 15px;
+    background: rgba(63, 81, 181, 0.1);
+    border-radius: 2px;
+    vertical-align: top;
+}

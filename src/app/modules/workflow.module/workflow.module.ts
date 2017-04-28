@@ -1,10 +1,17 @@
 import { NgModule } from '@angular/core';
-import {WorkflowComponent} from './workflow.component/workflow.component';
-import {GeneralModule} from '../general.module/general.module';
+import { GeneralModule } from '../general.module/general.module';
+
+import { WorkflowComponent } from './workflow.component/workflow.component';
+import { BoardComponent } from './board.component/board.component';
+import { SidebarComponent } from './sidebar.component/sidebar.component';
+import { ColumnComponent } from './column.component/column.component';
 
 @NgModule({
     declarations: [
-        WorkflowComponent
+        WorkflowComponent,
+        SidebarComponent,
+        BoardComponent,
+        ColumnComponent
     ],
     imports: [
     	GeneralModule

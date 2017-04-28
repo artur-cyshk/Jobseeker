@@ -1,0 +1,11 @@
+:host{
+    flex: 1;
+    padding: 15px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+:host >>> column:last-child > div{
+	margin-right:  0;
+}
