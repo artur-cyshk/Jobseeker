@@ -8,3 +8,41 @@
     border-radius: 2px;
     vertical-align: top;
 }
+
+.my-handle{
+	width: 100%;
+	height: 50px;
+	background: red;
+}
+
+.title-block{
+	height: 50px;
+	justify-content: space-between;
+	font-size: 27px;
+    font-weight: 200;
+    font-style: italic;
+	padding: 15px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+	border-bottom : 1px solid rgb(168, 196, 243);
+}
+
+.title-block .title-text{
+	max-width: 67%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.title-block .title-icons{
+	width: 30%;
+	text-align: right;
+}
+
+.title-block .title-icons > .fa{
+	cursor: pointer;
+}
+
+.title-block .title-icons > .fa.fa-arrows-h{
+	cursor: move;
+}
