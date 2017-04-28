@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class BoardComponent {
 	columns : Array<any> = [{title : 'a'}, {title : 'b'}, {title : 'c'}, {title : 'd'}, {title : 'e'}, {title : 'f'}];
+	options = {
+		animation: 200,
+		onUpdate: (event: any) => {
+      		console.log(this.columns);
+    	} 
+	}
 }

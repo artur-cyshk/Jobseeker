@@ -1,1 +1,6 @@
-<column *ngFor="let column of columns" [columnData]="column"></column>
+<div [sortablejs]="columns" [sortablejsOptions]="options">
+	<column *ngFor="let column of columns" [columnData]="column"></column>
+</div>
+      
+ 
+ 

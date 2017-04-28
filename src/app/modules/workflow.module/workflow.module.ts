@@ -5,7 +5,7 @@ import { WorkflowComponent } from './workflow.component/workflow.component';
 import { BoardComponent } from './board.component/board.component';
 import { SidebarComponent } from './sidebar.component/sidebar.component';
 import { ColumnComponent } from './column.component/column.component';
-
+import { SortablejsModule } from 'angular-sortablejs';
 @NgModule({
     declarations: [
         WorkflowComponent,
@@ -14,7 +14,8 @@ import { ColumnComponent } from './column.component/column.component';
         ColumnComponent
     ],
     imports: [
-    	GeneralModule
+    	GeneralModule,
+        SortablejsModule
     ],
     providers: [],
     bootstrap: [WorkflowComponent]

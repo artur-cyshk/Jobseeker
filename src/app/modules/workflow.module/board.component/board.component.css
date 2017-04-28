@@ -5,7 +5,10 @@
     overflow-y: hidden;
     white-space: nowrap;
 }
+:host > div{
+	height: 100%;
+};
 
-:host >>> column:last-child > div{
+:host >>> div > column:last-child > div{
 	margin-right:  0;
 }
