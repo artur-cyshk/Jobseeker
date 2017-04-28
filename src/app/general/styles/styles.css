@@ -21,7 +21,7 @@ router-outlet + *{
     position: absolute;
     background: #E1F5FE;
     bottom: 0;
-    top: 56px;
+    top: 64px;
 }
 /*material styles overriding*/
 .cdk-overlay-container .mat-dialog-container{
@@ -29,6 +29,8 @@ router-outlet + *{
 	background: transparent;
 }
 
-md-toolbar.mat-toolbar{
-	background: #01579B;
+@media (max-width: 600px){
+	.mat-toolbar-row {
+	    min-height: 64px;
+	}
 }

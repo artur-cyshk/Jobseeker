@@ -17,10 +17,10 @@ module.exports = function (req, res, next) {
 	                token: token
 	            });
 	        }else{
-	        	return next({status : 401, data : 'Check your user or password'});
+	        	return next({status : 401, data : 'Check your username or password'});
 	        }
         })
     } else {
-        return next({status : 401, data : 'Check your user or password'});
+        return next({status : 401, data : 'Check your username or password'});
     }
 };

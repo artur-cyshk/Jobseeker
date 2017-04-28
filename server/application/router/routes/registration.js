@@ -38,7 +38,7 @@ module.exports = function (req, res, next) {
     }else {
         return next({
         	status : 402,
-            data : "not correct data"
+            data : "Ups, problems with data!"
         });
     }
 };
