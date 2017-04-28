@@ -34,7 +34,8 @@ export class RegistrationComponent {
   			route : 'signUp',
   			callback : this.signUpResponseHandler.bind(this),
   			body : user,
-            successMessage : "Hello, let's sign in"
+        isErrorDisplayingNeeded : true,
+        successMessage : "Hello, let's sign in"
   		});
   	}
 

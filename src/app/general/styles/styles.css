@@ -34,3 +34,7 @@ router-outlet + *{
 	    min-height: 64px;
 	}
 }
+
+.mat-simple-snackbar-message:first-letter{
+	text-transform: capitalize;
+}

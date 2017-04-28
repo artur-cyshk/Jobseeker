@@ -67,8 +67,10 @@ export class HttpWrapperService{
 	}
 
 	responseHandler(callback, isErrorDisplayingNeeded, successMessage, response, error) {
-		if(error && isErrorDisplayingNeeded) {
-			this.openSnackBar(error);
+		if(error) {
+			if(isErrorDisplayingNeeded) {
+				this.openSnackBar(error);
+			}
 		}else if(successMessage) {
 			this.openSnackBar(successMessage);
 		}
@@ -78,7 +80,7 @@ export class HttpWrapperService{
 
 	openSnackBar(message) {
         this.snackBar.open(message, 'close', {
-            duration: 5000,
+            duration: 10000,
         });
 	}
 
