@@ -41,6 +41,7 @@ export class AppComponent implements OnInit{
 
     authorizedHandler(response, error) {
         const navRoute = (error) ? '/login' : '/workflow';
+        console.log(navRoute);
         this.currentUrl = navRoute;
         this.currentUser = this.sharedService.currentUser = response; 
         this.router.navigate([navRoute]);
