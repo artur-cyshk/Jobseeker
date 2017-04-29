@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs/Rx';
 @Injectable()
 export class SharedService {
 	nowIsLoading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+	currentUser : any;
 
 	getLoadingState(): Observable<boolean>{
 		return this.nowIsLoading.asObservable();

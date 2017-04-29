@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedService } from '../../../general/services/shared.service';
 import { HttpWrapperService } from '../../../general/services/httpWrapper.service';
 import { Router, RoutesRecognized } from '@angular/router';
 import { Response } from '@angular/http';
-import { JWTService } from '../../../general/services/jwt.service';
-import { LocalStorageWrapperService } from '../../../general/services/localStorageWrapper.service';
 
 @Component({
  	selector: 'app-root',
@@ -13,20 +12,15 @@ import { LocalStorageWrapperService } from '../../../general/services/localStora
 export class AppComponent implements OnInit{
 
     currentUrl : string;
+    currentUser : any;
     constructor(private router: Router,
-    			private httpWrapperService : HttpWrapperService,
-                private jwtService : JWTService,
-    			private localStorageWrapperService : LocalStorageWrapperService) {}	
+                private sharedService : SharedService,
+    			private httpWrapperService : HttpWrapperService) {}	
 
     ngOnInit() {
   		this.router.events
 		    .filter(event => event instanceof RoutesRecognized)
 		    .subscribe(this.routeChangedHandler.bind(this));
-    }
-
-    signOut() {
-        this.jwtService.removeToken();
-        this.router.navigate(['/login']);
     }
 
     routeChangedHandler(event : any) {
@@ -48,6 +42,7 @@ export class AppComponent implements OnInit{
     authorizedHandler(response, error) {
         const navRoute = (error) ? '/login' : '/workflow';
         this.currentUrl = navRoute;
+        this.currentUser = this.sharedService.currentUser = response; 
         this.router.navigate([navRoute]);
     }
 

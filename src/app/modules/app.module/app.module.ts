@@ -1,6 +1,7 @@
 //components
 import { AppComponent } from './app.component/app.component';
 import {LoadingSectionComponent} from './loadingSection.component/loadingSection.component';
+import {HeaderComponent} from './header.component/header.component';
 
 //general modules
 import { NgModule } from '@angular/core';
@@ -22,7 +23,8 @@ import { JWTService } from '../../general/services/jwt.service';
 @NgModule({
     declarations: [
         AppComponent,
-        LoadingSectionComponent
+        LoadingSectionComponent,
+        HeaderComponent
     ],
     imports: [
         RouterModule.forRoot(appRoutes),

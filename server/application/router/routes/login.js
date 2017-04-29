@@ -7,7 +7,6 @@ module.exports = function (req, res, next) {
         var query = 'select id, name from users where name = "' + req.body.name +
             '" and password = "' + encrypt(req.body.password) + '" limit 1';
         connection.query(query, (error, users) => {
-        	console.log(error, users);
 	        if (users && users[0]) {
 	            var payload = {
 	                id: users[0].id
