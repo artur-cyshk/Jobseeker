@@ -14,12 +14,15 @@ module.exports = function (req, res, next) {
         if(user.password != user.repeatedPassword) {
             noError = false;
         }
+        if(!user.isAdmin) {
+            user.isAdmin = 0;
+        }
         return noError;
     };
 
     var quering = function(user) {
         var query = 'insert into users set ?' ;
-        connection.query(query, {name : user.name, password : encrypt(user.password)}, function(err) {
+        connection.query(query, {name : user.name, password : encrypt(user.password), isAdmin: user.isAdmin}, function(err) {
             if(err) {
                 if(err.code == "ER_DUP_ENTRY") {
                     next({

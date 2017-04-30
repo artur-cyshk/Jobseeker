@@ -2,7 +2,7 @@ var connection = require('../../../configuration/database/connection');
 
 module.exports = function (req, res, next) {
 
-	const query = 'select users.id, users.name, users.avatarUrl, user_roles.name as role from users left join user_roles ON ( user_roles.id = users.role_id ) where users.id = ?';
+	const query = 'select users.*, personal_information.* from users left join personal_information ON ( users.id = personal_information.user_id ) where users.id = ?';
 	connection.query(query, [req.user.id], (error, users) => {
 		console.log(error, users);
 		if(error){
