@@ -5,4 +5,5 @@ const auth = require("../../configuration/jwt/jwtAuth.js")();
 router.post('/login', require('./routes/login'));
 router.post('/registration', require('./routes/registration'));
 router.get('/authorized',auth.authenticate(), require('./routes/authorized'));
+router.put('/users', require('./routes/users'));
 module.exports = router;
