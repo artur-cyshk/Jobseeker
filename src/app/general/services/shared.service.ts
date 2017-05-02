@@ -10,7 +10,7 @@ export class SharedService {
 		return this.currentUser.asObservable();
 	}
 
-	setCurrentUser(currentUser : any) {
+	setCurrentUser(currentUser ?: any) {
 		this.currentUser.next(currentUser);
 	}
 

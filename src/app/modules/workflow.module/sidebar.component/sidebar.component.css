@@ -3,3 +3,67 @@
 	min-width: 200px;
 	background: rgb(63, 81, 181);
 }
+
+.main-menu{
+	height: 100%;
+	position: relative;
+}
+
+.main-menu > .menu-item{
+	width: 100%;
+    height: 50px;
+    padding-left: 20px;
+    transition: 0.2s linear all;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    outline: none;
+    font-size: 19px;
+    border-top: 1px solid #e1f5fe;
+    font-weight: 200;
+}
+
+.main-menu > .menu-item:hover, 
+.main-menu > .menu-item:active{
+	background: #93c1d6;
+}
+.main-menu > .menu-item.active{
+	background: #e1f5fe;
+}
+
+.main-menu > .menu-item.active > a, .main-menu > .menu-item.active > .fa{
+	color : black;
+}
+
+.main-menu > .menu-item.to-bottom{
+	position: absolute;
+	bottom : 0;
+}
+
+.main-menu > .menu-item > .fa{
+	margin-right: 10px;
+	width: 26px;
+	font-size: 22px;
+}
+
+.main-menu > .menu-item > a{
+	color : white;
+	text-decoration: none;
+	text-transform: capitalize;
+}
+
+.fa-star-o{
+	color: #ff7272;
+}
+
+.fa-tasks{
+	color: #d1e5f7;
+}
+
+.fa-address-card-o{
+    color: #bca8ce;	
+}
+
+.fa-sign-out{
+    color: #8eb8ff;	
+}

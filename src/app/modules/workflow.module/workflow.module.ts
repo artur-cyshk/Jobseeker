@@ -9,16 +9,18 @@ import { appRoutes } from '../app.module/app.routes';
 import { WorkflowComponent } from './workflow.component/workflow.component';
 import { BoardComponent } from './board.component/board.component';
 import { ColumnComponent } from './column.component/column.component';
-import {ProfileMenuComponent} from './profileMenu.component/profileMenu.component';
 import {SidebarComponent} from './sidebar.component/sidebar.component';
+import {ProfileComponent} from './profile.component/profile.component';
+import {FavoritesComponent} from './favorites.component/favorites.component';
 
 @NgModule({
     declarations: [
         WorkflowComponent,
         BoardComponent,
         ColumnComponent,
-        ProfileMenuComponent,
-        SidebarComponent
+        SidebarComponent,
+        ProfileComponent,
+        FavoritesComponent
     ],
     imports: [
     	GeneralModule,

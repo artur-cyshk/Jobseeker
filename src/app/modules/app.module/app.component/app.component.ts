@@ -11,6 +11,8 @@ import { Response } from '@angular/http';
 })
 export class AppComponent implements OnInit{
 
+    private currentUrl: String;
+
     constructor(private router: Router,
                 private sharedService : SharedService,
     			private httpWrapperService : HttpWrapperService) {}	
@@ -22,15 +24,16 @@ export class AppComponent implements OnInit{
     }
 
     routeChangedHandler(event : any) {
-        const availableUrls = ['/login', '/workflow'];
+        const availableUrls = ['/login', '/workflow', '/workflow/profile', '/workflow/favorites', '/workflow/board'];
         const isCurrentUrl = availableUrls.find( (url) => url == event.url );
         const isAfterRedirects = availableUrls.find( (url) => url == event.urlAfterRedirects );
-        if( isCurrentUrl ||  isAfterRedirects) {
-            this.checkUserAuthorization(isCurrentUrl || isAfterRedirects);
+        if(isAfterRedirects || isCurrentUrl) {
+            this.checkUserAuthorization(isAfterRedirects || isCurrentUrl);
         }          
     }
 
     checkUserAuthorization(currentUrl : String) {
+        this.currentUrl = currentUrl;
         this.httpWrapperService.sendRequest({
             route : 'authorized',
             callback : this.authorizedHandler.bind(this)
@@ -38,7 +41,15 @@ export class AppComponent implements OnInit{
     }
 
     authorizedHandler(response, error) {
-        const navRoute = (error) ? '/login' : '/workflow';
+        let navRoute : String = '';
+        if(error) {
+            navRoute = '/login';
+        }else if(this.currentUrl === '/login'){
+            navRoute = '/workflow/board';
+        }else{
+            navRoute = this.currentUrl;
+        }
+        
         if(!error){
             this.sharedService.setCurrentUser(response);
         }

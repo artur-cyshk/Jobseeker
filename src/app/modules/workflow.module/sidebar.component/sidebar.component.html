@@ -1,11 +1,8 @@
-<div class="main-block">
-	<ul>
-		<li *ngFor="let route of routes">
-			{{route}}
-		</li>
-	</ul>
-</div>
-<div class="additional-block">
-	<profile-menu></profile-menu>
-</div>
-
+<ul class="main-menu">
+	<li class="menu-item" *ngFor="let route of routes"  [routerLink]="route.route" routerLinkActive="active">
+		<i class="fa" [ngClass]="route.icon"></i> <a>{{route.name}}</a>
+	</li>
+	<li class="menu-item to-bottom" (click)="signOut()">
+		<i class="fa fa-sign-out" aria-hidden="true"></i> <a>Sign Out</a>
+	</li>
+</ul>

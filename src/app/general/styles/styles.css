@@ -28,6 +28,7 @@ app-root > router-outlet + *{
 ul{
 	list-style: none;
 	margin : 0;
+	padding: 0;
 }
 /*material styles overriding*/
 .cdk-overlay-container .mat-dialog-container{
