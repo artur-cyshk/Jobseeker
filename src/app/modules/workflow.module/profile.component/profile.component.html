@@ -1,1 +1,12 @@
-{{currentUser.name}}
+<form class="profile-form">
+	<header [hidden]="!currentUser.name">
+		{{currentUser.name}}'s profile
+	</header>
+	<main>
+		
+	</main>
+	<footer>
+		<button md-raised-button color="warn">Reset</button>
+		<button md-raised-button color="accent">Save</button>
+	</footer>
+</form>
