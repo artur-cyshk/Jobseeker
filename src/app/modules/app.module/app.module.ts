@@ -2,7 +2,7 @@
 import { AppComponent } from './app.component/app.component';
 import {LoadingSectionComponent} from './loadingSection.component/loadingSection.component';
 import {HeaderComponent} from './header.component/header.component';
-
+import {SettingsComponent} from './settings.component/settings.component';
 //general modules
 import { NgModule } from '@angular/core';
 import {GeneralModule} from '../general.module/general.module';
@@ -11,7 +11,7 @@ import {GeneralModule} from '../general.module/general.module';
 import {WorkflowModule} from '../workflow.module/workflow.module';
 import {LoginModule} from '../login.module/login.module';
 //routing
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { appRoutes } from './app.routes';
 
 //custom services
@@ -24,7 +24,8 @@ import { JWTService } from '../../general/services/jwt.service';
     declarations: [
         AppComponent,
         LoadingSectionComponent,
-        HeaderComponent
+        HeaderComponent,
+        SettingsComponent
     ],
     imports: [
         RouterModule.forRoot(appRoutes),

@@ -11,7 +11,7 @@ import { User } from '../../../general/models/User';
 @Component({
  	selector: 'login',
 	templateUrl: './login.component.html',
- 	styleUrls: ['../../../general/styles/authorization.css', './login.component.css']
+ 	styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
     user : User = {
@@ -34,7 +34,7 @@ export class LoginComponent {
   	}
 
     openSignUpDialog() {
-        const dialog = this.dialog.open(RegistrationComponent);
+        this.dialog.open(RegistrationComponent);
     }
     closeSignUpDialog() {
         this.dialog.closeAll();

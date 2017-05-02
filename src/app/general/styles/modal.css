@@ -1,0 +1,31 @@
+.modal-component{
+	width: 40%;
+	width: 400px;
+	height: 300px;
+	display: flex;
+	flex-direction: column;
+	border: 1px solid;
+    border-radius: 5px;
+    overflow: hidden;
+	margin: auto;
+}
+
+.modal-component > .modal-component-header{
+	height: 56px;
+	width: 100%;
+	justify-content: flex-start;
+	align-items: center;
+	text-transform: capitalize;
+	font-size: 14px;
+	padding-left : 15px;
+	display: flex;
+}
+
+.modal-component > .modal-component-body{
+	width: 100%;
+	flex-direction: column;
+	flex: 1;
+	display: flex;
+	justify-content: space-around;
+	padding : 15px;
+}

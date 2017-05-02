@@ -1,13 +1,24 @@
-.authorization-form{
+.modal-component > .modal-component-body > .inputs{
+	display: flex;
+	flex-direction: column;
+}
+.modal-component > .modal-component-body > .actions-buttons-row{
+	height: 40px;
+}
+.modal-component > .modal-component-body > .actions-buttons-row button[md-mini-fab]{
+	float: right;
+}
+.modal-component > .modal-component-body > .actions-buttons-row button[md-raised-button]{
+	height: 100%;
+}
+.modal-component{
 	border-color: rgb(2, 136, 209);
 	background-color: #B3E5FC;
 }
-
-.authorization-form > .authorization-form-header{
+.modal-component > .modal-component-header{
 	background: #0288D1;
 	color : white;
 }
-
-.authorization-form > .authorization-form-body > .actions-buttons-row button[md-raised-button]{
+.modal-component > .modal-component-body > .actions-buttons-row button[md-raised-button]{
 	width : 100%;
 }

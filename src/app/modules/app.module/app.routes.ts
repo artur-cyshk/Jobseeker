@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
 import { WorkflowComponent } from '../workflow.module/workflow.component/workflow.component';
 import { LoginComponent } from '../login.module/login.component/login.component';
+import { BoardComponent } from '../workflow.module/board.component/board.component';
+
 export const appRoutes : Routes = [
 	{
 		path : 'login',
@@ -8,7 +10,13 @@ export const appRoutes : Routes = [
 	},
 	{
 		path : 'workflow',
-		component : WorkflowComponent	
+		component : WorkflowComponent,
+		children : [
+			{
+				path : 'board',
+				component : BoardComponent
+			}
+		]
 	},
 	{ 
 		path: '',

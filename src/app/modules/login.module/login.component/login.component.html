@@ -1,8 +1,8 @@
-<form class="authorization-form" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm.form.valid)">
-	<div class="authorization-form-header">
+<form class="modal-component" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm.form.valid)">
+	<div class="modal-component-header">
 		Sign form
 	</div>
-	<div class="authorization-form-body">
+	<div class="modal-component-body">
 		<div class="inputs">
 			<md-input-container>
 		  		<input mdInput placeholder="username" [(ngModel)]="user.name" id="username" name="username" required>

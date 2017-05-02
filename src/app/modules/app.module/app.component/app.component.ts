@@ -11,8 +11,6 @@ import { Response } from '@angular/http';
 })
 export class AppComponent implements OnInit{
 
-    currentUrl : string;
-    currentUser : any;
     constructor(private router: Router,
                 private sharedService : SharedService,
     			private httpWrapperService : HttpWrapperService) {}	
@@ -41,9 +39,9 @@ export class AppComponent implements OnInit{
 
     authorizedHandler(response, error) {
         const navRoute = (error) ? '/login' : '/workflow';
-        console.log(navRoute);
-        this.currentUrl = navRoute;
-        this.currentUser = this.sharedService.currentUser = response; 
+        if(!error){
+            this.sharedService.setCurrentUser(response);
+        }
         this.router.navigate([navRoute]);
     }
 

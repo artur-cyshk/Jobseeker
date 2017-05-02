@@ -8,7 +8,7 @@ import {MdDialog} from '@angular/material';
 @Component({
  	selector: 'registration',
 	templateUrl: './registration.component.html',
- 	styleUrls: ['../../../general/styles/authorization.css', './registration.component.css']
+ 	styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent {
     user : User = {

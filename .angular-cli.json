@@ -20,7 +20,8 @@
       "prefix": "app",
       "styles": [
         "./app/general/styles/styles.css",
-         "./app/general/styles/material-theme.scss",
+        "./app/general/styles/modal.css",
+        "./app/general/styles/material-theme.scss",
         "../node_modules/font-awesome/css/font-awesome.css"
       ],
       "scripts": [],

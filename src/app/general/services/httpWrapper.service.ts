@@ -20,14 +20,14 @@ export class HttpWrapperService{
 				private localStorageWrapperService : LocalStorageWrapperService,
 				private jwtService : JWTService){}
 
-	getRequestOptions(params : any) {
+	private getRequestOptions(params : any) {
 		let requestOptions = new RequestOptions();
 		requestOptions.search = this.getSearchParams(params);
 		requestOptions.headers = this.getHeaders();
 		return requestOptions;
 	}
 
-	getSearchParams(params : any) {
+	private getSearchParams(params : any) {
 		if(params && params.length > 0) {
 			let urlSearchParams : URLSearchParams = new URLSearchParams();
 			for(let key in params){
@@ -37,16 +37,16 @@ export class HttpWrapperService{
 		}
 	}
 
-	getToken() {
+	private getToken() {
 		return this.jwtService.getToken();
 	}
 
-	setAuthorizationHeader(headers : Headers) {
+	private setAuthorizationHeader(headers : Headers) {
 		const token = this.getToken();
 		headers.append('Authorization', `JWT ${token}`);
 	}
 
-	getHeaders() {
+	private getHeaders() {
 		let headers = new Headers();
 		this.setAuthorizationHeader(headers);
 		return headers;
@@ -66,7 +66,7 @@ export class HttpWrapperService{
 		}
 	}
 
-	responseHandler(callback, isErrorDisplayingNeeded, successMessage, response, error) {
+	private responseHandler(callback, isErrorDisplayingNeeded, successMessage, response, error) {
 		if(error) {
 			if(isErrorDisplayingNeeded) {
 				this.openSnackBar(error);
@@ -78,13 +78,13 @@ export class HttpWrapperService{
 		callback(response, error);
 	}
 
-	openSnackBar(message) {
+	private openSnackBar(message) {
         this.snackBar.open(message, 'close', {
             duration: 10000,
         });
 	}
 
-	getDynamicParams(url : any, params : any) {
+	private getDynamicParams(url : any, params : any) {
 		for(let key in params){
 			url = url.replace(`{${key}}`, params[key]);
 		}

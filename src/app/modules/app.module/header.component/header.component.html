@@ -1,6 +1,5 @@
 <md-toolbar color="primary">
     <span class="main-title"><span>Jobseeker</span> - The best people for the best companies.</span>
     <span class="example-spacer"></span>
-    <span>{{currentUser?.name}}</span>
-    <button *ngIf = "currentUrl === '/workflow'" md-raised-button color="accent" (click)="signOut()">Sign out</button>
+    <settings></settings>
 </md-toolbar>
