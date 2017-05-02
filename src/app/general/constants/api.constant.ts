@@ -12,6 +12,10 @@ export const API = {
 		'authorized' : {
 			method : 'get',
 			url : '/authorized'
-		}		
+		},
+		'countries' : {
+			method : 'get',
+			url : '/countries'
+		}
 	}
 }

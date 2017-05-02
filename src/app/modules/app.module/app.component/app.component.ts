@@ -41,19 +41,19 @@ export class AppComponent implements OnInit{
     }
 
     authorizedHandler(response, error) {
-        let navRoute : String = '';
-        if(error) {
-            navRoute = '/login';
-        }else if(this.currentUrl === '/login'){
-            navRoute = '/workflow/board';
-        }else{
-            navRoute = this.currentUrl;
-        }
+        // let navRoute : String = '';
+        // if(error) {
+        //     navRoute = '/login';
+        // }else if(this.currentUrl === '/login'){
+        //     navRoute = '/workflow/board';
+        // }else{
+        //     navRoute = this.currentUrl;
+        // }
         
-        if(!error){
-            this.sharedService.setCurrentUser(response);
-        }
-        this.router.navigate([navRoute]);
+        // if(!error){
+        //     this.sharedService.setCurrentUser(response);
+        // }
+        // this.router.navigate([navRoute]);
     }
 
 }

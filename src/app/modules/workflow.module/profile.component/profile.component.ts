@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { SharedService } from '../../../general/services/shared.service';
-
+import { HttpWrapperService } from '../../../general/services/httpWrapper.service';
 @Component({
  	selector: 'profile',
 	templateUrl: './profile.component.html',
@@ -15,8 +15,9 @@ export class ProfileComponent{
         cities : []
     }
     
-    constructor( private sharedService : SharedService ) {
+    constructor( private sharedService : SharedService, private httpWrapperService : HttpWrapperService ) {
         this.currentUser = sharedService.getCurrentUser().subscribe( (result)=> this.setCurrentUser(result) );
+        this.getAllCountries();
     }	
 
     setCurrentUser(user){
@@ -27,8 +28,17 @@ export class ProfileComponent{
         return `./assets/images/avatars/${name || 'empty.png'}`;
     }
 
+    countriesResponseHandler(countries, error) {
+        if(!error) {
+            this.formData.countries = countries;
+        }
+    }
+
     getAllCountries() {
-        
+        this.httpWrapperService.sendRequest({
+            route : 'countries',
+            callback : this.countriesResponseHandler.bind(this)
+        })
     }
 
     getAllCitiesByContryId(countryId) {

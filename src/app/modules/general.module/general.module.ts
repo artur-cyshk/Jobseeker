@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { ReactiveFormsModule } from '@angular/forms';
 //material modules
 import 'hammerjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -12,6 +13,7 @@ import { MdProgressBarModule, MdAutocompleteModule, MdRadioModule, MdMenuModule,
     imports: [
         BrowserModule,
         FormsModule,
+        ReactiveFormsModule,
         HttpModule,
         BrowserAnimationsModule,
         MdInputModule,
@@ -29,6 +31,7 @@ import { MdProgressBarModule, MdAutocompleteModule, MdRadioModule, MdMenuModule,
     exports: [
         BrowserModule,
         FormsModule,
+        ReactiveFormsModule,
         HttpModule,
         BrowserAnimationsModule,
         MdAutocompleteModule,

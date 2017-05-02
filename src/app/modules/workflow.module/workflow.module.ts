@@ -12,6 +12,7 @@ import { ColumnComponent } from './column.component/column.component';
 import {SidebarComponent} from './sidebar.component/sidebar.component';
 import {ProfileComponent} from './profile.component/profile.component';
 import {FavoritesComponent} from './favorites.component/favorites.component';
+import {CustomAutocompleteComponent} from '../../general/components/autocomplete.component/autocomplete.component';
 
 @NgModule({
     declarations: [
@@ -20,7 +21,8 @@ import {FavoritesComponent} from './favorites.component/favorites.component';
         ColumnComponent,
         SidebarComponent,
         ProfileComponent,
-        FavoritesComponent
+        FavoritesComponent,
+        CustomAutocompleteComponent
     ],
     imports: [
     	GeneralModule,

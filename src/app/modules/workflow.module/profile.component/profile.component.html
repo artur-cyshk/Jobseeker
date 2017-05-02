@@ -6,18 +6,30 @@
 
 		<img class="avatar" [src]="getProfileAvatar(currentUser.avatarUrl)" [alt]="currentUser.name">
 		<md-input-container>
-	    	<input mdInput placeholder="First name">
+	    	<input required mdInput placeholder="First name">
 	    </md-input-container>
 	    <md-input-container>
-	    	<input mdInput placeholder="Last name">
+	    	<input required mdInput placeholder="Last name">
 	    </md-input-container>
 	    <md-input-container>
-	    	<input mdInput placeholder="Patronomic">
-	    </md-input-container>	    
+	    	<input required mdInput placeholder="Patronomic">
+	    </md-input-container>	
+
+	    <md-input-container>
+	    	<input mdInput placeholder="Skype">
+	    </md-input-container>	
+
+	   	<md-input-container>
+	    	<input required type="email" mdInput placeholder="E-mail">
+	    </md-input-container>	
+
+	    <md-input-container>
+	    	<input required type="tel" mdInput placeholder="phone">
+	    </md-input-container>	
 
 		<section class="example-section">
 			<label class="example-margin">Gender:</label>
-			<md-radio-group>
+			<md-radio-group required>
 				<md-radio-button value="man">
 				  Male
 				</md-radio-button>
@@ -28,28 +40,11 @@
 		</section>
 
 		<md-input-container>
-	    	<input type="date" mdInput placeholder="Birthday">
+	    	<input type="date" required mdInput placeholder="Birthday">
 	    </md-input-container>	
-
-	    <md-input-container>
-		  <input mdInput placeholder="Country" [mdAutocomplete]="auto">
-		</md-input-container>
-
-		<md-autocomplete #auto="mdAutocomplete">
-		  <md-option *ngFor="let state of formData.countries" [value]="state">
-		    {{ state }}
-		  </md-option>
-		</md-autocomplete>
-
-		<md-input-container>
-		  <input mdInput placeholder="City" [mdAutocomplete]="auto">
-		</md-input-container>
-
-		<md-autocomplete #auto="mdAutocomplete">
-		  <md-option *ngFor="let state of formData.cities" [value]="state">
-		    {{ state }}
-		  </md-option>
-		</md-autocomplete>
+	    <div *ngIf="formData.countries">
+		    <custom-autocomplete [items]="formData.countries" [customPlaceholder]="'Country'"></custom-autocomplete>	    	
+	    </div>
 
 	</main>
 	<footer>

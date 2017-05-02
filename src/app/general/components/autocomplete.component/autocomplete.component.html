@@ -1,0 +1,9 @@
+<md-input-container>
+  <input mdInput [placeholder]="customPlaceholder" [mdAutocomplete]="auto" [formControl]="itemCtrl">
+</md-input-container>
+
+<md-autocomplete #auto="mdAutocomplete">
+  <md-option *ngFor="let item of items" [value]="item">
+    {{ item.name }}
+  </md-option>
+</md-autocomplete>
