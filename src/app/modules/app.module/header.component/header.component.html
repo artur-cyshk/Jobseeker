@@ -1,5 +1,5 @@
 <md-toolbar color="primary">
     <span class="main-title"><span>Jobseeker</span> - The best people for the best companies.</span>
     <span class="example-spacer"></span>
-    <settings></settings>
+    <settings *ngIf="currentUrl === '/workflow/board'"></settings>
 </md-toolbar>
