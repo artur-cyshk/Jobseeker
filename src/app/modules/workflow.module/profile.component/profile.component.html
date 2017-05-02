@@ -3,7 +3,31 @@
 		{{currentUser.name}}'s profile
 	</header>
 	<main>
-		
+
+		<img class="avatar" [src]="getProfileAvatar(currentUser.avatarUrl)" [alt]="currentUser.name">
+		<md-input-container>
+	    	<input mdInput placeholder="First name">
+	    </md-input-container>
+	    <md-input-container>
+	    	<input mdInput placeholder="Last name">
+	    </md-input-container>
+	    <md-input-container>
+	    	<input mdInput placeholder="Patronomic">
+	    </md-input-container>	    
+
+		<section class="example-section">
+			<label class="example-margin">Gender:</label>
+			<md-radio-group>
+				<md-radio-button value="man">
+				  Male
+				</md-radio-button>
+				<md-radio-button value="woman">
+				  Female
+				</md-radio-button>
+			</md-radio-group>
+		</section>
+
+
 	</main>
 	<footer>
 		<button md-raised-button color="warn">Reset</button>

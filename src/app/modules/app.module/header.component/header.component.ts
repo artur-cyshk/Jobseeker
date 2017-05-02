@@ -7,7 +7,4 @@ import { Component, Input } from '@angular/core';
 export class HeaderComponent{
     @Input()
     currentUrl : string;
-    @Input()
-    currentUser : any;
-    isAuthorizationChecked : boolean = false;
 }

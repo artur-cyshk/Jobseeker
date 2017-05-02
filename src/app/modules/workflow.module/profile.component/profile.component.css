@@ -26,6 +26,7 @@
 
 .profile-form > main{
 	height: calc(100% - 120px);
+	padding: 10px 0;
 	width: 100%;
 }
 
@@ -40,4 +41,11 @@
 
 .profile-form > footer > button:first-child{
 	margin-right: 15px;
+}
+
+.avatar{
+	width: 150px;
+	float : right;
+    border-radius: 50%;
+    height: 150px;
 }
