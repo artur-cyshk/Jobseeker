@@ -14,10 +14,10 @@ module.exports = function (req, res, next) {
             });
         }
         if(user.first_name) {
-            dataUpdate.first_name = user.first_name;
+            dataUpdate.first_name = user.firstName;
         }
         if(user.last_name) {
-            dataUpdate.last_name = user.last_name;
+            dataUpdate.last_name = user.lastName;
         }
         if(user.patronomic) {
             dataUpdate.patronomic = user.patronomic;
@@ -29,7 +29,7 @@ module.exports = function (req, res, next) {
             dataUpdate.dob = user.dob;
         }
         if(user.country_id) {
-            dataUpdate.country_id = user.country_id;
+            dataUpdate.country_id = user.countryId;
         }
         if(user.avatarUrl) {
             dataUpdate.avatarUrl = user.avatarUrl;
