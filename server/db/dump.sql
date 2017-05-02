@@ -106,7 +106,7 @@ CREATE TABLE `companies_countries` (
   PRIMARY KEY (`country_id`,`company_id`),
   KEY `fk_countries_has_companies_information_companies_informatio_idx` (`company_id`),
   KEY `fk_countries_has_companies_information_countries1_idx` (`country_id`),
-  CONSTRAINT `fk_countries_has_companies_information_companies_information1` FOREIGN KEY (`company_id`) REFERENCES `companies_information` (`id_companies_information`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_countries_has_companies_information_companies_information1` FOREIGN KEY (`company_id`) REFERENCES `companies_information` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_countries_has_companies_information_countries1` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -128,11 +128,12 @@ DROP TABLE IF EXISTS `companies_information`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `companies_information` (
-  `id_companies_information` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `company_id` int(11) NOT NULL,
   `address` varchar(256) DEFAULT NULL,
   `found_date` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
-  PRIMARY KEY (`id_companies_information`),
+  `description` varchar(64) NOT NULL,
+  PRIMARY KEY (`id`),
   KEY `fk_companies_information_companies1_idx` (`company_id`),
   CONSTRAINT `fk_companies_information_companies1` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -255,32 +256,6 @@ CREATE TABLE `cvs_skills` (
 LOCK TABLES `cvs_skills` WRITE;
 /*!40000 ALTER TABLE `cvs_skills` DISABLE KEYS */;
 /*!40000 ALTER TABLE `cvs_skills` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `emails`
---
-
-DROP TABLE IF EXISTS `emails`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `emails` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `email` varchar(45) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_emails_users1_idx` (`user_id`),
-  CONSTRAINT `fk_emails_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `emails`
---
-
-LOCK TABLES `emails` WRITE;
-/*!40000 ALTER TABLE `emails` DISABLE KEYS */;
-/*!40000 ALTER TABLE `emails` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -430,14 +405,17 @@ CREATE TABLE `personal_information` (
   `last_name` varchar(64) NOT NULL,
   `patronomic` varchar(64) DEFAULT NULL,
   `gender` enum('man','woman') NOT NULL,
-  `dob` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
   `user_id` int(11) NOT NULL,
-  `county_id` int(11) NOT NULL,
   `avatarUrl` varchar(256) DEFAULT NULL,
+  `city_id` int(11) NOT NULL,
+  `dob` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
+  `email` varchar(64) NOT NULL,
+  `phone` varchar(64) NOT NULL,
+  `skype` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_personal_information_users1_idx` (`user_id`),
-  KEY `fk_personal_information_countries1_idx` (`county_id`),
-  CONSTRAINT `fk_personal_information_countries1` FOREIGN KEY (`county_id`) REFERENCES `countries` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  KEY `fk_personal_information_cities1_idx` (`city_id`),
+  CONSTRAINT `fk_personal_information_cities1` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_personal_information_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -449,33 +427,6 @@ CREATE TABLE `personal_information` (
 LOCK TABLES `personal_information` WRITE;
 /*!40000 ALTER TABLE `personal_information` DISABLE KEYS */;
 /*!40000 ALTER TABLE `personal_information` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `phones`
---
-
-DROP TABLE IF EXISTS `phones`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `phones` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `phone_number` varchar(45) NOT NULL,
-  `type` enum('work','home','mobile') NOT NULL,
-  `user_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_phones_users1_idx` (`user_id`),
-  CONSTRAINT `fk_phones_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `phones`
---
-
-LOCK TABLES `phones` WRITE;
-/*!40000 ALTER TABLE `phones` DISABLE KEYS */;
-/*!40000 ALTER TABLE `phones` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -556,32 +507,6 @@ CREATE TABLE `skills` (
 LOCK TABLES `skills` WRITE;
 /*!40000 ALTER TABLE `skills` DISABLE KEYS */;
 /*!40000 ALTER TABLE `skills` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `skypes`
---
-
-DROP TABLE IF EXISTS `skypes`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `skypes` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `login` varchar(45) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_skypes_users1_idx` (`user_id`),
-  CONSTRAINT `fk_skypes_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `skypes`
---
-
-LOCK TABLES `skypes` WRITE;
-/*!40000 ALTER TABLE `skypes` DISABLE KEYS */;
-/*!40000 ALTER TABLE `skypes` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -768,4 +693,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-29 23:23:55
+-- Dump completed on 2017-05-02 23:33:42

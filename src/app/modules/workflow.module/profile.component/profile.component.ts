@@ -9,6 +9,11 @@ import { SharedService } from '../../../general/services/shared.service';
 export class ProfileComponent{
 
     currentUser : any;
+
+    formData : any = {
+        countries : [],
+        cities : []
+    }
     
     constructor( private sharedService : SharedService ) {
         this.currentUser = sharedService.getCurrentUser().subscribe( (result)=> this.setCurrentUser(result) );
@@ -20,6 +25,14 @@ export class ProfileComponent{
 
     getProfileAvatar(name) {
         return `./assets/images/avatars/${name || 'empty.png'}`;
+    }
+
+    getAllCountries() {
+        
+    }
+
+    getAllCitiesByContryId(countryId) {
+
     }
 
 }
