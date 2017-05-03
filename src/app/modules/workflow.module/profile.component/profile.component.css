@@ -1,9 +1,7 @@
 :host{
     flex: 1;
     padding: 15px;
-    overflow-x: auto;
-    overflow-y: hidden;
-    white-space: nowrap;
+    overflow: hidden;
 }
 
 .profile-form{
@@ -26,6 +24,7 @@
 
 .profile-form > main{
 	height: calc(100% - 120px);
+	overflow-y: auto;
 	padding: 10px 0;
 	width: 100%;
 }

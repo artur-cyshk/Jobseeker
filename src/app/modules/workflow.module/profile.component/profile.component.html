@@ -41,7 +41,7 @@
 
 
 	    <div>
-		    <custom-autocomplete [items]="formData.countries" [customPlaceholder]="'Country'"></custom-autocomplete>	    	
+		    <custom-autocomplete [model]="currentUser.country" (modelChange)="countryChanged($event)" [items]="formData.countries" [customPlaceholder]="'Country'"></custom-autocomplete>
 	    </div>
 
 	</main>

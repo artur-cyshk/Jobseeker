@@ -1,22 +1,36 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, Output, OnInit, DoCheck, EventEmitter} from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 @Component({
   selector: 'custom-autocomplete',
   templateUrl: './autocomplete.component.html',
 })
-export class CustomAutocompleteComponent implements OnInit{
+export class CustomAutocompleteComponent implements OnInit, DoCheck{
   
   @Input()
   items : Array<any>;
+  @Input()
+  model: any;
+  @Output()
+  modelChange: EventEmitter<any> = new EventEmitter();
+
+  ngDoCheck() {
+    this.modelChange.next(this.model);
+  }
 
   @Input()
   customPlaceholder : string;
 
-  itemCtrl = new FormControl('', Validators.required);
+  itemCtrl = new FormControl({value : '54115'}, Validators.required);
   filteredItems: Observable<any[]>;
 
-   ngOnInit() { 
+   change() { 
+      this.filteredItems = this.itemCtrl.valueChanges
+         .startWith(null)
+         .map(name => name ? this.filter(name) : this.items.slice() );
+   }
+
+   ngOnInit() {
       this.filteredItems = this.itemCtrl.valueChanges
          .startWith(null)
          .map(name => name ? this.filter(name) : this.items.slice() );
