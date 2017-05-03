@@ -7,17 +7,17 @@ module.exports = function (req, res, next) {
     const validate = function(user) {
         let dataUpdate = {};
         if(user.id) {
-            dataUpdate.user_id = user.id;
+            dataUpdate.userId = user.id;
         } else {
             next({
                 data: "Not user_id"
             });
         }
-        if(user.first_name) {
-            dataUpdate.first_name = user.firstName;
+        if(user.firstName) {
+            dataUpdate.firstName = user.firstName;
         }
-        if(user.last_name) {
-            dataUpdate.last_name = user.lastName;
+        if(user.lastName) {
+            dataUpdate.lastName = user.lastName;
         }
         if(user.patronomic) {
             dataUpdate.patronomic = user.patronomic;
@@ -28,11 +28,20 @@ module.exports = function (req, res, next) {
         if(user.dob) {
             dataUpdate.dob = user.dob;
         }
-        if(user.country_id) {
-            dataUpdate.country_id = user.countryId;
+        if(user.cityId) {
+            dataUpdate.cityId = user.cityId;
         }
         if(user.avatarUrl) {
             dataUpdate.avatarUrl = user.avatarUrl;
+        }
+        if(user.email) {
+            dataUpdate.email = user.email;
+        }
+        if(user.skype) {
+            dataUpdate.skype = user.skype;
+        }
+        if(user.phone) {
+            dataUpdate.phone = user.phone;
         }
         return dataUpdate;
     }
@@ -50,7 +59,7 @@ module.exports = function (req, res, next) {
                 if(err) {
                     if(err.code == "ER_DUP_ENTRY") {
                         next({
-                            data: "data already exists"
+                            data: "Data already exists"
                         });
                     }else {
                         next(true);
@@ -60,11 +69,11 @@ module.exports = function (req, res, next) {
             res.status(200).end();
             });
         } else if([users[0].exist == 1]) {
-            connection.query(queryUpdate, [dataUpdate, dataUpdate.user_id], (error) => {
+            connection.query(queryUpdate, [dataUpdate, dataUpdate.userId], (error) => {
                 if(err) {
                     if(err.code == "ER_DUP_ENTRY") {
                         next({
-                            data: "data already exists"
+                            data: "Data already exists"
                         });
                     }else {
                         next(true);

@@ -26,7 +26,7 @@ module.exports = function (req, res, next) {
             if(err) {
                 if(err.code == "ER_DUP_ENTRY") {
                     next({
-                        data: "username already exists"
+                        data: "Username already exists"
                     });
                 }else {
                     next(true);

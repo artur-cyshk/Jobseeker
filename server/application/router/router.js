@@ -7,7 +7,7 @@ router.post('/registration', require('./routes/authentication/registration'));
 
 router.get('/user', auth.authenticate(), require('./routes/user/get')); //{id, profile_user}
 router.put('/user', auth.authenticate(), require('./routes/user/put')); //{id, profile_user}
-router.put('/user/changePassword', auth.authenticate(), require('./routes/user/changePassword')); // {id, password}
+router.put('/user/changePassword', auth.authenticate(), require('./routes/user/changePassword')); // {user.id, oldPassword, newPassword}
 router.post('/user/uploadAvatar', auth.authenticate(), require('./routes/user/uploadAvatar'));
 
 
