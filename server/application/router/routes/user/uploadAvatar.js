@@ -23,6 +23,6 @@ module.exports = function(req, res, next) {
              next(true);
              return;
         }
-        res.status(200).json(null);
+        res.status(200).end();
     })
 };

@@ -9,9 +9,9 @@ export const API = {
 			method : 'post',
 			url : '/registration'
 		},
-		'authorized' : {
+		'getUser' : {
 			method : 'get',
-			url : '/authorized'
+			url : '/user'
 		},
 		'countries' : {
 			method : 'get',

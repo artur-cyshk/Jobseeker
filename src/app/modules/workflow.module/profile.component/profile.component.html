@@ -1,9 +1,10 @@
-<form class="profile-form" #profileForm="ngForm" >
+<form class="profile-form" #profileForm="ngForm" *ngIf="currentUser">
 	<header [hidden]="!currentUser.name">
 		{{currentUser.name}}'s profile
 	</header>
 	<main>
-		<md-slide-toggle></md-slide-toggle>
+
+		<md-slide-toggle [checked]="currentUser.role === 'jobseeker'" (change)="setUserRole(currentUser.role)">I am {{currentUser.role}}</md-slide-toggle>
 		<img class="avatar" [src]="getProfileAvatar(currentUser.avatarUrl)" [alt]="currentUser.name">
 		<md-input-container>
 	    	<input [(ngModel)]="currentUser.firstName" id="firstName" name="firstName"  required mdInput placeholder="First name">
@@ -25,16 +26,16 @@
 
 	    <md-input-container>
 	    	<input [(ngModel)]="currentUser.phone" id="phone" name="phone" required type="tel" mdInput placeholder="Phone">
-	    </md-input-container>	
+	    </md-input-container>
 		<md-input-container>
-	    	<input [(ngModel)]="currentUser.date" id="date" name="date" type="date" required mdInput placeholder="Birthday">
+	    	<input [ngModel]="currentUser.dob | date:'y-MM-dd'" (ngModelChange)="currentUser.dob = $event" id="date" name="date" type="date" required mdInput placeholder="Birthday">
 	    </md-input-container>	
 
 		<section class="example-section">
 			<label class="example-margin">Gender:</label>
 			<md-radio-group [(ngModel)]="currentUser.gender" id="gender" name="gender" required>
-				<md-radio-button value="man">Male</md-radio-button>
-				<md-radio-button value="woman">Female</md-radio-button>
+				<md-radio-button value="male">Male</md-radio-button>
+				<md-radio-button value="female">Female</md-radio-button>
 			</md-radio-group>
 		</section>
 

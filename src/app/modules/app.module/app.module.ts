@@ -19,6 +19,7 @@ import { HttpWrapperService } from '../../general/services/httpWrapper.service';
 import { LocalStorageWrapperService } from '../../general/services/localStorageWrapper.service';
 import { SharedService } from '../../general/services/shared.service';
 import { JWTService } from '../../general/services/jwt.service';
+import { AuthService } from '../../general/services/auth.service';
 
 @NgModule({
     declarations: [
@@ -38,7 +39,8 @@ import { JWTService } from '../../general/services/jwt.service';
         HttpWrapperService,
         JWTService,
         LocalStorageWrapperService,
-        SharedService
+        SharedService,
+        AuthService
     ],
     bootstrap: [AppComponent]
 })

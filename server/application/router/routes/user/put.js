@@ -1,4 +1,4 @@
-var connection = require('../../../configuration/database/connection');
+var connection = require('../../../../configuration/database/connection');
 
 module.exports = function (req, res, next) {
     const query = 'select COUNT(personalInformation.id) as exist from personalInformation, users where personalInformation.userId = users.id and users.id = ?'
@@ -57,7 +57,7 @@ module.exports = function (req, res, next) {
                     }
                     return;
                 }
-            res.status(200).json(null);
+            res.status(200).end();
             });
         } else if([users[0].exist == 1]) {
             connection.query(queryUpdate, [dataUpdate, dataUpdate.user_id], (error) => {
@@ -71,7 +71,7 @@ module.exports = function (req, res, next) {
                     }
                     return;
                 }
-            res.status(200).json(null);
+            res.status(200).end();
             });
         }
         // res.status(200).json(users[0]);

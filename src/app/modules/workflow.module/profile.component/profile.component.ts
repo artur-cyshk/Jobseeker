@@ -17,9 +17,23 @@ export class ProfileComponent{
     }
     
     constructor( private sharedService : SharedService, private httpWrapperService : HttpWrapperService ) {
-        this.currentUser = sharedService.getCurrentUser().subscribe( (result)=> this.setCurrentUser(result) );
+        this.getCurrentUser();
         this.getAllCountries();
     }	
+
+    currentUserResponseHandler(user, error) {
+        if(user){
+            this.sharedService.setCurrentUser(user);
+            this.currentUser = user;
+        }
+    }
+
+    getCurrentUser() {
+        this.httpWrapperService.sendRequest({
+            route : 'getUser',
+            callback : this.currentUserResponseHandler.bind(this)
+        })
+    }
 
     setCurrentUser(user){
         this.currentUser = user;
@@ -44,6 +58,11 @@ export class ProfileComponent{
 
     getAllCitiesByContryId(countryId) {
 
+    }
+
+    setUserRole(currentRole : string) {
+        this.currentUser.role = (currentRole === 'employer') ? 'jobseeker' : 'employer'; 
+        console.log(this.currentUser);
     }
 
 }

@@ -10,12 +10,14 @@ import { LocalStorageWrapperService } from './localStorageWrapper.service';
 import { JWTService } from './jwt.service';
 import {MdSnackBar} from '@angular/material';
 import { SharedService } from './shared.service';
+import { AuthService } from './auth.service';
 
 @Injectable()
 export class HttpWrapperService{
 
 	constructor(private http : Http,
 				private snackBar : MdSnackBar,
+				private authService : AuthService,
 				private sharedService : SharedService,
 				private localStorageWrapperService : LocalStorageWrapperService,
 				private jwtService : JWTService){}
@@ -62,14 +64,17 @@ export class HttpWrapperService{
 				body : body,
 				options : this.getRequestOptions(params)
 			};
-			this.sendExistingRequest(routeInfo).subscribe((response) => this.responseHandler(callback, isErrorDisplayingNeeded, successMessage, response, null), (response) => this.responseHandler(callback, isErrorDisplayingNeeded, successMessage, null, response));
+			this.sendExistingRequest(routeInfo).subscribe(
+				(response) => this.responseHandler(callback, isErrorDisplayingNeeded, successMessage, response, null),
+				(response) => this.responseHandler(callback, isErrorDisplayingNeeded, successMessage, null, response)
+			);
 		}
 	}
 
 	private responseHandler(callback, isErrorDisplayingNeeded, successMessage, response, error) {
-		if(error) {
+		if(error && this.authService.checkPermision(error.status) ) {
 			if(isErrorDisplayingNeeded) {
-				this.openSnackBar(error);
+				this.openSnackBar(error.message);
 			}
 		}else if(successMessage) {
 			this.openSnackBar(successMessage);
@@ -104,16 +109,19 @@ export class HttpWrapperService{
 
 	private extractData(res : Response){
 		let body = res.json();
-		return body || {};
+		return body || "";
 	}
 
 	private handleError (error : Response | any){
 		let errMsg : string;
 		if(error instanceof Response){
-			const body = error.json();
+			const body = error.text();
 			errMsg = body ? body : error.statusText;
 		}
 		errMsg = errMsg ? errMsg : error;
-		return Observable.throw(errMsg);
+		return Observable.throw({
+			message : errMsg,
+			status : (error instanceof Response) ? error.status : 500
+		});
 	}
 }
