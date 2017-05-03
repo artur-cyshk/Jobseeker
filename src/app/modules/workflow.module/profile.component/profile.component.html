@@ -1,54 +1,50 @@
-<form class="profile-form">
+<form class="profile-form" #profileForm="ngForm" >
 	<header [hidden]="!currentUser.name">
 		{{currentUser.name}}'s profile
 	</header>
 	<main>
-
+		<md-slide-toggle></md-slide-toggle>
 		<img class="avatar" [src]="getProfileAvatar(currentUser.avatarUrl)" [alt]="currentUser.name">
 		<md-input-container>
-	    	<input required mdInput placeholder="First name">
+	    	<input [(ngModel)]="currentUser.firstName" id="firstName" name="firstName"  required mdInput placeholder="First name">
 	    </md-input-container>
 	    <md-input-container>
-	    	<input required mdInput placeholder="Last name">
+	    	<input [(ngModel)]="currentUser.lastName" id="lastName" name="lastName"  required mdInput placeholder="Last name">
 	    </md-input-container>
 	    <md-input-container>
-	    	<input required mdInput placeholder="Patronomic">
+	    	<input [(ngModel)]="currentUser.patronomic" id="patronomic" name="patronomic"  required mdInput placeholder="Patronomic">
 	    </md-input-container>	
 
 	    <md-input-container>
-	    	<input mdInput placeholder="Skype">
+	    	<input [(ngModel)]="currentUser.skype" id="skype" name="skype" mdInput placeholder="Skype">
 	    </md-input-container>	
 
 	   	<md-input-container>
-	    	<input required type="email" mdInput placeholder="E-mail">
+	    	<input [(ngModel)]="currentUser.email" id="email" name="email" required type="email" mdInput placeholder="E-mail">
 	    </md-input-container>	
 
 	    <md-input-container>
-	    	<input required type="tel" mdInput placeholder="phone">
+	    	<input [(ngModel)]="currentUser.phone" id="phone" name="phone" required type="tel" mdInput placeholder="Phone">
+	    </md-input-container>	
+		<md-input-container>
+	    	<input [(ngModel)]="currentUser.date" id="date" name="date" type="date" required mdInput placeholder="Birthday">
 	    </md-input-container>	
 
 		<section class="example-section">
 			<label class="example-margin">Gender:</label>
-			<md-radio-group required>
-				<md-radio-button value="man">
-				  Male
-				</md-radio-button>
-				<md-radio-button value="woman">
-				  Female
-				</md-radio-button>
+			<md-radio-group [(ngModel)]="currentUser.gender" id="gender" name="gender" required>
+				<md-radio-button value="man">Male</md-radio-button>
+				<md-radio-button value="woman">Female</md-radio-button>
 			</md-radio-group>
 		</section>
 
-		<md-input-container>
-	    	<input type="date" required mdInput placeholder="Birthday">
-	    </md-input-container>	
-	    <div *ngIf="formData.countries">
+
+	    <div>
 		    <custom-autocomplete [items]="formData.countries" [customPlaceholder]="'Country'"></custom-autocomplete>	    	
 	    </div>
 
 	</main>
 	<footer>
-		<button md-raised-button color="warn">Reset</button>
-		<button md-raised-button color="accent">Save</button>
+		<button type="submit" md-raised-button color="primary">Save</button>
 	</footer>
 </form>

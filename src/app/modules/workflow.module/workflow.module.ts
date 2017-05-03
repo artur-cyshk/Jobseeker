@@ -29,8 +29,6 @@ import {CustomAutocompleteComponent} from '../../general/components/autocomplete
         RouterModule.forChild(appRoutes),
         SortablejsModule
     ],
-    exports : [
-    RouterModule],
     providers: [],
     bootstrap: [WorkflowComponent]
 })

@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormControl} from '@angular/forms';
-
+import {FormControl, Validators} from '@angular/forms';
+import {Observable} from 'rxjs/Observable';
 @Component({
   selector: 'custom-autocomplete',
   templateUrl: './autocomplete.component.html',
@@ -8,27 +8,26 @@ import {FormControl} from '@angular/forms';
 export class CustomAutocompleteComponent implements OnInit{
   
   @Input()
-  items : any;
+  items : Array<any>;
 
   @Input()
   customPlaceholder : string;
 
-  itemCtrl: FormControl;
-  filteredItems: any;
+  itemCtrl = new FormControl('', Validators.required);
+  filteredItems: Observable<any[]>;
 
-  constructor() {
-    this.itemCtrl = new FormControl();
-    this.filterItems = this.items;
-    this.itemCtrl.valueChanges.subscribe((value) => console.log(value))
-  }
+   ngOnInit() { 
+      this.filteredItems = this.itemCtrl.valueChanges
+         .startWith(null)
+         .map(name => name ? this.filter(name) : this.items.slice() );
+   }
 
-  ngOnInit() {
-  	console.log(this.items);
-  }
+   filter(searchValue: string): any[] {
+      return this.items.filter(item => new RegExp(`^${searchValue}`, 'gi').test(item.name)); 
+   }
 
-  filterItems(val: string) {
-    return val ? this.filteredItems.filter(s => new RegExp(`^${val}`, 'gi').test(s))
-               : this.filteredItems;
-  }
+   displayFn(item: any): string {
+      return item ? item.name : item;
+   }
 
 }

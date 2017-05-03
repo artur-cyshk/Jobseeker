@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { SharedService } from '../../../general/services/shared.service';
 import { HttpWrapperService } from '../../../general/services/httpWrapper.service';
+
 @Component({
  	selector: 'profile',
 	templateUrl: './profile.component.html',

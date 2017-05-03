@@ -1,9 +1,9 @@
 var connection = require('../../../configuration/database/connection');
 
 module.exports = function (req, res, next) {
-    const query = 'select COUNT(personal_information.id) as exist from personal_information, users where personal_information.user_id = users.id and users.id = ?'
-    const queryInsert = 'insert into personal_information set ?';
-    const queryUpdate = 'update personal_information set ? where personal_information.user_id = ?';
+    const query = 'select COUNT(personalInformation.id) as exist from personalInformation, users where personalInformation.userId = users.id and users.id = ?'
+    const queryInsert = 'insert into personalInformation set ?';
+    const queryUpdate = 'update personalInformation set ? where personalInformation.userId = ?';
     const validate = function(user) {
         let dataUpdate = {};
         if(user.id) {
