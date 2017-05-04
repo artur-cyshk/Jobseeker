@@ -56,12 +56,12 @@ export class ProfileComponent{
         })
     }
 
-    countryChanged(countries) {
-        
+    countryChanged(country) {
+        this.currentUser.country = country;
     }
 
     getAllCitiesByContryId(countryId) {
-
+       //todo
     }
 
     setUserRole(currentRole : string) {

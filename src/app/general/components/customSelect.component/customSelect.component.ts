@@ -24,7 +24,7 @@ export class CustomSelectComponent implements OnChanges{
     customPlaceholder : string;
 
     ngOnChanges(changes) {
-          if(changes.items.currentValue && changes.items.currentValue.length > 0) {
+          if(changes.items && changes.items.currentValue && changes.items.currentValue.length > 0) {
               this.filteredItems = changes.items.currentValue;
           }
           if(changes.selectedItem && changes.selectedItem.currentValue ) {
@@ -43,6 +43,7 @@ export class CustomSelectComponent implements OnChanges{
     selectItem(item) {
         this.selectedItem = item;
         this.searchValue = item.name;
+        this.listVisible = false;
         this.modelChange.next(this.selectedItem);
     }
 }

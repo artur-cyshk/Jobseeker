@@ -46,7 +46,7 @@
 			<div class="profile-place-block">
 					<i class="fa fa-globe" aria-hidden="true"></i>
 				    <custom-select [selectedItem]="currentUser.country" (modelChange)="countryChanged($event)" [items]="formData.countries" [customPlaceholder]="'Country'"></custom-select>
-				    <multiselect [selectedItems]="[currentUser.country]" (modelChange)="countryChanged($event)" [items]="formData.countries" [customPlaceholder]="'Country'"></multiselect>		
+				    <custom-select [selectedItem]="currentUser.country" (modelChange)="countryChanged($event)" [items]="formData.countries" [customPlaceholder]="'Country'"></custom-select>
 			</div>			
 		</div>
 	</main>

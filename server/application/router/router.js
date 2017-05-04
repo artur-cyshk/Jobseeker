@@ -13,5 +13,5 @@ router.post('/user/uploadAvatar', auth.authenticate(), require('./routes/user/up
 
 router.post('/companies', auth.authenticate(), require('./routes/companies'));
 router.get('/countries', auth.authenticate(), require('./routes/countries'));
-router.get('/cities', auth.authenticate(), require('./routes/cities'));
+router.get('/cities/:countryId', auth.authenticate(), require('./routes/cities'));
 module.exports = router;
