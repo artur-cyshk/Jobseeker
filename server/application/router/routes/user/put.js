@@ -13,6 +13,18 @@ module.exports = function (req, res, next) {
                 data: "Not user_id"
             });
         }
+        if(user.role) {
+            connection.query('update users set role = ? where users.id = ?', [user.role, user.id], (error) => {
+                console.log(error);
+                if(error) {
+                    return next({
+                        status : 500,
+                        data : 'Server error'
+                    })
+                    return;
+                }
+            });
+        }
         if(user.firstName) {
             dataUpdate.firstName = user.firstName;
         }
@@ -46,7 +58,7 @@ module.exports = function (req, res, next) {
         return dataUpdate;
     }
     const dataUpdate = validate(req.body);
-    connection.query(query, [req.body.user.id], (error, users) => {
+    connection.query(query, [req.body.id], (error, users) => {
         console.log(error, users);
         if(error){
             return next({
@@ -56,33 +68,28 @@ module.exports = function (req, res, next) {
         }
         if(users[0].exist == 0) {
             connection.query(queryInsert, dataUpdate, (error) => {
-                if(err) {
-                    if(err.code == "ER_DUP_ENTRY") {
-                        next({
-                            data: "Data already exists"
-                        });
-                    }else {
-                        next(true);
-                    }
+                console.log(error);
+                if(error) {
+                    return next({
+                        status : 500,
+                        data : 'Server error'
+                    })
                     return;
                 }
             res.status(200).end();
             });
         } else if([users[0].exist == 1]) {
             connection.query(queryUpdate, [dataUpdate, dataUpdate.userId], (error) => {
-                if(err) {
-                    if(err.code == "ER_DUP_ENTRY") {
-                        next({
-                            data: "Data already exists"
-                        });
-                    }else {
-                        next(true);
-                    }
+                console.log(error);
+                if(error) {
+                    return next({
+                        status : 500,
+                        data : 'Server error'
+                    })
                     return;
                 }
             res.status(200).end();
             });
         }
-        // res.status(200).json(users[0]);
     })
 };
