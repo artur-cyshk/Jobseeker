@@ -56,8 +56,8 @@ export class ProfileComponent{
         })
     }
 
-    countryChanged(ev) {
-        console.log(ev);
+    countryChanged(countries) {
+        
     }
 
     getAllCitiesByContryId(countryId) {

@@ -45,8 +45,8 @@
 
 			<div class="profile-place-block">
 					<i class="fa fa-globe" aria-hidden="true"></i>
-				    <custom-autocomplete [model]="currentUser.country" (modelChange)="countryChanged($event)" [items]="formData.countries" [customPlaceholder]="'Country'"></custom-autocomplete>
-				    <custom-autocomplete [model]="currentUser.country" (modelChange)="countryChanged($event)" [items]="formData.countries" [customPlaceholder]="'Country'"></custom-autocomplete>		
+				    <custom-select [selectedItem]="currentUser.country" (modelChange)="countryChanged($event)" [items]="formData.countries" [customPlaceholder]="'Country'"></custom-select>
+				    <multiselect [selectedItems]="[currentUser.country]" (modelChange)="countryChanged($event)" [items]="formData.countries" [customPlaceholder]="'Country'"></multiselect>		
 			</div>			
 		</div>
 	</main>

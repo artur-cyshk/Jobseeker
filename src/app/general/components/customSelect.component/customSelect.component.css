@@ -1,0 +1,82 @@
+:host > div{
+	width: 100%;
+	position: relative;
+}
+
+md-input-container{
+	width: 100%;
+	position: relative;
+}
+
+.mat-input-element{
+	padding: 0 20px 0 0;
+}
+.list-toggle-button{
+    position: absolute;
+    right: 4px;
+    color: #64a3c7;
+    top: 16px;
+    z-index: 1;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+i.fa-check{
+	display: none;
+}
+
+.select-box-wrapper{
+    position: absolute;
+    top: 33px;
+    height: auto;
+    width: 100%;
+    max-height: 150px;
+    overflow: auto;
+    z-index: 100;
+}
+.select-box-wrapper > .select-item{
+	width: 100%;
+	height: 30px;
+	padding: 8px 22px 8px 8px;
+	background-color: white;
+	color : black;
+	display: block;
+	position: relative;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	transition: 0.2s linear all;
+	cursor: pointer;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    border-right: 1px solid rgba(0, 0, 0, 0.08);
+    border-left: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.select-box-wrapper > .select-item:hover{
+	background-color: #f6fbff;
+}
+
+.select-box-wrapper > .select-item:active, .select-box-wrapper > .select-item.selected{
+    background-color: #4bafff;
+    color: white;
+}
+
+.select-box-wrapper .select-item.selected > i{
+    position: absolute;
+    right: 7px;
+    display: block;
+    top: calc(50% - 7px);
+}
+
+.select-box-wrapper > .select-item.disabled:hover,
+.select-box-wrapper > .select-item.disabled:active,
+.select-box-wrapper > .select-item.disabled.selected{
+	background: white;
+	cursor: default;
+
+}
+.select-box-wrapper > .select-item.disabled{
+	color: #a9b0b6;
+    font-size: 11px;
+    font-style: italic;
+}

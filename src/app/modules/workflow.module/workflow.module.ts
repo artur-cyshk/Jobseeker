@@ -12,7 +12,9 @@ import { ColumnComponent } from './column.component/column.component';
 import {SidebarComponent} from './sidebar.component/sidebar.component';
 import {ProfileComponent} from './profile.component/profile.component';
 import {FavoritesComponent} from './favorites.component/favorites.component';
-import {CustomAutocompleteComponent} from '../../general/components/autocomplete.component/autocomplete.component';
+
+import {CustomSelectComponent} from '../../general/components/customSelect.component/customSelect.component';
+import {MultiselectComponent} from '../../general/components/multiselect.component/multiselect.component';
 
 @NgModule({
     declarations: [
@@ -22,7 +24,8 @@ import {CustomAutocompleteComponent} from '../../general/components/autocomplete
         SidebarComponent,
         ProfileComponent,
         FavoritesComponent,
-        CustomAutocompleteComponent
+        MultiselectComponent,
+        CustomSelectComponent
     ],
     imports: [
     	GeneralModule,
