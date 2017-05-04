@@ -2,6 +2,7 @@
     flex: 1;
     padding: 15px;
     overflow: hidden;
+    min-width: 570px;
 }
 
 .profile-form{
@@ -47,4 +48,59 @@
 	float : right;
     border-radius: 50%;
     height: 150px;
+}
+
+.main-profile-block{
+	position: relative;
+    height: auto;
+    border: 1px solid #c7d8e0;
+    padding: 15px 15px 0 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+.gender-birthday-block{
+	width: calc(100% - 170px);
+	display: flex;
+	flex-direction: row;
+}
+
+.main-profile-block > md-input-container, .slide-toggle-wrapper{
+    width: calc(100% - 170px);	
+    margin-bottom: 10px;
+}
+
+.slide-toggle-wrapper > md-slide-toggle{
+	width: 136px;
+	text-transform: capitalize;
+	float : right;
+}
+
+.gender-section, .slide-toggle-wrapper > md-slide-toggle{
+	display: inline-block;
+}
+
+.additional-profile-block {
+	display: flex;
+    justify-content: space-between;
+}
+.additional-profile-block > * {
+	width: 48%;
+	position: relative;
+	height: auto;
+	padding : 15px 15px 0 15px;
+    border: 1px solid #c7d8e0;
+    border-radius: 5px;
+}
+
+.fa-globe, .fa-address-card-o, .fa-phone-square{
+    position: absolute;
+    right: 15px;
+    top: 7px;
+    font-size: 20px;
+    color: #60a3c7;
+}
+
+.profile-contacts-block > md-input-container{
+	width: 100%;
 }

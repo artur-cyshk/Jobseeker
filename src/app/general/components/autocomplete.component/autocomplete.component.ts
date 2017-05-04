@@ -4,6 +4,7 @@ import {Observable} from 'rxjs/Observable';
 @Component({
   selector: 'custom-autocomplete',
   templateUrl: './autocomplete.component.html',
+  styleUrls: ['./autocomplete.component.css']
 })
 export class CustomAutocompleteComponent implements OnInit, DoCheck{
   

@@ -25,10 +25,10 @@
 
 .main-menu > .menu-item:hover, 
 .main-menu > .menu-item:active{
-	background: #93c1d6;
+	background: #448aff;
 }
 .main-menu > .menu-item.active{
-	background: #e1f5fe;
+	background: rgb(244, 250, 255);
 }
 
 .main-menu > .menu-item.active > a, .main-menu > .menu-item.active > .fa{

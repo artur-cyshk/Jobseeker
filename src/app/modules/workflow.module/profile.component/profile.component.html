@@ -3,47 +3,52 @@
 		{{currentUser.name}}'s profile
 	</header>
 	<main>
+		<div class="main-profile-block">
+			<i class="fa fa-address-card-o" aria-hidden="true"></i>
+			<img class="avatar" [src]="getProfileAvatar(currentUser.avatarUrl)" [alt]="currentUser.name" />
+			<div class="slide-toggle-wrapper">
+				<section class="gender-section">
+					<label>Gender:</label>
+					<md-radio-group [(ngModel)]="currentUser.gender" id="gender" name="gender" required>
+						<md-radio-button value="male">Male</md-radio-button>
+						<md-radio-button value="female">Female</md-radio-button>
+					</md-radio-group>
+				</section>	
+				<md-slide-toggle [checked]="currentUser.role === 'jobseeker'" (change)="setUserRole(currentUser.role)">I am {{currentUser.role}}</md-slide-toggle>			
+			</div>	
+			<md-input-container>
+		    	<input [(ngModel)]="currentUser.firstName" id="firstName" name="firstName"  required mdInput placeholder="First name">
+		    </md-input-container>
+		    <md-input-container>
+		    	<input [(ngModel)]="currentUser.lastName" id="lastName" name="lastName"  required mdInput placeholder="Last name">
+		    </md-input-container>
+		    <md-input-container>
+		    	<input [(ngModel)]="currentUser.patronomic" id="patronomic" name="patronomic"  required mdInput placeholder="Patronomic">
+		    </md-input-container>	
+		    <md-input-container>
+	    		<input [ngModel]="currentUser.dob | date:'y-MM-dd'" (ngModelChange)="currentUser.dob = $event" id="date" name="date" type="date" required mdInput placeholder="Birthday">
+	    	</md-input-container>
+		</div>
+		<div class="additional-profile-block">
+			<div class="profile-contacts-block">
+				<i class="fa fa-phone-square" aria-hidden="true"></i>
+			    <md-input-container>
+			    	<input [(ngModel)]="currentUser.skype" id="skype" name="skype" mdInput placeholder="Skype">
+			    </md-input-container>	
+			   	<md-input-container>
+			    	<input [(ngModel)]="currentUser.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" id="email" name="email" required type="email" mdInput placeholder="E-mail, format : xxx@xx.xx">
+			    </md-input-container>	
+			    <md-input-container>
+			    	<input [(ngModel)]="currentUser.phone" pattern="[\+]\d{3}[\(]\d{2}[\)]\d{3}[\-]\d{2}[\-]\d{2}" id="phone" name="phone" required type="tel" mdInput placeholder="Phone, format : +xxx(xx)xxx-xx-xx">
+			    </md-input-container>			
+			</div>
 
-		<md-slide-toggle [checked]="currentUser.role === 'jobseeker'" (change)="setUserRole(currentUser.role)">I am {{currentUser.role}}</md-slide-toggle>
-		<img class="avatar" [src]="getProfileAvatar(currentUser.avatarUrl)" [alt]="currentUser.name">
-		<md-input-container>
-	    	<input [(ngModel)]="currentUser.firstName" id="firstName" name="firstName"  required mdInput placeholder="First name">
-	    </md-input-container>
-	    <md-input-container>
-	    	<input [(ngModel)]="currentUser.lastName" id="lastName" name="lastName"  required mdInput placeholder="Last name">
-	    </md-input-container>
-	    <md-input-container>
-	    	<input [(ngModel)]="currentUser.patronomic" id="patronomic" name="patronomic"  required mdInput placeholder="Patronomic">
-	    </md-input-container>	
-
-	    <md-input-container>
-	    	<input [(ngModel)]="currentUser.skype" id="skype" name="skype" mdInput placeholder="Skype">
-	    </md-input-container>	
-
-	   	<md-input-container>
-	    	<input [(ngModel)]="currentUser.email" id="email" name="email" required type="email" mdInput placeholder="E-mail">
-	    </md-input-container>	
-
-	    <md-input-container>
-	    	<input [(ngModel)]="currentUser.phone" id="phone" name="phone" required type="tel" mdInput placeholder="Phone">
-	    </md-input-container>
-		<md-input-container>
-	    	<input [ngModel]="currentUser.dob | date:'y-MM-dd'" (ngModelChange)="currentUser.dob = $event" id="date" name="date" type="date" required mdInput placeholder="Birthday">
-	    </md-input-container>	
-
-		<section class="example-section">
-			<label class="example-margin">Gender:</label>
-			<md-radio-group [(ngModel)]="currentUser.gender" id="gender" name="gender" required>
-				<md-radio-button value="male">Male</md-radio-button>
-				<md-radio-button value="female">Female</md-radio-button>
-			</md-radio-group>
-		</section>
-
-
-	    <div>
-		    <custom-autocomplete [model]="currentUser.country" (modelChange)="countryChanged($event)" [items]="formData.countries" [customPlaceholder]="'Country'"></custom-autocomplete>
-	    </div>
-
+			<div class="profile-place-block">
+					<i class="fa fa-globe" aria-hidden="true"></i>
+				    <custom-autocomplete [model]="currentUser.country" (modelChange)="countryChanged($event)" [items]="formData.countries" [customPlaceholder]="'Country'"></custom-autocomplete>
+				    <custom-autocomplete [model]="currentUser.country" (modelChange)="countryChanged($event)" [items]="formData.countries" [customPlaceholder]="'Country'"></custom-autocomplete>		
+			</div>			
+		</div>
 	</main>
 	<footer>
 		<button type="submit" md-raised-button color="primary">Save</button>
