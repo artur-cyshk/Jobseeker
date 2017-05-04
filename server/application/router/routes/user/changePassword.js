@@ -1,46 +1,51 @@
 var connection = require('../../../../configuration/database/connection');
 var encrypt = require('../../../encrypt');
 var _ = require('lodash');
+var async = require('async');
 
 module.exports = function (req, res, next) {
-    console.log(6);
-    console.log(req.body);
     var validate = function(user) {
         var noError = true;
         if(user.newPassword.length < 8 || user.oldPassword.length < 8) {
             noError = false;
         }
-        if(_.isNil(user.user.id)) {
-            noError = false;
-        }
-        console.log(noError);
         return noError;
     };
 
     var quering = function(user) {
-        console.log(user);
-        var query = 'update users set users.password = ? where users.id = ? and users.password = ?' ;
-        connection.query(query, [encrypt(user.newPassword), user.user.id, encrypt(user.oldPassword)] , function(err) {
-            console.log(err);
-            if(err) {
-                if(err.code == "ER_DUP_ENTRY") {
-                    next({
-                        data: "Data already exists"
-                    });
-                }else {
-                    next(true);
+
+        async.waterfall(
+            [
+                (callback) => {
+                    var query = `select id from users where ?` ;
+                    connection.query(query, [ { password : encrypt(user.oldPassword) } ] , function(err, data) {
+                        if(data && data.length === 0) {
+                            err = "There are no users with such password";
+                        }
+                        callback(err)
+                    })
+                },
+                (callback) => {
+                    var query = `update users set ? where ?` ;
+                    connection.query(query, [{ password : encrypt(user.newPassword) }, {id : req.user.id }] , function(err) {
+                        callback(err);
+                    })
                 }
-                return;
-            }
-            res.status(200).end();
-        })
+            ], 
+            (err, result) => {
+                if(err) {
+                    return next( {
+                        data : typeof err == 'string' ? err : true
+                    } );
+                }
+                res.status(200).end();
+            } 
+        )
     };
-    console.log(3);
+
     if(!_.isEmpty(req.body) && validate(req.body) ) {
-        console.log(1);
         quering(req.body);
     } else {
-        console.log(2);
         return next({
             status : 402,
             data : "Ups, problems with data!"
