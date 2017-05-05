@@ -1,3 +1,4 @@
+<image-cropper-box></image-cropper-box>
 <form class="profile-form" #profileForm="ngForm" *ngIf="currentUser" (submit)="saveProfile(profileForm, currentUser)">
 	<header [hidden]="!currentUser.name">
 		{{currentUser.name}}'s profile

@@ -16,6 +16,9 @@ import {FavoritesComponent} from './favorites.component/favorites.component';
 import {CustomSelectComponent} from '../../general/components/customSelect.component/customSelect.component';
 import {MultiselectComponent} from '../../general/components/multiselect.component/multiselect.component';
 
+import {ImageCropperComponent} from 'ng2-img-cropper';
+import {ImageCropperBoxComponent} from '../../general/components/imageCropper.component/imageCropper.component';
+
 @NgModule({
     declarations: [
         WorkflowComponent,
@@ -25,7 +28,9 @@ import {MultiselectComponent} from '../../general/components/multiselect.compone
         ProfileComponent,
         FavoritesComponent,
         MultiselectComponent,
-        CustomSelectComponent
+        CustomSelectComponent,
+        ImageCropperComponent,
+        ImageCropperBoxComponent
     ],
     imports: [
     	GeneralModule,
