@@ -11,11 +11,10 @@ export class CustomSelectComponent implements OnChanges{
     items : Array<any>;
     @Input()
     selectedItem : any;
-    @Input()
-    listVisible : boolean = false;
 
     filteredItems : Array<any> = [];
     searchValue : string;
+    listVisible : boolean = false;
 
     @Output()
     modelChange: EventEmitter<any> = new EventEmitter();

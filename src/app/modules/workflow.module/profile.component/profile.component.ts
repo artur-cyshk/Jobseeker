@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { SharedService } from '../../../general/services/shared.service';
 import { HttpWrapperService } from '../../../general/services/httpWrapper.service';
+import { GENERAL } from '../../../general/constants/general.constant';
+import {MdSnackBar} from '@angular/material';
 
 @Component({
  	selector: 'profile',
@@ -16,10 +18,27 @@ export class ProfileComponent{
         cities : []
     }
     
-    constructor( private sharedService : SharedService, private httpWrapperService : HttpWrapperService ) {
+    constructor( private sharedService : SharedService, private httpWrapperService : HttpWrapperService, private snackBar : MdSnackBar ) {
         this.getCurrentUser();
         this.getAllCountries();
     }	
+
+    profileSavedResponseHandler(user, error) {
+        if(!error){
+            this.sharedService.setCurrentUser(user);
+            this.currentUser = user;
+        }
+    }
+
+    saveProfile(profileForm, currentUser) {
+        if(profileForm.form.valid) {
+            this.httpWrapperService.sendRequest({
+                route : 'updateUser',
+                callback : this.profileSavedResponseHandler.bind(this),
+                body : currentUser
+            })
+        }
+    }
 
     currentUserResponseHandler(user, error) {
         if(user){
@@ -84,7 +103,7 @@ export class ProfileComponent{
     }
 
     setUserRole(currentRole : string) {
-        this.currentUser.role = (currentRole === 'employer') ? 'jobseeker' : 'employer'; 
+        this.currentUser.role = (currentRole === 'employer') ? GENERAL.roles[0] : GENERAL.roles[1]; 
     }
 
 }

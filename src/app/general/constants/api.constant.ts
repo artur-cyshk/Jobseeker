@@ -13,6 +13,10 @@ export const API = {
 			method : 'get',
 			url : '/user'
 		},
+		'updateUser' : {
+			method : 'put',
+			url : '/user'
+		},
 		'countries' : {
 			method : 'get',
 			url : '/countries'

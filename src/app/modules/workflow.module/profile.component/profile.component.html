@@ -1,4 +1,4 @@
-<form class="profile-form" #profileForm="ngForm" *ngIf="currentUser">
+<form class="profile-form" #profileForm="ngForm" *ngIf="currentUser" (submit)="saveProfile(profileForm, currentUser)">
 	<header [hidden]="!currentUser.name">
 		{{currentUser.name}}'s profile
 	</header>
@@ -51,6 +51,6 @@
 		</div>
 	</main>
 	<footer>
-		<button type="submit" md-raised-button color="primary">Save</button>
+		<button type="submit" md-raised-button color="primary" [disabled]="profileForm.form.invalid">Save</button>
 	</footer>
 </form>
