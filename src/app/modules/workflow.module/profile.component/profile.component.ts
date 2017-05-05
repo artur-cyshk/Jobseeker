@@ -43,12 +43,6 @@ export class ProfileComponent{
         return `./assets/images/avatars/${name || 'empty.png'}`;
     }
 
-    countriesResponseHandler(countries, error) {
-        if(!error) {
-            this.formData.countries = countries;
-        }
-    }
-
     getAllCountries() {
         this.httpWrapperService.sendRequest({
             route : 'countries',
@@ -56,17 +50,41 @@ export class ProfileComponent{
         })
     }
 
+    countriesResponseHandler(countries, error) {
+        if(!error) {
+            this.formData.countries = countries;
+            this.getAllCitiesByContryId(countries[0].id);
+        }
+    }
+
     countryChanged(country) {
         this.currentUser.country = country;
+        this.getAllCitiesByContryId(country.id);
     }
 
     getAllCitiesByContryId(countryId) {
-       //todo
+        this.httpWrapperService.sendRequest({
+            route : 'cities',
+            callback : this.citiesResponseHandler.bind(this),
+            urlParams : {
+                countryId : countryId
+            }
+        })
+    }
+
+    citiesResponseHandler(cities, error){
+        if(!error){
+            this.formData.cities = cities;
+            this.currentUser.city = cities[0] || {};
+        }
+    }
+
+    cityChanged(city){
+        this.currentUser.city = city;
     }
 
     setUserRole(currentRole : string) {
         this.currentUser.role = (currentRole === 'employer') ? 'jobseeker' : 'employer'; 
-        console.log(this.currentUser);
     }
 
 }

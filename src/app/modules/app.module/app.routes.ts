@@ -35,12 +35,12 @@ export const appRoutes : Routes = [
 	},
 	{ 
 		path: '',
-		redirectTo: '/workflow',
+		redirectTo: '/workflow/board',
 		pathMatch: 'full'
 	},
 	{ 
 		path: '**',
-		redirectTo: '/workflow',
+		redirectTo: '/workflow/board',
 		pathMatch: 'full'
 	}
 ]

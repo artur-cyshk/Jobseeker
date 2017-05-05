@@ -16,6 +16,10 @@ export const API = {
 		'countries' : {
 			method : 'get',
 			url : '/countries'
+		},
+		'cities' : {
+			method : 'get',
+			url : '/cities/{countryId}'
 		}
 	}
 }
