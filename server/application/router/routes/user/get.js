@@ -12,7 +12,7 @@ module.exports = function (req, res, next) {
 	from users
 	left join personalInformation ON ( users.id = personalInformation.userId )
 	left join cities ON ( personalInformation.cityId = cities.id )
-	left join countries ON ( cityId = countries.id )
+	left join countries ON ( cities.countryId = countries.id )
 	where users.id = ?`;
 	connection.query(query, [req.user.id], (error, users) => {
 		if(error){
