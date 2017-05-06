@@ -1,28 +1,15 @@
-var multer = require('multer');
-var fs = require('fs');
-
-/** API path that will upload the files */
-module.exports = function(req, res, next) {
-
-    var storage = multer.diskStorage({ //multers disk storage settings
-        destination: function (req, file, cb) {
-            cb(null, './uploads/')
-        },
-        filename: function (req, file, cb) {
-            var datetimestamp = Date.now();
-            cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1])
-        }
-    });
-
-    var upload = multer({ //multer settings
-                    storage: storage
-                }).single('file');
-
-    upload(req, res, function(err){
-        if(err){
-             next(true);
-             return;
-        }
-        res.status(200).end();
-    })
+var connection = require('../../../../configuration/database/connection');
+_ = require('lodash');
+module.exports = function (req, res, next) {
+	//todo check db; authorization; and insert or update image name
+    // var query = 'UPDATE users SET avatarUrl = ? WHERE user_id = ?';
+    // console.log(req.files);
+    // connection.query(query,
+    //     [req.files.file.path.split('client\\content\\images\\avatars\\')[1], req.session.userId],
+    //     function (err, data) {
+    //         if(err){
+    //             return next(true);
+    //         }
+    //         res.status(200).send(req.files.file.path.split('client\\content\\images\\avatars\\')[1]);
+    // });
 };

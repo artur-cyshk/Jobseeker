@@ -1,0 +1,12 @@
+<form class="modal-component">
+	<div class="modal-component-header">
+		Avatar panel
+	</div>
+	<div class="modal-component-body">
+	 	<input type="file" ng2FileSelect [uploader]="uploader" />
+		<div class="actions-buttons-column">
+    		<button type="submit" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">Submit</button>
+		</div>	
+		<img [src]="imageSrc" alt="avatar">
+	</div>
+</form>

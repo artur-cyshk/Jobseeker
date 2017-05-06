@@ -3,7 +3,8 @@ import { SharedService } from '../../../general/services/shared.service';
 import { HttpWrapperService } from '../../../general/services/httpWrapper.service';
 import { GENERAL } from '../../../general/constants/general.constant';
 import {MdSnackBar} from '@angular/material';
-
+import { MdDialog, MdDialogConfig } from '@angular/material';
+import { AvatarComponent } from '../avatar.component/avatar.component';
 @Component({
  	selector: 'profile',
 	templateUrl: './profile.component.html',
@@ -18,7 +19,7 @@ export class ProfileComponent{
         cities : []
     }
     
-    constructor( private sharedService : SharedService, private httpWrapperService : HttpWrapperService, private snackBar : MdSnackBar ) {
+    constructor( private sharedService : SharedService, private httpWrapperService : HttpWrapperService, private snackBar : MdSnackBar, private dialog : MdDialog ) {
         this.getCurrentUser();
         this.getAllCountries();
     }	
@@ -60,6 +61,17 @@ export class ProfileComponent{
 
     getProfileAvatar(name) {
         return `./assets/images/avatars/${name || 'empty.png'}`;
+    }
+
+    openAvatarDialog(picName) {
+        let config = new MdDialogConfig();
+        config.data = {
+            imageSrc : this.getProfileAvatar(picName)
+        }
+        let dialogRef = this.dialog.open(AvatarComponent, config);
+        dialogRef.afterClosed().subscribe(result => {
+            console.log(result);
+        });      
     }
 
     getAllCountries() {

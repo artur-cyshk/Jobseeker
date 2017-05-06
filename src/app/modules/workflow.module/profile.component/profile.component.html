@@ -1,4 +1,3 @@
-<image-cropper-box></image-cropper-box>
 <form class="profile-form" #profileForm="ngForm" *ngIf="currentUser" (submit)="saveProfile(profileForm, currentUser)">
 	<header [hidden]="!currentUser.name">
 		{{currentUser.name}}'s profile
@@ -6,7 +5,7 @@
 	<main>
 		<div class="main-profile-block">
 			<i class="fa fa-address-card-o" aria-hidden="true"></i>
-			<img class="avatar" [src]="getProfileAvatar(currentUser.avatarUrl)" [alt]="currentUser.name" />
+			<img class="avatar" (click)="openAvatarDialog(currentUser.avatarUrl)" [src]="getProfileAvatar(currentUser.avatarUrl)" [alt]="currentUser.name" />
 			<div class="slide-toggle-wrapper">
 				<section class="gender-section">
 					<label>Gender:</label>

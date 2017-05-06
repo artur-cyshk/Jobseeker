@@ -5,5 +5,6 @@ module.exports = {
         password: "99996578", 
         host: "localhost" 
     }, 
-    port : 3000 
+    port : 3000,
+    avatarPath : './assets/images/avatars/'
 };

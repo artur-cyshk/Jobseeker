@@ -24,6 +24,9 @@ export const API = {
 		'cities' : {
 			method : 'get',
 			url : '/cities/{countryId}'
+		},
+		'avatar' : {
+			url : '/user/uploadAvatar'
 		}
 	}
 }

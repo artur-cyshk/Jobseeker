@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const router = require('./application/router/router');
 const errorHandler = require('./configuration/errorHandler');
-const port = require('./configuration/config').port;
+const config = require('./configuration/config');
 const socketRouter = require('./application/socketRouter/router');
 const auth = require("./configuration/jwt/jwtAuth.js")();  
 const app = express();
@@ -25,8 +25,8 @@ app.use(function (req, res, next) {
 });
 app.use(auth.initialize());
 
-var server = app.listen(port, function() {
-    console.log(`server listening on port ${port}`);
+var server = app.listen(config.port, function() {
+    console.log(`server listening on port ${config.port}`);
 });
 
 var io = require('socket.io').listen(server);

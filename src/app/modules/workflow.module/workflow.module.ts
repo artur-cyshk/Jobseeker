@@ -12,12 +12,11 @@ import { ColumnComponent } from './column.component/column.component';
 import {SidebarComponent} from './sidebar.component/sidebar.component';
 import {ProfileComponent} from './profile.component/profile.component';
 import {FavoritesComponent} from './favorites.component/favorites.component';
+import {AvatarComponent} from './avatar.component/avatar.component';
 
 import {CustomSelectComponent} from '../../general/components/customSelect.component/customSelect.component';
 import {MultiselectComponent} from '../../general/components/multiselect.component/multiselect.component';
-
-import {ImageCropperComponent} from 'ng2-img-cropper';
-import {ImageCropperBoxComponent} from '../../general/components/imageCropper.component/imageCropper.component';
+import { FileSelectDirective } from 'ng2-file-upload';
 
 @NgModule({
     declarations: [
@@ -29,8 +28,11 @@ import {ImageCropperBoxComponent} from '../../general/components/imageCropper.co
         FavoritesComponent,
         MultiselectComponent,
         CustomSelectComponent,
-        ImageCropperComponent,
-        ImageCropperBoxComponent
+        AvatarComponent,
+        FileSelectDirective
+    ],
+    entryComponents: [
+        AvatarComponent
     ],
     imports: [
     	GeneralModule,
