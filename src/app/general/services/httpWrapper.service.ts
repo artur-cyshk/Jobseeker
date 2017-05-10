@@ -40,12 +40,12 @@ export class HttpWrapperService{
 	}
 
 	private getToken() {
-		return this.jwtService.getToken();
+		return this.jwtService.getTokenWithSignature();
 	}
 
 	private setAuthorizationHeader(headers : Headers) {
 		const token = this.getToken();
-		headers.append('Authorization', `JWT ${token}`);
+		headers.append('Authorization', token);
 	}
 
 	private getHeaders() {

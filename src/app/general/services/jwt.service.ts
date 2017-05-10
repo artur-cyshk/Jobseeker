@@ -5,6 +5,10 @@ import { LocalStorageWrapperService } from './localStorageWrapper.service';
 export class JWTService{
 
 	constructor(private localStorageWrapperService : LocalStorageWrapperService){}
+
+	getTokenWithSignature() {
+		return `JWT ${this.getToken()}`;
+	}
 	getToken() {
 		return this.localStorageWrapperService.getItem('userToken');
 	}

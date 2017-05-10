@@ -1,6 +1,3 @@
-.modal-component > .modal-component-body > .actions-buttons-row{
-	height: 40px;
-}
 .modal-component{
 	border-color: rgb(2, 136, 209);
 	background-color: #B3E5FC;
@@ -8,6 +5,9 @@
 .modal-component > .modal-component-header{
 	background: #0288D1;
 	color : white;
+	display: flex;
+	justify-content: space-between;
+	padding-right: 15px;
 }
 .modal-component > .modal-component-body{
 	display: flex;
@@ -18,5 +18,55 @@
 
 .modal-component > .modal-component-body > img{
 	width: 170px;
+	border-radius: 50%;
 	height: 170px;
+}
+
+.actions{
+    width: 50%;
+    height: 170px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+}
+
+div.file-wrapper {
+    overflow: hidden;
+    width: 88px;
+    height: 36px;
+    cursor: pointer;
+    position: relative;
+    cursor: pointer;
+}
+div.file-wrapper:hover > button {
+    background: #0288d1;
+}
+
+div.file-wrapper:active > button{
+    background: #2d3a81;
+}
+.file-wrapper > button{
+    position: absolute;
+    transition: 0.3s linear all;
+    border-radius: 2px;
+    border: 0;
+    outline: none;
+    width: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: #5c71e3;
+    color: white;
+}
+input[type="file"] {
+  opacity:0;
+  filter:alpha(opacity:0);
+  font-size:199px;
+  cursor:pointer;
+  padding:0px;
+  margin:0px;
+  border:none;
+  margin-left:-450px;
 }

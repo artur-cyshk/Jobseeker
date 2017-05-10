@@ -48,6 +48,7 @@
 	float : right;
     border-radius: 50%;
     height: 150px;
+    cursor: pointer;
 }
 
 .main-profile-block{

@@ -1,12 +1,16 @@
 <form class="modal-component">
 	<div class="modal-component-header">
 		Avatar panel
+		 <i class="fa fa-times-circle" (click)="closeDialog(imageSrc)" aria-hidden="true"></i>
 	</div>
 	<div class="modal-component-body">
-	 	<input type="file" ng2FileSelect [uploader]="uploader" />
-		<div class="actions-buttons-column">
-    		<button type="submit" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">Submit</button>
-		</div>	
+		<div class="actions">
+			<div class="file-wrapper">
+				<button>Upload</button>
+	 			<input type="file" ng2FileSelect [uploader]="uploader" />				
+			</div>
+    		<button md-raised-button color="primary" type="submit" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">Save</button>			
+		</div>
 		<img [src]="imageSrc" alt="avatar">
 	</div>
 </form>

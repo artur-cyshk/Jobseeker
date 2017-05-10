@@ -59,18 +59,17 @@ export class ProfileComponent{
         this.currentUser = user;
     }
 
-    getProfileAvatar(name) {
-        return `./assets/images/avatars/${name || 'empty.png'}`;
-    }
-
     openAvatarDialog(picName) {
         let config = new MdDialogConfig();
         config.data = {
-            imageSrc : this.getProfileAvatar(picName)
+            imageSrc : picName
         }
+        config.disableClose = true;
         let dialogRef = this.dialog.open(AvatarComponent, config);
         dialogRef.afterClosed().subscribe(result => {
-            console.log(result);
+            if(this.currentUser){
+                this.currentUser.avatarUrl = result;
+            }
         });      
     }
 
@@ -89,8 +88,11 @@ export class ProfileComponent{
     }
 
     countryChanged(country) {
-        this.currentUser.country = country;
-        this.getAllCitiesByContryId(country.id);
+        if(this.currentUser) {
+            this.currentUser.country = country;
+            this.getAllCitiesByContryId(country.id);
+        }
+
     }
 
     getAllCitiesByContryId(countryId) {
@@ -104,7 +106,7 @@ export class ProfileComponent{
     }
 
     citiesResponseHandler(cities, error){
-        if(!error){
+        if(!error && this.currentUser){
             this.formData.cities = cities;
             this.currentUser.city = cities[0] || {};
         }

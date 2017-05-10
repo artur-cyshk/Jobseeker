@@ -6,5 +6,6 @@ module.exports = {
         host: "localhost" 
     }, 
     port : 3000,
-    avatarPath : './assets/images/avatars/'
+    avatarPath : './server/assets/images/avatars',
+    avatarPathFromClient : 'server\\assets\\images\\avatars\\'
 };

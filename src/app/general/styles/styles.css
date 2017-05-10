@@ -73,3 +73,19 @@ ul{
 input[type="date"]::-webkit-inner-spin-button{
     display: none;
 }
+
+
+i.fa.fa-times-circle{
+	font-size: 24px;
+    color: #b3e5fc;
+    transition: 0.2s linear all;
+    cursor: pointer;
+}
+
+i.fa.fa-times-circle:hover{
+	color: #6fccfe;
+}
+
+i.fa.fa-times-circle:active{
+	color: #20b9ff;
+}

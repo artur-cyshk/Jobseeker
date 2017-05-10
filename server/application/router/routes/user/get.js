@@ -1,4 +1,5 @@
-var connection = require('../../../../configuration/database/connection');
+const connection = require('../../../../configuration/database/connection');
+const CONFIG = require('../../../../configuration/config');
 
 function deleteFields(obj, fields){
 	fields.forEach((item) => {
@@ -6,8 +7,7 @@ function deleteFields(obj, fields){
 	})
 }
 module.exports = function (req, res, next) {
-	const query = `select users.id, users.name, users.role, users.isAdmin, personalInformation.firstName, personalInformation.lastName, personalInformation.patronomic, personalInformation.gender, 
-	personalInformation.avatarUrl, UNIX_TIMESTAMP(personalInformation.dob) as dob, personalInformation.email, personalInformation.phone, personalInformation.skype,
+	const query = `select users.id, users.name, users.role, users.isAdmin, users.avatarUrl, personalInformation.firstName, personalInformation.lastName, personalInformation.patronomic, personalInformation.gender, UNIX_TIMESTAMP(personalInformation.dob) as dob, personalInformation.email, personalInformation.phone, personalInformation.skype,
 	cities.name as cityName, cities.id as cityId, countries.name as countryName, countries.id as countryId
 	from users
 	left join personalInformation ON ( users.id = personalInformation.userId )
@@ -21,6 +21,7 @@ module.exports = function (req, res, next) {
 				data : 'Unauthorized'
 			})
 		}
+		users[0].avatarUrl = `${CONFIG.avatarPath}/${users[0].avatarUrl}`;
 		users[0].city = {
 			id : users[0].cityId,
 			name : users[0].cityName
