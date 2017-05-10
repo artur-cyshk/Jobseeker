@@ -72,8 +72,8 @@ export class HttpWrapperService{
 	}
 
 	private responseHandler(callback, isErrorDisplayingNeeded, successMessage, response, error) {
-		if(error && this.authService.checkPermision(error.status) ) {
-			if(isErrorDisplayingNeeded) {
+		if(error) {
+			if(isErrorDisplayingNeeded || this.authService.checkPermision(error.status)) {
 				this.openSnackBar(error.message);
 			}
 		}else if(successMessage) {
@@ -107,9 +107,15 @@ export class HttpWrapperService{
 			.catch(this.handleError)
 	}
 
-	private extractData(res : Response){
-		let body = res.json();
-		return body || "";
+	private extractData(res : Response) {
+		let body : any;
+		try{
+			body = res.json();
+		}catch(e){
+			body = res.text();
+		}finally{
+			return body || "";
+		}
 	}
 
 	private handleError (error : Response | any){
