@@ -3,6 +3,7 @@ let _ = require('lodash');
 const CONFIG = require('../../../../configuration/config');
 module.exports = function (req, res, next) {
     let query = 'UPDATE users SET avatarUrl = ? WHERE id = ?';
+    console.log( req.files.file);
     let imageName = req.files.file.path.split(CONFIG.avatarPathFromClient)[1];
     connection.query(query,
         [imageName, req.user.id],
@@ -10,6 +11,6 @@ module.exports = function (req, res, next) {
             if(err){
                 return next(true);
             }
-            res.status(200).send(`${CONFIG.avatarPath}/${imageName}`);
+            res.status(200).send(`server/${CONFIG.avatarPath}/${imageName}`);
         });
 };
