@@ -7,7 +7,7 @@ function deleteFields(obj, fields){
 	})
 }
 module.exports = function (req, res, next) {
-	const query = `select users.id, users.name, users.role, users.isAdmin, users.avatarUrl, personalInformation.firstName, personalInformation.lastName, personalInformation.patronomic, personalInformation.gender, UNIX_TIMESTAMP(personalInformation.dob) as dob, personalInformation.email, personalInformation.phone, personalInformation.skype,
+	const query = `select users.id, users.name, users.role, users.isAdmin, users.avatarUrl, personalInformation.firstName, personalInformation.lastName, personalInformation.patronomic, personalInformation.gender, personalInformation.dob as dob, personalInformation.email, personalInformation.phone, personalInformation.skype,
 	cities.name as cityName, cities.id as cityId, countries.name as countryName, countries.id as countryId
 	from users
 	left join personalInformation ON ( users.id = personalInformation.userId )
@@ -21,7 +21,7 @@ module.exports = function (req, res, next) {
 				data : 'Unauthorized'
 			})
 		}
-		users[0].avatarUrl = `${CONFIG.avatarPath}/${users[0].avatarUrl || 'empty.png'}`;
+		users[0].avatarUrl = `server/${CONFIG.avatarPath}/${users[0].avatarUrl || 'empty.png'}`;
 		users[0].city = {
 			id : users[0].cityId,
 			name : users[0].cityName
@@ -31,6 +31,7 @@ module.exports = function (req, res, next) {
 			name : users[0].countryName
 		}
 		deleteFields(users[0], ['cityId', 'cityName', 'countryId', 'countryName']);
+		console.log(users[0]);
 		res.status(200).json(users[0]);
 	})
 };
