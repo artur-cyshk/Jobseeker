@@ -20,7 +20,10 @@ router.get('/companies', auth.authenticate(), require('./routes/companies/get'))
 router.post('/companies', auth.authenticate(), require('./routes/companies/post'));
 router.delete('/companies/:id', auth.authenticate(), require('./routes/companies/delete'));
 
-
 router.delete('/vacancies/:id', auth.authenticate(), require('./routes/vacancies/delete'));
+
+router.get('/favoriteVacancies', auth.authenticate(), require('./routes/favoriteVacancies/get'));
+router.post('/favoriteVacancies', auth.authenticate(), require('./routes/favoriteVacancies/post'));
+router.delete('/favoriteVacancies/:id', auth.authenticate(), require('./routes/favoriteVacancies/delete'));
 
 module.exports = router;
