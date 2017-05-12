@@ -7,7 +7,7 @@ function deleteFields(obj, fields){
 	})
 }
 module.exports = function (req, res, next) {
-	const query = `select users.id, users.name, users.role, users.isAdmin, users.avatarUrl, personalInformation.firstName, personalInformation.lastName, personalInformation.patronomic, personalInformation.gender, personalInformation.dob as dob, personalInformation.email, personalInformation.phone, personalInformation.skype,
+	const query = `select users.id, users.name, personalInformation.role, users.isAdmin, users.avatarUrl, personalInformation.firstName, personalInformation.lastName, personalInformation.patronomic, personalInformation.gender, personalInformation.dob as dob, personalInformation.email, personalInformation.phone, personalInformation.skype,
 	cities.name as cityName, cities.id as cityId, countries.name as countryName, countries.id as countryId
 	from users
 	left join personalInformation ON ( users.id = personalInformation.userId )
@@ -15,7 +15,7 @@ module.exports = function (req, res, next) {
 	left join countries ON ( cities.countryId = countries.id )
 	where users.id = ?`;
 	connection.query(query, [req.user.id], (error, users) => {
-		if(error){
+		if(error) {
 			return next({
 				status : 401,
 				data : 'Unauthorized'
@@ -31,7 +31,6 @@ module.exports = function (req, res, next) {
 			name : users[0].countryName
 		}
 		deleteFields(users[0], ['cityId', 'cityName', 'countryId', 'countryName']);
-		console.log(users[0]);
 		res.status(200).json(users[0]);
 	})
 };

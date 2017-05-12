@@ -3,6 +3,7 @@ var async = require('async');
 const query = 'select COUNT(personalInformation.id) as exist from personalInformation, users where personalInformation.userId = users.id and users.id = ?'
 const queryInsert = 'insert into personalInformation set ?';
 const queryUpdate = 'update personalInformation set ? where personalInformation.userId = ?';
+const queryRemove = 'delete from employers where employers.userId = ?';
 const dataProccessing = function(user) {
     let error;
     const fields = ['role', 'firstName', 'lastName', 'gender', 'dob', 'city', 'avatarUrl', 'email', 'phone', 'city'];
@@ -48,16 +49,16 @@ module.exports = function (req, res, next) {
             (user, newUserData, callback) => {
                 const queryString = (user.exist == 0) ? queryInsert : queryUpdate;
                 newUserData.userId = newUserData.id;
-                deleteMinorFieldsToExecuteQuery(newUserData, ['country', 'city', 'avatarUrl', 'role', 'isAdmin', 'name', 'id']);
+                deleteMinorFieldsToExecuteQuery(newUserData, ['country', 'city', 'avatarUrl', 'isAdmin', 'name', 'id']);
                 const params = (user.exist == 0) ? newUserData : [newUserData, req.user.id];
                 connection.query(queryString, params, (error) => {
-                    console.log(error);
                     callback(error);
                 });
             }
         ],
         (err, result) => {
             if(err) {
+                console.log(err);
                 return next({
                     status : 500,
                     data : (typeof err == "string") ? err : 'There was an error while updating profile'

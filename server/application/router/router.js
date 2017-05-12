@@ -11,11 +11,16 @@ router.post('/registration', require('./routes/authentication/registration'));
 
 router.get('/user', auth.authenticate(), require('./routes/user/get')); //{id, profile_user}
 router.put('/user', auth.authenticate(), require('./routes/user/put')); //{id, profile_user}
-router.put('/user/changePassword', auth.authenticate(), require('./routes/user/changePassword')); // {user.id, oldPassword, newPassword}
 router.post('/user/uploadAvatar', auth.authenticate(), multipartMiddleware, require('./routes/user/uploadAvatar'));
 
-
-router.post('/companies', auth.authenticate(), require('./routes/companies'));
 router.get('/countries', auth.authenticate(), require('./routes/countries'));
 router.get('/cities/:countryId', auth.authenticate(), require('./routes/cities'));
+
+router.get('/companies', auth.authenticate(), require('./routes/companies/get'));
+router.post('/companies', auth.authenticate(), require('./routes/companies/post'));
+router.delete('/companies/:id', auth.authenticate(), require('./routes/companies/delete'));
+
+
+router.delete('/vacancies/:id', auth.authenticate(), require('./routes/vacancies/delete'));
+
 module.exports = router;
