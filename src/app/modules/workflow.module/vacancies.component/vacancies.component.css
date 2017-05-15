@@ -74,10 +74,10 @@
     background: #b4bce8;
     color: black;
 }
-.inner > main > li > i{
+.inner > main > li > .icons{
     position: absolute; 
     right : 5px;
-    top : 8px;
+    top : 6px;
 }
 
 .inner > main{

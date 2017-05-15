@@ -9,7 +9,7 @@ import { HttpWrapperService } from '../../../general/services/httpWrapper.servic
 })
 export class VacanciesComponent {
 	companies : Array<any> = [];
-	currentCompany : any;
+	selectedCompany : any;
 	selectedVacancy : any;
 	constructor(private httpWrapperService : HttpWrapperService, private sharedService : SharedService) {
 		this.getAllCompanies();
@@ -18,6 +18,23 @@ export class VacanciesComponent {
 	getCompaniesResponseHandler(response, error) {
 		if(!error) {
 			this.companies = response;			
+		}
+	}
+
+	addVacancy(vacancy) {
+		if(vacancy.value && this.selectedCompany) {
+			this.httpWrapperService.sendRequest({
+				route : 'postVacancy',
+				body : {
+					companyId : this.selectedCompany.id,
+					name : vacancy.value
+				},
+				callback : (vacancy, error) => {
+					if(!error && this.selectedCompany && this.selectedCompany.vacancies) {
+						this.selectedCompany.vacancies.push(vacancy);
+					}
+				}
+			})			
 		}
 	}
 

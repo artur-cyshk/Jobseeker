@@ -20,6 +20,7 @@ router.get('/companies', auth.authenticate(), require('./routes/companies/get'))
 router.post('/companies', auth.authenticate(), require('./routes/companies/post'));
 router.delete('/companies/:id', auth.authenticate(), require('./routes/companies/delete'));
 
+router.post('/vacancies', auth.authenticate(), require('./routes/vacancies/post'));
 router.delete('/vacancies/:id', auth.authenticate(), require('./routes/vacancies/delete'));
 
 router.get('/favoriteVacancies', auth.authenticate(), require('./routes/favoriteVacancies/get'));

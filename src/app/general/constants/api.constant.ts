@@ -43,6 +43,10 @@ export const API = {
 		'removeVacancy' : {
 			method : 'delete',
 			url : '/vacancies/{id}'
+		},
+		'postVacancy' : {
+			method : 'post',
+			url : '/vacancies'
 		}
 	}
 }
