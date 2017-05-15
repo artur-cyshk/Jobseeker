@@ -23,6 +23,10 @@
     font-weight: 200;
 }
 
+.main-menu > .menu-item.unvisible{
+	display: none;
+}
+
 .main-menu > .menu-item:hover, 
 .main-menu > .menu-item:active{
 	background: #448aff;

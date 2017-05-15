@@ -12,10 +12,10 @@ module.exports = function (req, res, next) {
             (companies, callback) => {
             	let companiesQuery = companies.map( (company) => company.id );
                 if(companiesQuery.length) {
-                    const query = `select vacancies.id, vacancies.name, vacancies.description, vacancies.descriptionHtml, vacancies.salary, vacancies.lastChangedDate, vacancies.companyId, vacancies.neededExperienceYears, vacancies.cityId, cities.name as cityName, countries.id as countryId, countries.name as countryName
+                    const query = `select vacancies.id, vacancies.name, vacancies.description, vacancies.salary, vacancies.lastChangedDate, vacancies.companyId, vacancies.neededExperienceYears, vacancies.cityId, cities.name as cityName, countries.id as countryId, countries.name as countryName
                      from vacancies
-                     join cities on (vacancies.cityId = cities.id)
-                     join countries on (cities.countryId = countries.id)
+                     left join cities on (vacancies.cityId = cities.id)
+                     left join countries on (cities.countryId = countries.id)
                      where vacancies.companyId IN (${companiesQuery})`;
                      connection.query(query, (error, vacancies) => {
                         callback(error, companies, vacancies);

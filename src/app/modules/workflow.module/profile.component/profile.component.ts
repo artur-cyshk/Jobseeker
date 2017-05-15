@@ -20,43 +20,28 @@ export class ProfileComponent{
     }
     
     constructor( private sharedService : SharedService, private httpWrapperService : HttpWrapperService, private snackBar : MdSnackBar, private dialog : MdDialog ) {
-        this.getCurrentUser();
+        this.sharedService.getCurrentUser().subscribe((user)=> {
+            this.currentUser = Object.assign({}, user);
+        })
         this.getAllCountries();
     }	
 
-    profileSavedResponseHandler(user, error) {
+    profileSavedResponseHandler(data, error) {
         if(!error){
-            this.sharedService.setCurrentUser(user);
-            this.currentUser = user;
+            this.sharedService.setCurrentUser(this.currentUser);
         }
     }
 
     saveProfile(profileForm, currentUser) {
         if(profileForm.form.valid) {
             this.httpWrapperService.sendRequest({
+                isErrorDisplayingNeeded : true,
+                successMessage : 'Profile successfully updated',
                 route : 'updateUser',
                 callback : this.profileSavedResponseHandler.bind(this),
                 body : currentUser
             })
         }
-    }
-
-    currentUserResponseHandler(user, error) {
-        if(user){
-            this.sharedService.setCurrentUser(user);
-            this.currentUser = user;
-        }
-    }
-
-    getCurrentUser() {
-        this.httpWrapperService.sendRequest({
-            route : 'getUser',
-            callback : this.currentUserResponseHandler.bind(this)
-        })
-    }
-
-    setCurrentUser(user){
-        this.currentUser = user;
     }
 
     openAvatarDialog(picName) {
@@ -73,7 +58,7 @@ export class ProfileComponent{
         });      
     }
 
-    getAllCountries() {
+     getAllCountries() {
         this.httpWrapperService.sendRequest({
             route : 'countries',
             callback : this.countriesResponseHandler.bind(this)
@@ -81,7 +66,7 @@ export class ProfileComponent{
     }
 
     countriesResponseHandler(countries, error) {
-        if(!error) {
+        if(!error && countries && countries[0]) {
             this.formData.countries = countries;
             this.getAllCitiesByContryId(countries[0].id);
         }
@@ -108,7 +93,9 @@ export class ProfileComponent{
     citiesResponseHandler(cities, error){
         if(!error && this.currentUser){
             this.formData.cities = cities;
-            this.currentUser.city = cities[0] || {};
+            if(this.currentUser.country && this.currentUser.country.id) {
+                this.currentUser.city = cities[0] || {};                
+            }
         }
     }
 

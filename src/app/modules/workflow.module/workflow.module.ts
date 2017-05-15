@@ -12,6 +12,8 @@ import { ColumnComponent } from './column.component/column.component';
 import {SidebarComponent} from './sidebar.component/sidebar.component';
 import {ProfileComponent} from './profile.component/profile.component';
 import {FavoritesComponent} from './favorites.component/favorites.component';
+import {CvsComponent} from './cvs.component/cvs.component';
+import {VacanciesComponent} from './vacancies.component/vacancies.component';
 import {AvatarComponent} from './avatar.component/avatar.component';
 
 import {CustomSelectComponent} from '../../general/components/customSelect.component/customSelect.component';
@@ -29,6 +31,8 @@ import { FileSelectDirective } from 'ng2-file-upload';
         MultiselectComponent,
         CustomSelectComponent,
         AvatarComponent,
+        VacanciesComponent,
+        CvsComponent,
         FileSelectDirective
     ],
     entryComponents: [

@@ -1,0 +1,6 @@
+:host{
+    flex: 1;
+    padding: 15px;
+    overflow: hidden;
+    min-width: 570px;
+}

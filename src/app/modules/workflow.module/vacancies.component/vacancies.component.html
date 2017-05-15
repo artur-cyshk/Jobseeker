@@ -1,0 +1,66 @@
+<div>
+	<ul class="companies">
+		<div class="inner">
+			<header>
+				Companies
+			</header>
+			<main *ngIf="companies">	
+				<md-input-container class="new-item-input">
+				  <input mdInput placeholder="New company (enter to submit)" #newCompany (keyup.enter)="addCompany(newCompany);newCompany.value = ''">
+				</md-input-container>
+				<li (click)="toggleItem(company, 'selectedCompany')" [ngClass]="{active : selectedCompany?.id === company.id}" *ngFor="let company of companies">
+					{{company.name}} 
+					<div class="icons">
+						<i class="fa fa-times" (click)="removeItem($event, company.id, 'selectedCompany', 'removeCompany', companies)" aria-hidden="true"></i>				
+						<i *ngIf="selectedCompany?.id === company.id" class="fa fa-arrow-right" aria-hidden="true"></i>		
+					</div>
+				</li>
+			</main>
+		</div>
+	</ul>
+	<ul class="vacancies">
+		<div class="inner">
+			<header>
+				Vacancies
+			</header>		
+			<main *ngIf="selectedCompany">	
+				<md-input-container class="new-item-input">
+				  <input mdInput placeholder="New vacancy (enter to submit)" #newVacancy (keyup.enter)="addVacancy(newVacancy);newVacancy.value = ''">
+				</md-input-container>		
+				<li (click)="toggleItem(vacancy, 'selectedVacancy')" [ngClass]="{active : selectedVacancy?.id === vacancy.id}" *ngFor="let vacancy of selectedCompany.vacancies">
+					{{vacancy.name}}
+					<div class="icons">
+						<i class="fa fa-times" (click)="removeItem($event, vacancy.id, 'selectedVacancy', 'removeVacancy', selectedCompany.vacancies)" aria-hidden="true"></i>		
+						<i *ngIf="selectedVacancy?.id === vacancy.id" class="fa fa-arrow-right" aria-hidden="true"></i>				
+					</div>
+				</li>		
+			</main>
+		
+		</div>
+	</ul>
+	<div class="selected-vacancy" *ngIf="selectedVacancy">
+		<div class="inner">
+			<header>
+				{{selectedVacancy.name}}
+			</header>
+			<main *ngIf="selectedVacancy">	
+				{{selectedVacancy | json}}
+			    <md-input-container>
+			    	<input [(ngModel)]="currentUser.description" id="skype" name="skype" mdInput placeholder="Skype">
+			    </md-input-container>
+			    <md-input-container>
+			    	<input [(ngModel)]="currentUser.salary" id="skype" name="skype" mdInput placeholder="Skype">
+			    </md-input-container>	
+			    <md-input-container>
+			    	<input [(ngModel)]="currentUser.neededExperienceYears" id="skype" name="skype" mdInput placeholder="Skype">
+			    </md-input-container>
+			    <md-input-container>
+			    	<input [(ngModel)]="currentUser.lastChangedDate" id="skype" name="skype" mdInput placeholder="Skype">
+			    </md-input-container>			
+			    <custom-select [selectedItem]="currentUser.country" (modelChange)="countryChanged($event)" [items]="formData.countries" [customPlaceholder]="'Country'"></custom-select>
+			   	<custom-select [selectedItem]="currentUser.city" (modelChange)="cityChanged($event)" [items]="formData.cities" [customPlaceholder]="'City'"></custom-select>
+			   	<multiselect [selectedItem]="currentUser.city" (modelChange)="cityChanged($event)" [items]="formData.cities" [customPlaceholder]="'Skills'"></multiselect>
+			</main>
+		</div>
+	</div>
+</div>

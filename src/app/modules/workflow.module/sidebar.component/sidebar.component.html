@@ -1,5 +1,5 @@
 <ul class="main-menu">
-	<li class="menu-item" *ngFor="let route of routes"  [routerLink]="route.route" routerLinkActive="active">
+	<li [ngClass]="{'unvisible' : !route.condition()}" class="menu-item" *ngFor="let route of routes" [routerLink]="route.route" routerLinkActive="active">
 		<i class="fa" [ngClass]="route.icon"></i> <a>{{route.name}}</a>
 	</li>
 	<li class="menu-item to-bottom" (click)="signOut()">

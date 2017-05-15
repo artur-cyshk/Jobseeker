@@ -27,6 +27,26 @@ export const API = {
 		},
 		'avatar' : {
 			url : '/user/uploadAvatar'
+		},
+		'getCompanies' : {
+			method : 'get',
+			url : '/companies'
+		},
+		'postCompanies' : {
+			method : 'post',
+			url : '/companies'
+		},
+		'removeCompany' : {
+			method : 'delete',
+			url : '/companies/{id}'
+		},
+		'removeVacancy' : {
+			method : 'delete',
+			url : '/vacancies/{id}'
+		},
+		'postVacancy' : {
+			method : 'post',
+			url : '/vacancies'
 		}
 	}
 }

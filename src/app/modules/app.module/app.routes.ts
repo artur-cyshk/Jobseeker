@@ -4,6 +4,8 @@ import { LoginComponent } from '../login.module/login.component/login.component'
 import { BoardComponent } from '../workflow.module/board.component/board.component';
 import { ProfileComponent } from '../workflow.module/profile.component/profile.component';
 import { FavoritesComponent } from '../workflow.module/favorites.component/favorites.component';
+import { CvsComponent } from '../workflow.module/cvs.component/cvs.component';
+import { VacanciesComponent } from '../workflow.module/vacancies.component/vacancies.component';
 
 export const appRoutes : Routes = [
 	{
@@ -21,6 +23,14 @@ export const appRoutes : Routes = [
 			{
 				path : 'profile',
 				component : ProfileComponent
+			},
+			{
+				path : 'cvs',
+				component : CvsComponent
+			},
+			{
+				path : 'vacancies',
+				component : VacanciesComponent
 			},
 			{
 				path : 'favorites',
