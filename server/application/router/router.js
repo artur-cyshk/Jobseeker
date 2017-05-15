@@ -22,8 +22,10 @@ router.delete('/companies/:id', auth.authenticate(), require('./routes/companies
 
 router.delete('/vacancies/:id', auth.authenticate(), require('./routes/vacancies/delete'));
 
-router.get('/favoriteVacancies', auth.authenticate(), require('./routes/favoriteVacancies/get'));
-router.post('/favoriteVacancies', auth.authenticate(), require('./routes/favoriteVacancies/post'));
-router.delete('/favoriteVacancies/:id', auth.authenticate(), require('./routes/favoriteVacancies/delete'));
+router.get('/favorite', auth.authenticate(), require('./routes/favorite/get'));
+router.post('/favoriteVacancies', auth.authenticate(), require('./routes/favorite/favoriteVacancies/post'));
+router.delete('/favoriteVacancies/:id', auth.authenticate(), require('./routes/favorite/favoriteVacancies/delete'));
+router.post('/favoriteCvs', auth.authenticate(), require('./routes/favorite/favoriteCvs/post'));
+router.delete('/favoriteCvs/:id', auth.authenticate(), require('./routes/favorite/favoriteCvs/delete'));
 
 module.exports = router;
