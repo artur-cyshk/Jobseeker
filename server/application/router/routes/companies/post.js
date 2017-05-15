@@ -11,7 +11,8 @@ module.exports = function(req, res, next) {
                 connection.query(query, {name: req.body.name}, (err, result) => {
                     callback((err && err.code == "ER_DUP_ENTRY") ? "Company already exists" : err, {
                         name : req.body.name,
-                        id : (result) ? result.insertId : null
+                        id : (result) ? result.insertId : null,
+                        vacancies : []
                     });
                 });                
             },

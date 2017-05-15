@@ -5,7 +5,7 @@ module.exports = function(req, res, next) {
         if(err) {
             return next({
                 status : 500,
-                data : 'There was an error while deleteing favorite cv'
+                data : 'There was an error while deleting favorite cv'
             })
         }
         res.status(200).end();

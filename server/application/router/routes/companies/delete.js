@@ -6,7 +6,7 @@ module.exports = function(req, res, next) {
         if(err) {
             return next({
                 status : 500,
-                data : 'There was an error while deleteing company'
+                data : 'There was an error while deleting company'
             })
         }
         res.status(200).end();
