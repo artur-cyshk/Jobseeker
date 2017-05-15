@@ -81,6 +81,12 @@
 	display: inline-block;
 }
 
+.role-section{
+    display: inline-block;
+    float: right;	
+    vertical-align: top;
+}
+
 .additional-profile-block {
 	display: flex;
     justify-content: space-between;

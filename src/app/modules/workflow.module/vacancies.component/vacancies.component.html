@@ -1,0 +1,44 @@
+<div>
+	<ul class="companies">
+		<div class="inner">
+			<header>
+				Companies
+			</header>
+			<main *ngIf="companies">	
+				<md-input-container class="new-item-input">
+				  <input mdInput placeholder="New company (enter to submit)" #newCompany (keyup.enter)="addCompany(newCompany);newCompany.value = ''">
+				</md-input-container>
+				<li (click)="toggleItem(company, 'selectedCompany')" [ngClass]="{active : selectedCompany?.id === company.id}" *ngFor="let company of companies">
+					{{company.name}} 
+					<i *ngIf="selectedCompany?.id === company.id" class="fa fa-arrow-right" aria-hidden="true"></i>
+					<i class="fa fa-times" (click)="removeItem($event, company.id, 'selectedCompany', 'removeCompany', companies)" aria-hidden="true"></i>
+				</li>
+			</main>
+		</div>
+	</ul>
+	<ul class="vacancies">
+		<div class="inner">
+			<header>
+				Vacancies
+			</header>		
+			<main *ngIf="selectedCompany">	
+				<li (click)="toggleItem(vacancy, 'selectedVacancy')" [ngClass]="{active : selectedVacancy?.id === vacancy.id}" *ngFor="let vacancy of selectedCompany.vacancies">
+					{{vacancy.name}}
+					<i *ngIf="selectedVacancy?.id === vacancy.id" class="fa fa-arrow-right" aria-hidden="true"></i>
+					<i class="fa fa-times" (click)="removeItem($event, vacancy.id, 'selectedVacancy', 'removeVacancy', selectedCompany.vacancies)" aria-hidden="true"></i>
+				</li>		
+			</main>
+		
+		</div>
+	</ul>
+	<div class="selected-vacancy" *ngIf="selectedVacancy">
+		<div class="inner">
+			<header>
+					{{selectedVacancy.name}}
+			</header>
+			<main *ngIf="selectedVacancy">	
+				{{selectedVacancy | json}}
+			</main>
+		</div>
+	</div>
+</div>
