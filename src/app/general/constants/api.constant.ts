@@ -47,6 +47,10 @@ export const API = {
 		'postVacancy' : {
 			method : 'post',
 			url : '/vacancies'
+		},
+		'getVacancyById' : {
+			method : 'get',
+			url : '/vacancies/{id}'
 		}
 	}
 }

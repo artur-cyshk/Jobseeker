@@ -11,13 +11,33 @@ export class VacanciesComponent {
 	companies : Array<any> = [];
 	selectedCompany : any;
 	selectedVacancy : any;
+	currentVacancy : any;
+	formData : any = {
+		languages : [],
+		skills : []
+	};
+
 	constructor(private httpWrapperService : HttpWrapperService, private sharedService : SharedService) {
 		this.getAllCompanies();
+		this.getAllLanguages();
+		this.getAllSkills();
 	}
 	
 	getCompaniesResponseHandler(response, error) {
 		if(!error) {
 			this.companies = response;			
+		}
+	}
+
+	getSkillsResponseHandler(response, error) {
+		if(!error) {
+			this.formData.skills = response;			
+		}
+	}
+
+	getLanguagesResponseHandler(response, error) {
+		if(!error) {
+			this.formData.languages = response;			
 		}
 	}
 
@@ -76,14 +96,51 @@ export class VacanciesComponent {
 	}
 
 
-	toggleItem(selected, current) {
+	toggleItem(selected, current, vacancyFlag) {
 		this[current] = (this[current] == selected) ? null : selected;
+		if(vacancyFlag) {
+			if(this.currentVacancy){
+				this.currentVacancy = null;
+			}else{
+				this.getVacancyById( selected.id ); 
+			}
+		}
 	}
 
 	getAllCompanies() {
 		this.httpWrapperService.sendRequest({
 			route : 'getCompanies',
 			callback : this.getCompaniesResponseHandler.bind(this)
+		})
+	}
+
+	getAllSkills() {
+		this.httpWrapperService.sendRequest({
+			route : 'getSkills',
+			callback : this.getSkillsResponseHandler.bind(this)
+		})
+	}
+
+	getAllLanguages() {
+		this.httpWrapperService.sendRequest({
+			route : 'getLanguages',
+			callback : this.getLanguagesResponseHandler.bind(this)
+		})
+	}
+
+	getVacancyResponseHandler(result, error) {
+		if(!error){
+			this.currentVacancy = result;
+		}
+	}
+
+	getVacancyById(vacancyId : number) {
+		this.httpWrapperService.sendRequest({
+			route : 'getVacancyById',
+			callback : this.getVacancyResponseHandler.bind(this),
+			urlParams : {
+				id : vacancyId
+			}
 		})
 	}
 }

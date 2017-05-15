@@ -15,12 +15,16 @@ router.post('/user/uploadAvatar', auth.authenticate(), multipartMiddleware, requ
 
 router.get('/countries', auth.authenticate(), require('./routes/countries'));
 router.get('/cities/:countryId', auth.authenticate(), require('./routes/cities'));
+router.get('/skills', auth.authenticate(), require('./routes/skills'));
+router.get('/languages', auth.authenticate(), require('./routes/languages'));
 
 router.get('/companies', auth.authenticate(), require('./routes/companies/get'));
 router.post('/companies', auth.authenticate(), require('./routes/companies/post'));
 router.delete('/companies/:id', auth.authenticate(), require('./routes/companies/delete'));
 
+router.get('/vacancies/:id', auth.authenticate(), require('./routes/vacancies/get'));
 router.post('/vacancies', auth.authenticate(), require('./routes/vacancies/post'));
+router.put('/vacancies', auth.authenticate(), require('./routes/vacancies/put'));
 router.delete('/vacancies/:id', auth.authenticate(), require('./routes/vacancies/delete'));
 
 router.get('/favorite', auth.authenticate(), require('./routes/favorite/get'));
