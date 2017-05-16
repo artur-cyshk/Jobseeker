@@ -44,18 +44,27 @@
 				{{currentVacancy.name}}
 			</header>
 			<main>	
-			    <md-input-container>
-			    	<input [(ngModel)]="currentVacancy.description" id="description" name="description" mdInput placeholder="Description">
-			    </md-input-container>
-			    <md-input-container>
-			    	<input [(ngModel)]="currentVacancy.salary" id="salary" name="salary" mdInput placeholder="Salary">
-			    </md-input-container>	
-			    <md-input-container>
-			    	<input [(ngModel)]="currentVacancy.neededExperienceYears" id="experience" name="experience" mdInput placeholder="Experience">
-			    </md-input-container>
-			    <multiselect [selectedItems]="currentVacancy.languages" (modelChange)="languagesChanged($event)" [items]="formData.languages" [customPlaceholder]="'Languages'"></multiselect>
-			   	<multiselect [selectedItems]="currentVacancy.skills" (modelChange)="skillsChanged($event)" [items]="formData.skills" [customPlaceholder]="'Skills'"></multiselect>
-			   	<multiselect [selectedItems]="currentVacancy.additionalSkills" (modelChange)="skillsChanged($event)" [items]="formData.skills" [customPlaceholder]="'Additional Skills'"></multiselect>
+				<form #vacancyForm="ngForm" (submit)="saveVacancy(vacancyForm, currentVacancy)">
+					<div>
+				 		<md-input-container>
+			    			<textarea [(ngModel)]="currentVacancy.description" id="description" name="description" required mdInput placeholder="Description"></textarea>
+			    		</md-input-container>	
+					</div>
+			   		<div>	
+				    	<md-input-container>
+				    		<input [(ngModel)]="currentVacancy.salary" id="salary" name="salary" required mdInput placeholder="Salary">
+				    	</md-input-container>	
+					</div>
+				 	<div>    
+				    	<md-input-container>
+				    		<input [(ngModel)]="currentVacancy.neededExperienceYears" id="experience" required name="experience" mdInput placeholder="Experience">
+				    	</md-input-container>
+			   		</div>
+				    <multiselect [selectedItems]="currentVacancy.languages" (modelChange)="languagesChanged($event)" [items]="formData.languages" [customPlaceholder]="'Languages'"></multiselect>
+				   	<multiselect [selectedItems]="currentVacancy.skills" (modelChange)="skillsChanged($event)" [items]="formData.skills" [customPlaceholder]="'Skills'"></multiselect>
+				   	<multiselect [selectedItems]="currentVacancy.additionalSkills" (modelChange)="additionalSkillsChanged($event)" [items]="formData.skills" [customPlaceholder]="'Additional Skills'"></multiselect>
+					<button type="submit" md-raised-button color="primary" [disabled]="vacancyForm.form.invalid">Save</button>
+				</form>
 			</main>
 		</div>
 	</div>

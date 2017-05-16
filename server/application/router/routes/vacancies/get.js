@@ -11,7 +11,7 @@ module.exports = function (req, res, next) {
             },
             (vacancy, callback) => {
                 console.log(vacancy);
-                const query = `select vacanciesSkills.skillId, skills.name from vacanciesSkills left join skills on (vacanciesSkills.skillId = skills.id) where  vacanciesSkills.vacancyId = ?`;
+                const query = `select vacanciesSkills.skillId as id, skills.name from vacanciesSkills left join skills on (vacanciesSkills.skillId = skills.id) where  vacanciesSkills.vacancyId = ?`;
                 connection.query(query, [req.params.id], (error, skills) => {
                     if(skills){
                         vacancy.skills = skills;
@@ -21,7 +21,7 @@ module.exports = function (req, res, next) {
 
             },
             (vacancy, callback) => {
-                const query = `select vacanciesAdditionalSkills.skillId, skills.name from vacanciesAdditionalSkills left join skills on (vacanciesAdditionalSkills.skillId = skills.id) where  vacanciesAdditionalSkills.vacancyId = ?`;
+                const query = `select vacanciesAdditionalSkills.skillId as id, skills.name from vacanciesAdditionalSkills left join skills on (vacanciesAdditionalSkills.skillId = skills.id) where  vacanciesAdditionalSkills.vacancyId = ?`;
                 connection.query(query, [req.params.id], (error, additionalSkills) => {
                     if(additionalSkills){
                         vacancy.additionalSkills = additionalSkills;
@@ -30,7 +30,7 @@ module.exports = function (req, res, next) {
                 })
             },
             (vacancy, callback) => {
-                const query = `select vacanciesLanguages.languageId, languages.name from vacanciesLanguages left join languages on (vacanciesLanguages.languageId = languages.id) where  vacanciesLanguages.vacancyId = ?`;
+                const query = `select vacanciesLanguages.languageId as id, languages.name from vacanciesLanguages left join languages on (vacanciesLanguages.languageId = languages.id) where  vacanciesLanguages.vacancyId = ?`;
                 connection.query(query, [req.params.id], (error, languages) => {
                    if(languages) {
                         vacancy.languages = languages;

@@ -12,6 +12,7 @@ export class VacanciesComponent {
 	selectedCompany : any;
 	selectedVacancy : any;
 	currentVacancy : any;
+	vacancyForm : any;
 	formData : any = {
 		languages : [],
 		skills : []
@@ -143,4 +144,40 @@ export class VacanciesComponent {
 			}
 		})
 	}
+
+	itemsChanged(value, field) {
+		if(this.currentVacancy && this.currentVacancy[field]){
+			this.currentVacancy[field] = value;
+		}
+	}
+
+	saveVacancy(form, vacancy) {
+		if(form && form.valid) {
+			vacancy.ready = 1;
+			this.httpWrapperService.sendRequest({
+				route : 'putVacancy',
+				body : vacancy,
+				callback : (result, error) => {
+					if(!error) {
+						console.log(result);
+					}
+				}
+			})
+		}
+	}
+
+	languagesChanged(value) {
+		this.itemsChanged(value, 'languages');
+	}
+
+	skillsChanged(value) {
+		this.itemsChanged(value, 'skills');
+	}
+
+	additionalSkillsChanged(value) {
+		this.itemsChanged(value, 'additionalSkills');
+	}		
+
+
+
 }

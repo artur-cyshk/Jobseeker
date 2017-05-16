@@ -51,6 +51,18 @@ export const API = {
 		'getVacancyById' : {
 			method : 'get',
 			url : '/vacancies/{id}'
+		},
+		'putVacancy' : {
+			method : 'put',
+			url : '/vacancies'
+		},
+		'getSkills' : {
+			method : 'get',
+			url : '/skills'
+		},
+		'getLanguages' : {
+			method : 'get',
+			url : '/languages'
 		}
 	}
 }

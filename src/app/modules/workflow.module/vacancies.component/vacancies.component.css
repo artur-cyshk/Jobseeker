@@ -84,9 +84,26 @@
     height: calc(100% - 50px);
     width: 100%;
     overflow-y: auto;
+    text-align: center;
     padding: 10px;
 }
 
 .new-item-input{
     width:  100%;
+}
+
+#description{
+    height: 18px;
+    resize: none;
+}
+main > form {
+    width: 100%;
+    height: 100%;
+}
+main > form > div > md-input-container{
+    width: 100%;
+}
+
+main > form > button {
+    width : 50%;
 }
