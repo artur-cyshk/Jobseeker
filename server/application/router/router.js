@@ -27,6 +27,7 @@ router.post('/vacancies', auth.authenticate(), require('./routes/vacancies/post'
 router.put('/vacancies', auth.authenticate(), require('./routes/vacancies/put'));
 router.delete('/vacancies/:id', auth.authenticate(), require('./routes/vacancies/delete'));
 
+router.get('/cvs', auth.authenticate(), require('./routes/cvs/getAll'));
 router.get('/cvs/:id', auth.authenticate(), require('./routes/cvs/get'));
 router.post('/cvs', auth.authenticate(), require('./routes/cvs/post'));
 router.put('/cvs', auth.authenticate(), require('./routes/cvs/put'));

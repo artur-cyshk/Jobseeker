@@ -18,10 +18,21 @@ export class CvsComponent {
 	};
 
 	constructor(private httpWrapperService : HttpWrapperService, private sharedService : SharedService) {
+		this.getAllCvs();
 		this.getAllLanguages();
 		this.getAllSkills();
 	}
 
+	getAllCvs() {
+		this.httpWrapperService.sendRequest({
+			route : 'getAllCvs',
+			callback : (result, error) => {
+				if(!error) {
+					this.cvs = result;
+				}
+			}
+		})
+	}
 
 	getSkillsResponseHandler(response, error) {
 		if(!error) {
@@ -76,9 +87,9 @@ export class CvsComponent {
 	toggleItem(selected, current) {
 		this[current] = (this[current] == selected) ? null : selected;
 		if(this[current]) {
-				this.currentCv = null;
-		}else{
 			this.getCvById( selected.id ); 
+		}else{
+			this.currentCv = null;
 		}
 	}
 

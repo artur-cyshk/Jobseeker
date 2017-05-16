@@ -5,7 +5,8 @@ module.exports = function(req, res, next) {
     async.waterfall(
         [
             (callback) => {
-                const query = 'update vacancies set ? where id = ?';
+                const query = 'update cvs set ? where id = ?';
+                console.log(req.body);
                 connection.query(query, [{
                     description : req.body.description,
                     wantedSalary : req.body.wantedSalary,

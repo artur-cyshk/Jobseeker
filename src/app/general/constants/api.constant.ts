@@ -68,6 +68,10 @@ export const API = {
 			method : 'get',
 			url : '/cvs/{id}'
 		},
+		'getAllCvs' : {
+			method : 'get',
+			url : '/cvs'
+		},
 		'putCv' : {
 			method : 'put',
 			url : '/cvs'
