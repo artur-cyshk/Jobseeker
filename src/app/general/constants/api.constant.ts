@@ -56,6 +56,22 @@ export const API = {
 			method : 'put',
 			url : '/vacancies'
 		},
+		'removeCv' : {
+			method : 'delete',
+			url : '/cvs/{id}'
+		},
+		'postCv' : {
+			method : 'post',
+			url : '/cvs'
+		},
+		'getCvById' : {
+			method : 'get',
+			url : '/cvs/{id}'
+		},
+		'putCv' : {
+			method : 'put',
+			url : '/cvs'
+		},
 		'getSkills' : {
 			method : 'get',
 			url : '/skills'

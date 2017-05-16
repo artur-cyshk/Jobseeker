@@ -52,12 +52,12 @@
 					</div>
 			   		<div>	
 				    	<md-input-container>
-				    		<input [(ngModel)]="currentVacancy.salary" id="salary" name="salary" required mdInput placeholder="Salary">
+				    		<input type="number" [(ngModel)]="currentVacancy.salary" id="salary" name="salary" required mdInput placeholder="Salary">
 				    	</md-input-container>	
 					</div>
 				 	<div>    
 				    	<md-input-container>
-				    		<input [(ngModel)]="currentVacancy.neededExperienceYears" id="experience" required name="experience" mdInput placeholder="Experience">
+				    		<input type="number" [(ngModel)]="currentVacancy.neededExperienceYears" id="experience" required name="experience" mdInput placeholder="Experience">
 				    	</md-input-container>
 			   		</div>
 				    <multiselect [selectedItems]="currentVacancy.languages" (modelChange)="languagesChanged($event)" [items]="formData.languages" [customPlaceholder]="'Languages'"></multiselect>

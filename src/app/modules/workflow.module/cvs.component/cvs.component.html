@@ -1,1 +1,52 @@
-cvs
+<div>
+	<ul class="vacancies">
+		<div class="inner">
+			<header>
+				Cvs
+			</header>		
+			<main>	
+				<md-input-container class="new-item-input">
+				  <input mdInput placeholder="New cv (enter to submit)" #newCv (keyup.enter)="addCv(newCv);newCv.value = ''">
+				</md-input-container>		
+				<li (click)="toggleItem(cv, 'selectedCv')" [ngClass]="{active : selectedCv?.id === cv.id}" *ngFor="let cv of cvs">
+					{{cv.name}}
+					<div class="icons">
+						<i class="fa fa-times" (click)="removeItem($event, cv.id, 'selectedCv', cvs)" aria-hidden="true"></i>		
+						<i *ngIf="selectedCv?.id === cv.id" class="fa fa-arrow-right" aria-hidden="true"></i>				
+					</div>
+				</li>		
+			</main>
+		
+		</div>
+	</ul>
+	<div class="selected-vacancy" *ngIf="currentCv">
+		<div class="inner">
+			<header>
+				{{currentCv.name}}
+			</header>
+			<main>	
+				<form #cvForm="ngForm" (submit)="saveCv(cvForm, currentCv)">
+					<div>
+				 		<md-input-container>
+			    			<textarea [(ngModel)]="currentCv.description" id="description" name="description" required mdInput placeholder="Description"></textarea>
+			    		</md-input-container>	
+					</div>
+			   		<div>	
+				    	<md-input-container>
+				    		<input type="number" [(ngModel)]="currentCv.wantedSalary" id="wantedSalary" name="wantedSalary" required mdInput placeholder="Wanted Salary">
+				    	</md-input-container>	
+					</div>
+				 	<div>    
+				    	<md-input-container>
+				    		<input type="date" [(ngModel)]="currentCv.careerStartDate" id="Experience" required name="Experience" mdInput placeholder="Experience">
+				    	</md-input-container>
+			   		</div>
+				    <multiselect [selectedItems]="currentCv.languages" (modelChange)="languagesChanged($event)" [items]="formData.languages" [customPlaceholder]="'Languages'"></multiselect>
+				   	<multiselect [selectedItems]="currentCv.skills" (modelChange)="skillsChanged($event)" [items]="formData.skills" [customPlaceholder]="'Skills'"></multiselect>
+				   	<multiselect [selectedItems]="currentCv.additionalSkills" (modelChange)="additionalSkillsChanged($event)" [items]="formData.skills" [customPlaceholder]="'Additional Skills'"></multiselect>
+					<button type="submit" md-raised-button color="primary" [disabled]="cvForm.form.invalid">Save</button>
+				</form>
+			</main>
+		</div>
+	</div>
+</div>
