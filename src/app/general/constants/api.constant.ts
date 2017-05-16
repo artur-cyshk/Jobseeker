@@ -83,6 +83,18 @@ export const API = {
 		'getLanguages' : {
 			method : 'get',
 			url : '/languages'
+		},
+		'favorites' : {
+			method : 'get',
+			url : '/favorite'
+		},
+		'removeFavoriteVacancies' : {
+			method : 'delete',
+			url : '/favoriteVacancies/{id}'
+		},
+		'removeFavoriteCvs' : {
+			method : 'delete',
+			url : '/favoriteCvs/{id}'
 		}
 	}
 }

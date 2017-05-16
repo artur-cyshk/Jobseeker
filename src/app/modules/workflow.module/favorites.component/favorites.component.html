@@ -1,1 +1,50 @@
-favorites
+<div>
+	<ul class="cvs">
+		<div class="inner">
+			<header>
+				Cvs
+			</header>
+			<main *ngIf="favorites.cvs">	
+				<li (click)="toggleItem(cv, 'cv')" [ngClass]="{active : currentItem?.id === cv.cvId && currentItem?.type == 'cv'}" *ngFor="let cv of favorites.cvs">
+					{{cv.name}} 
+					<div class="icons">
+						<i class="fa fa-times" (click)="removeItem($event, cv.id, 'cvs')" aria-hidden="true"></i>				
+						<i *ngIf="currentItem?.id === cv.id" class="fa fa-arrow-right" aria-hidden="true"></i>		
+					</div>
+				</li>
+			</main>
+		</div>
+	</ul>
+	<ul class="vacancies">
+		<div class="inner">
+			<header>
+				Vacancies
+			</header>		
+			<main *ngIf="favorites.vacancies">	
+				<li (click)="toggleItem(vacancy, 'vacancy')" [ngClass]="{active : currentItem?.id === vacancy.vacancyId  && currentItem?.type == 'vacancy'}" *ngFor="let vacancy of favorites.vacancies">
+					{{vacancy.name}}
+					<div class="icons">
+						<i class="fa fa-times" (click)="removeItem($event, vacancy.id, 'vacancies')" aria-hidden="true"></i>		
+						<i *ngIf="currentItem?.id === vacancy.id" class="fa fa-arrow-right" aria-hidden="true"></i>				
+					</div>
+				</li>		
+			</main>
+		
+		</div>
+	</ul>
+	<div class="selected-item" *ngIf="currentItem.id">
+		<div class="inner">
+			<header>
+				{{currentItem.name}}
+			</header>
+			<main>	
+				{{currentItem | json}}
+				<table>
+					<tbody>
+						<tr></tr>
+					</tbody>
+				</table>
+			</main>
+		</div>
+	</div>
+</div>
