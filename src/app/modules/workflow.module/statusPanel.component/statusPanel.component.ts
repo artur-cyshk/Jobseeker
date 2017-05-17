@@ -1,5 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { HttpWrapperService } from '../../../general/services/httpWrapper.service';
+import { SharedService } from '../../../general/services/shared.service';
+import { GENERAL } from '../../../general/constants/general.constant';
 
 @Component({
  	selector: 'status-panel',
@@ -11,14 +13,18 @@ export class StatusPanelComponent {
 	isOpened : boolean;
 	@Output()
 	change: EventEmitter<any> = new EventEmitter();
-	
+
+	roles : Array<string>;
+	currentUser : any;
 	statuses : any = {
 		cvs : [],
 		vacancies : []
 	};
 
-	constructor(private httpWrapperService : HttpWrapperService){
+	constructor(private httpWrapperService : HttpWrapperService, private sharedService : SharedService){
 		this.getAllStatuses();
+		this.roles = GENERAL.roles;
+		this.sharedService.getCurrentUser().subscribe((result)=> this.currentUser = result)
 	}
 
 	getAllStatuses(){

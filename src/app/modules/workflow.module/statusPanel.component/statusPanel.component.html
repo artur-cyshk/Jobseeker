@@ -1,7 +1,5 @@
 <main>
-	<div>
-		Status panel
-	</div>
+	<h2>Status panel</h2>
 	<div class="item">
 		<p (click)="statuses.cvsVisible = !statuses.cvsVisible">CVS</p>
 		<div class="item-body" [hidden]="!statuses.cvsVisible">
@@ -15,6 +13,12 @@
 				<span class="username">
 					{{cv.firstName}}
 				</span>
+
+				<span class="actions" *ngIf="currentUser.role === roles[1]">
+					<i class="fa fa-check-circle" aria-hidden="true"></i>
+					<i class="fa fa-ban" aria-hidden="true"></i>
+				</span>		
+
 			</div>			
 		</div>
 
@@ -32,6 +36,10 @@
 				<span class="username">
 					{{vacancy.companyName}}
 				</span>
+				<span class="actions" *ngIf="currentUser.role === roles[0]">
+					<i class="fa fa-check-circle" aria-hidden="true"></i>
+					<i class="fa fa-ban" aria-hidden="true"></i>
+				</span>	
 			</div>
 		</div>	
 	</div>

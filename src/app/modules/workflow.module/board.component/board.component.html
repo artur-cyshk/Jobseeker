@@ -1,6 +1,11 @@
 <status-panel [ngClass]="{'isOpenedStatusPanel' : isOpenedStatusPanel}" [isOpened]="isOpenedStatusPanel" (change)="isOpenedStatusPanel = !isOpenedStatusPanel"></status-panel>
-<div [sortablejs]="columns" [sortablejsOptions]="options">
-	<column *ngFor="let column of columns" [columnData]="column"></column>
+<div>
+	<md-input-container>
+		<input mdInput placeholder="New column (enter to submit)" #newColumn (keyup.enter)="addColumn(newColumn.value);newColumn.value = ''">
+	</md-input-container>
+</div>
+<div class="board" [sortablejs]="columns" [sortablejsOptions]="options">
+	<column (columnRemoved)="removeColumn($event)" *ngFor="let column of columns" [columnData]="column"></column>
 </div>
       
  

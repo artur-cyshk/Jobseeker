@@ -2,6 +2,7 @@ main{
 	height : 100%;
 	width: 273px;
 	overflow-x: hidden;
+    z-index: 1;
 	overflow-y: auto;
 }
 
@@ -102,4 +103,26 @@ footer:hover{
     font-style: italic;
     color: white;
     font-weight: 200;
+}
+
+h2{
+	text-align: center;
+	font-weight: 200;
+}
+
+.actions{
+	position: absolute;
+    right: 4px;
+    bottom: 20px;
+    font-size: 20px;
+}
+
+.actions > .fa-check-circle{
+	color : #92ff92;
+	cursor: pointer;
+}
+
+.actions > .fa-ban{
+	color : #ff9292;
+	cursor: pointer;
 }

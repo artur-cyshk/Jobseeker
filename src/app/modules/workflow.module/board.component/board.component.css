@@ -1,16 +1,16 @@
 :host{
     flex: 1;
-    padding: 15px;
+    padding: 15px 15px 15px 37px;
     overflow-x: auto;
     overflow-y: hidden;
     position: relative;
     white-space: nowrap;
 }
-:host > div{
-	height: 100%;
+:host > div.board{
+    height: calc(100% - 50px);
 };
 
-:host >>> div > column:last-child > div{
+:host >>> div.board > column:last-child > div{
 	margin-right:  0;
 }
 
@@ -30,4 +30,8 @@ status-panel{
 status-panel.isOpenedStatusPanel{
 	transform: translateX(0);
 	transition: 0.3s linear all;
+}
+
+md-input-container{
+    width: 100%;
 }

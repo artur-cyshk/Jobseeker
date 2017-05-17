@@ -52,3 +52,37 @@
 .title-block .title-icons > .fa.fa-arrows-h{
 	cursor: move;
 }
+
+.filter-block{
+    height: auto;
+}
+
+.filter-block > p {
+    cursor: pointer;
+    background: rgb(101, 122, 238);
+    color: white;
+    border-bottom: 1px solid #e1e9f7;
+    margin: 0;
+    height: 50px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 200;
+}
+
+.filter-inner{
+    height: 250px;
+    background: #cfe0ff;
+    border-bottom: 1px solid white;
+}
+
+.content-block{
+    overflow-y: auto;  
+}
