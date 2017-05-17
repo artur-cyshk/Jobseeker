@@ -7,7 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 //material modules
 import 'hammerjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MdProgressBarModule, MdSlideToggleModule, MdAutocompleteModule, MdRadioModule, MdMenuModule, MdButtonModule, MdDialogModule, MdInputModule, MdCheckboxModule, MdToolbarModule, MdSidenavModule, MdSnackBarModule } from '@angular/material';
+import { MdProgressBarModule, MdSliderModule, MdSlideToggleModule, MdAutocompleteModule, MdRadioModule, MdMenuModule, MdButtonModule, MdDialogModule, MdInputModule, MdCheckboxModule, MdToolbarModule, MdSidenavModule, MdSnackBarModule } from '@angular/material';
 
 @NgModule({
     imports: [
@@ -27,7 +27,8 @@ import { MdProgressBarModule, MdSlideToggleModule, MdAutocompleteModule, MdRadio
         MdSnackBarModule,
         MdProgressBarModule,
         MdSlideToggleModule,
-        MdDialogModule
+        MdDialogModule,
+        MdSliderModule
     ],
     exports: [
         BrowserModule,
@@ -46,7 +47,8 @@ import { MdProgressBarModule, MdSlideToggleModule, MdAutocompleteModule, MdRadio
         MdSnackBarModule,
         MdSlideToggleModule,
         MdProgressBarModule,
-        MdDialogModule
+        MdDialogModule,
+        MdSliderModule
     ]
 })
 export class GeneralModule { }

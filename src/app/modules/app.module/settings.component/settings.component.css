@@ -8,10 +8,32 @@ i.fa-wrench{
     position: absolute;
     right: -16px;
     top: 52px;
-    height: 300px;
+    height: 80px;
     width: 200px;
     background: #3f51b5;
     z-index: 5;
     border: 1px solid rgba(243, 248, 255, 0.05);
     border-bottom-left-radius: 5px;
+}
+
+.mat-slider-horizontal {
+  width: 100%;
+}
+
+.settings-block > div{
+    display: block;
+    margin: 10px 0;
+}
+
+.settings-block > div:nth-child(1){
+    margin-bottom: -20px;
+}
+.settings-block > div:nth-child(2){
+    padding : 8px;
+}
+
+.title{
+    padding: 5px;
+    font-weight: 200;
+    margin-bottom: -12px;
 }

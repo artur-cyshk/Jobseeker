@@ -2,5 +2,18 @@
 	<i class="fa fa-wrench" aria-hidden="true"></i>
 </button>
 <div *ngIf="blockVisible" [@enterAnimation]="blockVisible" class="settings-block">
-	dffod
+
+	<div>
+		<div class="title">Column width</div>
+		<md-slider
+	        class="example-margin"
+	        [max]="sizeSliderSetts.max"
+	        [color]="'accent'"
+	        [min]="sizeSliderSetts.min"
+	        [step]="sizeSliderSetts.step"
+	        [thumb-label]="sizeSliderSetts.label"
+	        (change)="fieldChanged($event, 'columnWidth')"
+        	[value]="sizeSliderSetts.value">
+    	</md-slider>	
+	</div>
 </div>
