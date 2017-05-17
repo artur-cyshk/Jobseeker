@@ -5,8 +5,5 @@
 	</md-input-container>
 </div>
 <div class="board" [sortablejs]="columns" [sortablejsOptions]="options">
-	<column (columnRemoved)="removeColumn($event)" *ngFor="let column of columns" [columnData]="column"></column>
-</div>
-      
- 
- 
+	<column [filtersData]="formData" (columnFiltersChanged)="setColumn($event)" (columnRemoved)="removeColumn($event)" *ngFor="let column of columns" [columnData]="column"></column>
+</div> 

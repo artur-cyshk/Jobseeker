@@ -26,6 +26,7 @@ export class MultiselectComponent implements OnChanges{
     ngOnChanges(changes) {
           if(changes.items && changes.items.currentValue && changes.items.currentValue.length > 0){
               this.filteredItems = changes.items.currentValue;
+              this.selectedItems = this.filteredItems.filter( (item) => this.selectedItems.findIndex((allItem) => allItem.id === item.id) >= 0 );
           }
       }
 

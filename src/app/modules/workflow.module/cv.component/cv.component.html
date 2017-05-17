@@ -1,0 +1,32 @@
+<header>
+	<span class="name">
+		{{info.name}}
+	</span>	
+	<span class="actions">
+		<i title="Invite for an interview" class="fa fa-check-circle-o" aria-hidden="true"></i>
+		<i title="Add to favorites" class="fa" [ngClass]="info.isFavorited ? 'fa-star' : 'fa-star-o'" aria-hidden="true"></i>
+	</span>
+</header>
+<main>
+	<span class="description" [hidden]="!info.description">
+		{{info.description}},
+	</span>
+	<span class="username" [hidden]="!info.userName">
+		{{info.userName}},
+	</span>
+	<span class="salary" [hidden]="!info.salary">
+		{{info.salary}} $ salary,
+	</span>
+	<span class="neededExperienceYears" [hidden]="info?.neededExperienceYears === undefined">
+		{{info.neededExperienceYears}} years needed experience,
+	</span>
+	<span class="languages" [hidden]="!info?.languages?.length">
+		{{info.languages}} languages,
+	</span>
+	<span class="skills" [hidden]="!info?.skills?.length">
+		{{info.skills}} as main skills,
+	</span>
+	<span class="additionalSkills" [hidden]="!info?.additionalSkills?.length">
+		{{info.additionalSkills}} as additional
+	</span>
+</main>

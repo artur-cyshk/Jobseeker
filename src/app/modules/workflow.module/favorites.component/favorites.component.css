@@ -91,3 +91,30 @@
 .new-item-input{
     width:  100%;
 }
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto;
+}
+
+td{
+    text-align: left;
+    padding: 5px;
+    font-size: 20px;
+    word-wrap: break-word;
+    word-break: break-word;
+    border-bottom: 1px solid #b4bad9;
+}
+
+table tbody > tr > td:nth-child(1) {
+    width: 20%;
+    font-style: italic;
+    font-weight: 500;
+}
+
+table tbody > tr > td:nth-child(2) {
+    width: 80%;
+    font-weight: 200;
+    font-size: 18px;
+}

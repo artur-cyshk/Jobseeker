@@ -37,11 +37,37 @@
 			<header>
 				{{currentItem.name}}
 			</header>
-			<main>	
-				{{currentItem | json}}
+			<main>
 				<table>
 					<tbody>
-						<tr></tr>
+						<tr>
+							<td>Description:</td>
+							<td>{{currentItem.description || 'N/A'}}</td>
+						</tr>
+						<tr>
+							<td>Salary:</td>
+							<td>{{currentItem.salary || currentItem.wantedSalary || 'N/A'}} $</td>
+						</tr>
+						<tr [hidden]="!currentItem.neededExperienceYears">
+							<td>Experience:</td>
+							<td>{{currentItem.neededExperienceYears || 'N/A'}} years</td>
+						</tr>
+						<tr [hidden]="!currentItem.careerStartDate">
+							<td>Experience:</td>
+							<td>{{currentItem.careerStartDate | date : "dd-mm-yyyy" || 'N/A'}}</td>
+						</tr>
+						<tr>
+							<td>Skills:</td>
+							<td>{{currentItem.skills || 'N/A'}}</td>
+						</tr>
+						<tr>
+							<td>Additional Skills:</td>
+							<td>{{currentItem.additionalSkills || 'N/A'}}</td>
+						</tr>
+						<tr>
+							<td>Languages:</td>
+							<td>{{currentItem.languages || 'N/A'}}</td>
+						</tr>
 					</tbody>
 				</table>
 			</main>

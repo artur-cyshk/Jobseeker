@@ -6,13 +6,40 @@
 			<i class="fa fa-window-close-o" (click)="removeColumn(columnData.title)" aria-hidden="true"></i>
 		</span>
 	</div>
-	<div class="filter-block">
-		<p (click)="columnData.filtersVisible = !columnData.filtersVisible">Filters <i class="fa fa-caret-down" aria-hidden="true"></i></p>
+	<div class="filter-block" *ngIf="columnData">
+		<p (click)="columnData.filtersVisible = !columnData.filtersVisible;emitChanges()">Filters <i class="fa" [ngClass]="columnData.filtersVisible ? 'fa-caret-up' : 'fa-caret-down'" aria-hidden="true"></i></p>
 		<div class="filter-inner" [hidden]="!columnData.filtersVisible">
-				
+				<section class="role-section">
+					<label>Role:</label>
+					<md-radio-group [(ngModel)]="columnData.filters.role" (change)="filtersChanged({ value : columnData.filters.role}, 'role')" id="role" name="role">
+						<md-radio-button value="jobseeker">Jobseeker</md-radio-button>
+						<md-radio-button value="employer">Employer</md-radio-button>
+					</md-radio-group>
+				</section>	
+			    <multiselect [selectedItems]="columnData?.filters?.languages" (modelChange)="filtersChanged($event, 'languages')" [items]="filtersData.languages" [customPlaceholder]="'Languages'"></multiselect>
+			   	<multiselect [selectedItems]="columnData?.filters?.skills" (modelChange)="filtersChanged($event, 'skills')" [items]="filtersData.skills" [customPlaceholder]="'Skills'"></multiselect>
+			   	<multiselect [selectedItems]="columnData?.filters?.additionalSkills" (modelChange)="filtersChanged($event, 'additionalSkills')" [items]="filtersData.skills" [customPlaceholder]="'Additional Skills'"></multiselect>	
+			   	<div>
+			   		Salary	
+					<md-slider
+				        class="example-margin"
+				        [max]="columnFilterSetts.max"
+				        [color]="'accent'"
+				        [min]="columnFilterSetts.min"
+				        [step]="columnFilterSetts.step"
+				        [thumb-label]="columnFilterSetts.label"
+				        (change)="filtersChanged($event, 'salary')"
+			        	[value]="columnData?.filters?.salary">
+			    	</md-slider>	
+			   	</div>
 		</div>
 	</div>
-	<div class="content-block" [ngStyle]="{'height' : columnData.filtersVisible ? 'calc(100% - 350px)' : 'calc(100% - 100px)'}">
-		
+	<div class="content-block" [ngStyle]="{'height' : columnData.filtersVisible ? 'calc(100% - 350px)' : 'calc(100% - 100px)'}" [ngSwitch]="columnData.filters.role">
+		<div *ngSwitchCase="roles[0]">
+			<vacancy [info]="vacancy" *ngFor="let vacancy of columnValues.vacancies"></vacancy>
+		</div>
+		<div *ngSwitchCase="roles[1]">
+			<cv [info]="cv" *ngFor="let cv of columnValues.cvs"></cv>
+		</div>
 	</div>
 </div>

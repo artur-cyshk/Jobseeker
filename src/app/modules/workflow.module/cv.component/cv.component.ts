@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
  	selector: 'cv',
@@ -6,4 +6,6 @@ import { Component } from '@angular/core';
  	styleUrls: ['./cv.component.css']
 })
 export class CvComponent {
+	@Input()
+	info : any;
 }
