@@ -38,7 +38,7 @@
 					</div>
 				 	<div>    
 				    	<md-input-container>
-				    		<input type="date" [(ngModel)]="currentCv.careerStartDate" id="Experience" required name="Experience" mdInput placeholder="Experience">
+				    		<input type="date" [ngModel]="currentCv.careerStartDate | date:'y-MM-dd'" (ngModelChange)="currentCv.careerStartDate = $event" id="Experience" required name="Experience" mdInput placeholder="Experience">
 				    	</md-input-container>
 			   		</div>
 				    <multiselect [selectedItems]="currentCv.languages" (modelChange)="languagesChanged($event)" [items]="formData.languages" [customPlaceholder]="'Languages'"></multiselect>

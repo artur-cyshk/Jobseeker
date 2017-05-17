@@ -110,6 +110,7 @@ export class CvsComponent {
 	getCvResponseHandler(result, error) {
 		if(!error){
 			this.currentCv = result;
+			console.log(this.currentCv);
 		}
 	}
 

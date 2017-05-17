@@ -2,10 +2,10 @@ module.exports = {
     database : { 
         dbname: "jobseeker", 
         username: "root", 
-        password: "1892", 
+        password: "99996578", 
         host: "localhost" 
     }, 
     port : 3000,
-    avatarPath : './assets/images/avatars',
-    avatarPathFromClient : 'assets\\images\\avatars\\'
+    avatarPath : 'server/assets/images/avatars',
+    avatarPathFromClient : 'server\\assets\\images\\avatars\\'
 };

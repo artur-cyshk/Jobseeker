@@ -11,6 +11,6 @@ module.exports = function (req, res, next) {
             if(err){
                 return next(true);
             }
-            res.status(200).send(`server/${CONFIG.avatarPath}/${imageName}`);
+            res.status(200).send(`${CONFIG.avatarPath}/${imageName}`);
         });
 };

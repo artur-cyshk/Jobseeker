@@ -6,12 +6,11 @@ module.exports = function(req, res, next) {
         [
             (callback) => {
                 const query = 'update cvs set ? where id = ?';
-                console.log(req.body);
                 connection.query(query, [{
                     description : req.body.description,
                     wantedSalary : req.body.wantedSalary,
-                    lastChangedDate : new Date(Date.now()).toISOString().substring(0, 19).replace('T', ' '),
-                    careerStartDate :  new Date(req.body.careerStartDate).toISOString().substring(0, 19).replace('T', ' '),
+                    lastChangedDate : (new Date(Date.now())).toISOString().substring(0, 19).replace('T', ' '),
+                    careerStartDate :  (new Date(req.body.careerStartDate)).toISOString().substring(0, 19).replace('T', ' '),
                     ready : req.body.ready
                 }, req.body.id], (err, result) => {
                     callback(err);
