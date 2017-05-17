@@ -1,4 +1,4 @@
-import { Component, trigger, transition, style, animate, OnInit } from '@angular/core';   
+import { Component, trigger, transition, style, animate, AfterViewInit } from '@angular/core';   
 import { LocalStorageWrapperService } from '../../../general/services/localStorageWrapper.service';
 import { SharedService } from '../../../general/services/shared.service';
 import  { GENERAL } from '../../../general/constants/general.constant';
@@ -22,11 +22,12 @@ import  { GENERAL } from '../../../general/constants/general.constant';
 	],
  	styleUrls: ['./settings.component.css']
 })
-export class SettingsComponent implements OnInit{
+export class SettingsComponent implements AfterViewInit{
 	sizeSliderSetts : any;
 	boardSettings : any = {};
 	constructor(private localStorageWrapperService : LocalStorageWrapperService, private sharedService : SharedService) {}
-	ngOnInit() {
+
+	ngAfterViewInit() {
 		this.boardSettings = this.getBoardSetts() || GENERAL.defaultColumnSetts;
 		this.initSizeSliderSetts(this.boardSettings);
 	}

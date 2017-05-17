@@ -95,6 +95,10 @@ export const API = {
 		'removeFavoriteCvs' : {
 			method : 'delete',
 			url : '/favoriteCvs/{id}'
+		},
+		'status' : {
+			method : 'get',
+			url : '/status'
 		}
 	}
 }

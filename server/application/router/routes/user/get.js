@@ -21,7 +21,7 @@ module.exports = function (req, res, next) {
 				data : 'Unauthorized'
 			})
 		}
-		users[0].avatarUrl = `server/${CONFIG.avatarPath}/${users[0].avatarUrl || 'empty.png'}`;
+		users[0].avatarUrl = `${CONFIG.avatarPath}/${users[0].avatarUrl || 'empty.png'}`;
 		users[0].city = {
 			id : users[0].cityId,
 			name : users[0].cityName

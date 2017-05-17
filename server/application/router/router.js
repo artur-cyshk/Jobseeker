@@ -42,4 +42,6 @@ router.delete('/favoriteCvs/:id', auth.authenticate(), require('./routes/favorit
 router.get('/filteredVacancies', auth.authenticate(), require('./routes/filtered/vacancies'));
 router.get('/filteredCvs', auth.authenticate(), require('./routes/filtered/cvs'));
 
+router.get('/status', auth.authenticate(), require('./routes/status'));
+
 module.exports = router;

@@ -1,3 +1,4 @@
+<status-panel [ngClass]="{'isOpenedStatusPanel' : isOpenedStatusPanel}" [isOpened]="isOpenedStatusPanel" (change)="isOpenedStatusPanel = !isOpenedStatusPanel"></status-panel>
 <div [sortablejs]="columns" [sortablejsOptions]="options">
 	<column *ngFor="let column of columns" [columnData]="column"></column>
 </div>

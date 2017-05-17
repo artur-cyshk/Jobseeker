@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
  	styleUrls: ['./board.component.css']
 })
 export class BoardComponent {
+	isOpenedStatusPanel : boolean = false;
 	columns : Array<any> = [{title : 'a'}, {title : 'b'}, {title : 'c'}, {title : 'd'}, {title : 'e'}, {title : 'f'}];
 	options = {
 		animation: 200,

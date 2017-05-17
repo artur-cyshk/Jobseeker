@@ -1,0 +1,41 @@
+<main>
+	<div>
+		Status panel
+	</div>
+	<div class="item">
+		<p (click)="statuses.cvsVisible = !statuses.cvsVisible">CVS</p>
+		<div class="item-body" [hidden]="!statuses.cvsVisible">
+			<div [ngClass]="cv.status" *ngFor="let cv of statuses.cvs">
+				<span class="name">
+					{{cv.cvName}}
+				</span>
+				<span class="status">
+					{{cv.status}}
+				</span>
+				<span class="username">
+					{{cv.firstName}}
+				</span>
+			</div>			
+		</div>
+
+	</div>
+	<div class="item">
+		<p (click)="statuses.vacanciesVisible = !statuses.vacanciesVisible">VACANCIES</p>
+		<div class="item-body" [hidden]="!statuses.vacanciesVisible">
+			<div [ngClass]="vacancy.status" *ngFor="let vacancy of statuses.vacancies">
+				<span class="name">
+					{{vacancy.vacancyName}}
+				</span>
+				<span class="status">
+					{{vacancy.status}}
+				</span>
+				<span class="username">
+					{{vacancy.companyName}}
+				</span>
+			</div>
+		</div>	
+	</div>
+</main>
+<footer (click)="isOpenedChange()">
+	<i class="fa" [ngClass]="isOpened ? 'fa-arrow-left' : 'fa-arrow-right'" aria-hidden="true"></i>
+</footer>	
