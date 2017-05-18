@@ -60,7 +60,9 @@ export class BoardComponent {
 				additionalSkills : [],
 				languages : [],
 				salary : 0,
-				role : 'jobseeker'
+				role : 'jobseeker',
+				searchName : '',
+				experience : 0
 			},
 			filtersVisible : false
 		})
