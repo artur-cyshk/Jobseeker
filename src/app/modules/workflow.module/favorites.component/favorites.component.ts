@@ -47,6 +47,10 @@ export class FavoritesComponent {
 		}
 	}
 
+	getNamesArray(items) {
+		return items.map(item => item.name);
+	}
+
 	removeItem(event, itemId, type){
 		event.stopPropagation();
 		const routeType = type.split('').map((item, i) => i == 0 ? item.toUpperCase() : item).join('');

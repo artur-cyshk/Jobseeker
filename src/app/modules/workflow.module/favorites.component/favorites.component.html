@@ -58,15 +58,15 @@
 						</tr>
 						<tr>
 							<td>Skills:</td>
-							<td>{{currentItem.skills || 'N/A'}}</td>
+							<td>{{getNamesArray(currentItem.skills) || 'N/A'}}</td>
 						</tr>
 						<tr>
 							<td>Additional Skills:</td>
-							<td>{{currentItem.additionalSkills || 'N/A'}}</td>
+							<td>{{getNamesArray(currentItem.additionalSkills) || 'N/A'}}</td>
 						</tr>
 						<tr>
 							<td>Languages:</td>
-							<td>{{currentItem.languages || 'N/A'}}</td>
+							<td>{{getNamesArray(currentItem.languages) || 'N/A'}}</td>
 						</tr>
 					</tbody>
 				</table>
