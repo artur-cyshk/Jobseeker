@@ -10,8 +10,10 @@ export const GENERAL = {
 		label : true
 	},
 	columnFilterSetts : {
-		max : 100000,
-		min : 150,
+		maxSalary : 20000,
+		minSalary : 150,
+		minYears: 0,
+		maxYears: 30,
 		step : 1,
 		label : true
 	}

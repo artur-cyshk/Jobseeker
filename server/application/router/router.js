@@ -39,8 +39,8 @@ router.delete('/favoriteVacancies/:id', auth.authenticate(), require('./routes/f
 router.post('/favoriteCvs', auth.authenticate(), require('./routes/favorite/favoriteCvs/post'));
 router.delete('/favoriteCvs/:id', auth.authenticate(), require('./routes/favorite/favoriteCvs/delete'));
 
-router.get('/filteredVacancies', auth.authenticate(), require('./routes/filtered/vacancies'));
-router.get('/filteredCvs', auth.authenticate(), require('./routes/filtered/cvs'));
+router.post('/filteredVacancies', auth.authenticate(), require('./routes/filtered/vacancies'));
+router.post('/filteredCvs', auth.authenticate(), require('./routes/filtered/cvs'));
 
 router.get('/status', auth.authenticate(), require('./routes/status'));
 

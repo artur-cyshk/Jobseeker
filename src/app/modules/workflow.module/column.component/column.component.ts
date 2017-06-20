@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { SharedService } from '../../../general/services/shared.service';
 import { HttpWrapperService } from '../../../general/services/httpWrapper.service';
 import { LocalStorageWrapperService } from '../../../general/services/localStorageWrapper.service';
@@ -9,7 +9,7 @@ import  { GENERAL } from '../../../general/constants/general.constant';
 	templateUrl: './column.component.html',
  	styleUrls: ['./column.component.css']
 })
-export class ColumnComponent{
+export class ColumnComponent implements OnChanges{
 	@Input()
 	columnData : any;
 	columnsSetts : any;
@@ -21,100 +21,8 @@ export class ColumnComponent{
 		skills : []
 	};
 	columnValues : any = {
-		cvs : [
-			{
-				name : 'JS developer',
-				description : 'front-end',
-				userName : 'Artur',
-				salary  : 2000,
-				neededExperienceYears : 3,
-				languages : ['English', 'Russian'],
-				skills : ['JS'],
-				additionalSkills : ['AngularJs']
-			},
-			{
-				name : 'JS developer',
-				description : 'back-end',
-				userName : 'Ilya',
-				salary  : 3000,
-				neededExperienceYears : 4,
-				languages : ['English', 'Russian'],
-				skills : ['Node.js'],
-				additionalSkills : ['AngularJs']
-			},
-			{
-				name : 'JS developer',
-				description : 'front-end',
-				userName : 'Artem',
-				salary  : 2000,
-				neededExperienceYears : 3,
-				languages : ['English', 'Russian'],
-				skills : ['JS'],
-				additionalSkills : ['AngularJs']
-			},
-			{
-				name : 'JS developer',
-				description : 'front-end',
-				userName : 'Stas',
-				salary  : 2000,
-				neededExperienceYears : 3,
-				languages : ['English', 'Russian'],
-				skills : ['JS'],
-				additionalSkills : ['AngularJs']
-			},
-			{
-				name : 'JS developer',
-				description : 'front-end',
-				userName : 'Kristina',
-				salary  : 2000,
-				neededExperienceYears : 3,
-				languages : ['English', 'Russian'],
-				skills : ['JS'],
-				additionalSkills : ['AngularJs']
-			}
-		],
-		vacancies : [
-			{
-				name : 'JS developer',
-				description : 'front-end',
-				companyName : 'EPAM',
-				salary  : 2000,
-				neededExperienceYears : 3,
-				languages : ['English', 'Russian'],
-				skills : ['JS'],
-				additionalSkills : ['AngularJs']
-			},
-			{
-				name : 'JS developer',
-				description : 'front-end',
-				companyName : 'EPAM',
-				salary  : 2000,
-				neededExperienceYears : 3,
-				languages : ['English', 'Russian'],
-				skills : ['JS'],
-				additionalSkills : ['AngularJs']
-			},
-			{
-				name : 'JS developer',
-				description : 'front-end',
-				companyName : 'EPAM',
-				salary  : 2000,
-				neededExperienceYears : 3,
-				languages : ['English', 'Russian'],
-				skills : ['JS'],
-				additionalSkills : ['AngularJs']
-			},
-			{
-				name : 'JS developer',
-				description : 'front-end',
-				companyName : 'EPAM',
-				salary  : 2000,
-				neededExperienceYears : 3,
-				languages : ['English', 'Russian'],
-				skills : ['JS'],
-				additionalSkills : ['AngularJs']
-			}
-		]
+		cvs : [],
+		vacancies : []
 	}
 
 	@Output()
@@ -132,6 +40,12 @@ export class ColumnComponent{
 		this.roles = GENERAL.roles;
 	}
 
+	ngOnChanges(values) {
+		if(values && values.columnData && values.columnData.currentValue) {
+			this.getColumnItems(values.columnData.currentValue);
+		}
+	}
+
 	removeColumn(title) {
 		this.columnRemoved.emit(title);
 	}
@@ -147,5 +61,33 @@ export class ColumnComponent{
 
 	emitChanges(){
 		this.columnFiltersChanged.emit(this.columnData);
+		this.getColumnItems(this.columnData);
+	}
+
+	getColumnItems(filter) {
+		switch (filter.filters.role) {
+			case 'employer':
+				this.httpWrapperService.sendRequest({
+					route:'filteredCvs',
+					callback: this.getItemsCallback(filter.filters.role).bind(this),
+					body: filter.filters
+				})
+				break;
+			case 'jobseeker':	
+				this.httpWrapperService.sendRequest({
+					route:'filteredVacancies',
+					callback: this.getItemsCallback(filter.filters.role).bind(this),
+					body: filter.filters
+				})
+				break;			
+		}
+	}
+
+	getItemsCallback(role) {
+		return (items, err) => {
+			if(!err) {
+				this.columnValues[role == 'employer' ? 'cvs' : 'vacancies'] = items;
+			}
+		}
 	}
 }

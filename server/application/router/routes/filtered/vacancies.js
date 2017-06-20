@@ -4,19 +4,27 @@ module.exports = function (req, res, next) {
     async.waterfall(
         [
             (callback) => {
+                let whereArr = [];
                 let where = ' ';
                 let join = ' ';
                 let fields = ' ';
-                if(req.query.salary || req.query.additionalSkills) {
-                    where += 'where '
+                if(req.body.searchName) {
+                    whereArr.push('vacancies.name LIKE "%' + req.body.searchName + '%" ');
                 }
-                if(req.query.salary) {
-                    where += 'vacancies.salary < ' + req.query.salary + ' ';
+                if(req.body.salary) {
+                    whereArr.push('vacancies.salary < ' + req.body.salary + ' ');
                 }
-                if(req.query.additionalSkills instanceof Array) {
+                if(req.body.additionalSkills instanceof Array && req.body.additionalSkills.length > 0) {
                     fields += ', vacanciesAdditionalSkills.skillId as skillId';
-                    where += 'and vacanciesAdditionalSkills.skillId in (' + req.query.additionalSkills.join(',') + ')';
+                    let additionalSkills = req.body.additionalSkills.map((skill) => skill.id);
+                    whereArr.push('vacanciesAdditionalSkills.skillId in (' + additionalSkills.join(',') + ')');
                     join += 'join vacanciesAdditionalSkills on (vacancies.id = vacanciesAdditionalSkills.vacancyId)';
+                }
+                if(req.body.experience) {
+                    whereArr.push('vacancies.neededExperienceYears <= ' + req.body.experience + ' ');
+                }
+                if(whereArr.length > 0) {
+                    where = 'where ' + whereArr.join(' and ');
                 }
                 const query = `select vacancies.*, companies.name as companyName ${fields}
                 from vacancies join companies on (vacancies.companyId = companies.id) ${join} ${where}`;
@@ -25,10 +33,11 @@ module.exports = function (req, res, next) {
                 });
             },
             (vacancies, callback) => {
-                if(req.query.skills instanceof Array) {
+                if(req.body.skills instanceof Array && req.body.skills.length > 0) {
+                    let skills = req.body.skills.map((skill) => skill.id);
                     let newVacancies;
-                    const query = `select vacancyId, count(vacancyId) as countVacancyId from vacanciesSkills where skillId in (${req.query.skills.join(',')})
-                    group by vacancyId having countVacancyId=${req.query.skills.length}`;
+                    const query = `select vacancyId, count(vacancyId) as countVacancyId from vacanciesSkills where skillId in (${skills.join(',')})
+                    group by vacancyId having countVacancyId=${skills.length}`;
                     connection.query(query, function(err, vacancyIds) {
                         vacancyIds = vacancyIds.map((vacancyId) => vacancyId.vacancyId);
                         newVacancies = vacancies.filter( (vacancy) => vacancyIds.indexOf(vacancy.id) > -1);
@@ -39,9 +48,10 @@ module.exports = function (req, res, next) {
                 }
             },
             (vacancies, callback) => {
-                if(req.query.languages instanceof Array) {
+                if(req.body.languages instanceof Array && req.body.skills.languages > 0) {
+                    let languages = req.body.languages.map((language) => language.id);
                     let newVacancies;
-                    const query = `select vacancyId from vacanciesLanguages where languageId in (${req.query.languages.join(',')})
+                    const query = `select vacancyId from vacanciesLanguages where languageId in (${languages.join(',')})
                     group by vacancyId`;
                     connection.query(query, function(err, vacancyIds) {
                         vacancyIds = vacancyIds.map((vacancyId) => vacancyId.vacancyId);

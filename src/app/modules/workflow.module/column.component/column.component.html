@@ -10,11 +10,11 @@
 		<p (click)="columnData.filtersVisible = !columnData.filtersVisible;emitChanges()">Filters <i class="fa" [ngClass]="columnData.filtersVisible ? 'fa-caret-up' : 'fa-caret-down'" aria-hidden="true"></i></p>
 		<div class="filter-inner" [hidden]="!columnData.filtersVisible">
 		 	<md-input-container>
-		    	<input [(ngModel)]="columnData.filters.searchName"  (change)="filtersChanged({ value : columnData.filters.searchName}, 'searchName')" id="name" name="name"  required mdInput placeholder="Name">
+		    	<input [(ngModel)]="columnData.filters.searchName"  (change)="filtersChanged({ value : columnData.filters.searchName}, 'searchName')" id="name" name="name" mdInput placeholder="Name">
 		    </md-input-container>
 				<section class="role-section">
-					<label>Role:</label>
-					<md-radio-group [(ngModel)]="columnData.filters.role" (change)="filtersChanged({ value : columnData.filters.role}, 'role')" id="role" name="role">
+					<label>Role: {{columnData.filters.role}}</label>
+					<md-radio-group [(ngModel)]="columnData.filters.role" (change)="filtersChanged({ value : columnData.filters.role}, 'role')" [id]="columnData.title" [name]="columnData.title">
 						<md-radio-button value="jobseeker">Jobseeker</md-radio-button>
 						<md-radio-button value="employer">Employer</md-radio-button>
 					</md-radio-group>
@@ -26,9 +26,9 @@
 			   		Salary	
 					<md-slider
 				        class="example-margin"
-				        [max]="columnFilterSetts.max"
+				        [max]="columnFilterSetts.maxSalary"
 				        [color]="'accent'"
-				        [min]="columnFilterSetts.min"
+				        [min]="columnFilterSetts.minSalary"
 				        [step]="columnFilterSetts.step"
 				        [thumb-label]="columnFilterSetts.label"
 				        (change)="filtersChanged($event, 'salary')"
@@ -39,9 +39,9 @@
 			   		Experience	
 					<md-slider
 				        class="example-margin"
-				        [max]="columnFilterSetts.max"
+				        [max]="columnFilterSetts.maxYears"
 				        [color]="'accent'"
-				        [min]="columnFilterSetts.min"
+				        [min]="columnFilterSetts.minYears"
 				        [step]="columnFilterSetts.step"
 				        [thumb-label]="columnFilterSetts.label"
 				        (change)="filtersChanged($event, 'experience')"

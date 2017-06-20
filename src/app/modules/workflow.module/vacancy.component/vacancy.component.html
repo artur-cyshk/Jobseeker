@@ -11,22 +11,13 @@
 	<span class="description" [hidden]="!info.description">
 		{{info.description}},
 	</span>
-	<span class="username" [hidden]="!info.userName">
+	<span class="username" [hidden]="!info.companyName">
 		{{info.companyName}},
 	</span>
 	<span class="salary" [hidden]="!info.salary">
 		{{info.salary}} $ salary,
 	</span>
 	<span class="neededExperienceYears" [hidden]="info?.neededExperienceYears === undefined">
-		{{info.neededExperienceYears}} years needed experience,
-	</span>
-	<span class="languages" [hidden]="!info?.languages?.length">
-		{{info.languages}} languages,
-	</span>
-	<span class="skills" [hidden]="!info?.skills?.length">
-		{{info.skills}} as main skills,
-	</span>
-	<span class="additionalSkills" [hidden]="!info?.additionalSkills?.length">
-		{{info.additionalSkills}} as additional
+		{{info.neededExperienceYears}} years needed experience
 	</span>
 </main>

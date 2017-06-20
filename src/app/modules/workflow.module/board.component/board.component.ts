@@ -24,6 +24,7 @@ export class BoardComponent {
 
 	constructor(private localStorageWrapperService : LocalStorageWrapperService, private httpWrapperService : HttpWrapperService) {
 		this.columns = this.getColumns() || [];
+		console.log(this.columns);
 		this.getAllLanguages();
 		this.getAllSkills();
 	}

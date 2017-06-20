@@ -99,6 +99,14 @@ export const API = {
 		'status' : {
 			method : 'get',
 			url : '/status'
+		},
+		'filteredCvs': {
+			method: 'post',
+			url: '/filteredCvs'
+		},
+		'filteredVacancies': {
+			method: 'post',
+			url: '/filteredVacancies'
 		}
 	}
 }
