@@ -50,7 +50,7 @@ export class ColumnComponent implements OnChanges{
 		this.columnRemoved.emit(title);
 	}
 
-	filtersChanged(value, field) { 
+	filtersChanged(value, field) {
 		if(this.columnData.filters[field] instanceof Array) {
 			this.columnData.filters[field] = value;
 		}else{
@@ -71,22 +71,22 @@ export class ColumnComponent implements OnChanges{
 					route:'filteredCvs',
 					callback: this.getItemsCallback(filter.filters.role).bind(this),
 					body: filter.filters
-				})
+				});
 				break;
-			case 'jobseeker':	
+			case 'jobseeker':
 				this.httpWrapperService.sendRequest({
 					route:'filteredVacancies',
 					callback: this.getItemsCallback(filter.filters.role).bind(this),
 					body: filter.filters
-				})
-				break;			
+				});
+				break;
 		}
 	}
 
 	getItemsCallback(role) {
 		return (items, err) => {
 			if(!err) {
-				this.columnValues[role == 'employer' ? 'cvs' : 'vacancies'] = items;
+				this.columnValues[role === 'employer' ? 'cvs' : 'vacancies'] = items;
 			}
 		}
 	}

@@ -4,7 +4,7 @@ const AVATAR_PATH = require('../../configuration/config').avatarPath;
 var multipartMiddleware = require('connect-multiparty')({
     uploadDir: AVATAR_PATH
 });
-const auth = require("../../configuration/jwt/jwtAuth.js")();  
+const auth = require("../../configuration/jwt/jwtAuth.js")();
 // auth.authenticate() - set second param to router functions if route need authorized user
 router.post('/login', require('./routes/authentication/login'));
 router.post('/registration', require('./routes/authentication/registration'));
@@ -34,9 +34,9 @@ router.put('/cvs', auth.authenticate(), require('./routes/cvs/put'));
 router.delete('/cvs/:id', auth.authenticate(), require('./routes/cvs/delete'));
 
 router.get('/favorite', auth.authenticate(), require('./routes/favorite/get'));
-router.post('/favoriteVacancies', auth.authenticate(), require('./routes/favorite/favoriteVacancies/post'));
+router.put('/favoriteVacancies/:id', auth.authenticate(), require('./routes/favorite/favoriteVacancies/post'));
 router.delete('/favoriteVacancies/:id', auth.authenticate(), require('./routes/favorite/favoriteVacancies/delete'));
-router.post('/favoriteCvs', auth.authenticate(), require('./routes/favorite/favoriteCvs/post'));
+router.put('/favoriteCvs/:id', auth.authenticate(), require('./routes/favorite/favoriteCvs/post'));
 router.delete('/favoriteCvs/:id', auth.authenticate(), require('./routes/favorite/favoriteCvs/delete'));
 
 router.post('/filteredVacancies', auth.authenticate(), require('./routes/filtered/vacancies'));

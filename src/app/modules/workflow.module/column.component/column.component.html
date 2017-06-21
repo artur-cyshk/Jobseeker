@@ -13,17 +13,17 @@
 		    	<input [(ngModel)]="columnData.filters.searchName"  (change)="filtersChanged({ value : columnData.filters.searchName}, 'searchName')" id="name" name="name" mdInput placeholder="Name">
 		    </md-input-container>
 				<section class="role-section">
-					<label>Role: {{columnData.filters.role}}</label>
+					<label>Role:</label>
 					<md-radio-group [(ngModel)]="columnData.filters.role" (change)="filtersChanged({ value : columnData.filters.role}, 'role')" [id]="columnData.title" [name]="columnData.title">
 						<md-radio-button value="jobseeker">Jobseeker</md-radio-button>
 						<md-radio-button value="employer">Employer</md-radio-button>
 					</md-radio-group>
-				</section>	
+				</section>
 			    <multiselect [selectedItems]="columnData?.filters?.languages" (modelChange)="filtersChanged($event, 'languages')" [items]="filtersData.languages" [customPlaceholder]="'Languages'"></multiselect>
 			   	<multiselect [selectedItems]="columnData?.filters?.skills" (modelChange)="filtersChanged($event, 'skills')" [items]="filtersData.skills" [customPlaceholder]="'Skills'"></multiselect>
-			   	<multiselect [selectedItems]="columnData?.filters?.additionalSkills" (modelChange)="filtersChanged($event, 'additionalSkills')" [items]="filtersData.skills" [customPlaceholder]="'Additional Skills'"></multiselect>	
+			   	<multiselect [selectedItems]="columnData?.filters?.additionalSkills" (modelChange)="filtersChanged($event, 'additionalSkills')" [items]="filtersData.skills" [customPlaceholder]="'Additional Skills'"></multiselect>
 			   	<div>
-			   		Salary	
+			   		Salary
 					<md-slider
 				        class="example-margin"
 				        [max]="columnFilterSetts.maxSalary"
@@ -33,10 +33,10 @@
 				        [thumb-label]="columnFilterSetts.label"
 				        (change)="filtersChanged($event, 'salary')"
 			        	[value]="columnData?.filters?.salary">
-			    	</md-slider>	
+			    	</md-slider>
 			   	</div>
 			   	<div>
-			   		Experience	
+			   		Experience
 					<md-slider
 				        class="example-margin"
 				        [max]="columnFilterSetts.maxYears"
@@ -46,7 +46,7 @@
 				        [thumb-label]="columnFilterSetts.label"
 				        (change)="filtersChanged($event, 'experience')"
 			        	[value]="columnData?.filters?.experience">
-			    	</md-slider>	
+			    	</md-slider>
 			   	</div>
 		</div>
 	</div>

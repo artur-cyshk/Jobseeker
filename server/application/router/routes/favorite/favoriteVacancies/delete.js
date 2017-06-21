@@ -1,6 +1,6 @@
 var connection = require('../../../../../configuration/database/connection');
 module.exports = function(req, res, next) {
-    const query = 'delete from favoritevacancies where id = ?';
+    const query = 'delete from favoritevacancies where vacancyId = ?';
     connection.query(query, [req.params.id], (err) => {
         if(err) {
             return next({

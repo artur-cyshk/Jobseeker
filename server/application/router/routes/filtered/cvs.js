@@ -67,7 +67,21 @@ module.exports = function (req, res, next) {
                 } else {
                     callback(null, cvs);
                 }
+            },
+          (cvs, callback) => {
+            let ids = cvs.map(item => item.id);
+            if(!ids.length) {
+              callback(null, []);
             }
+            const query = `select * from favoriteCvs where cvId in (${ids.join()}) and userId=${req.user.id}`;
+            console.log(query);
+            connection.query(query, (err, favoriteCvs) => {
+              callback(null, cvs.map(item => {
+                item.isFavorited = !!favoriteCvs.filter(fav => fav.cvId === item.id).length;
+                return item;
+            }));
+            } )
+          }
         ],
         (err, result) => {
             if(err) {
@@ -77,6 +91,6 @@ module.exports = function (req, res, next) {
                 })
             }
             res.status(200).send(result);
-        } 
+        }
     );
 }

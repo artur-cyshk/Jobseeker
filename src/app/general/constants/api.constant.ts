@@ -107,6 +107,22 @@ export const API = {
 		'filteredVacancies': {
 			method: 'post',
 			url: '/filteredVacancies'
-		}
+		},
+    'addToFavoriteVacancy': {
+      method: 'put',
+      url: '/favoriteVacancies/{id}'
+    },
+    'removeFromFavoriteVacancy': {
+      method: 'delete',
+      url: '/favoriteVacancies/{id}'
+    },
+    'addToFavoriteCv': {
+      method: 'put',
+      url: '/favoriteCvs/{id}'
+    },
+    'removeFromFavoriteCv': {
+      method: 'delete',
+      url: '/favoriteCvs/{id}'
+    }
 	}
 }

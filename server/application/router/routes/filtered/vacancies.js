@@ -61,7 +61,21 @@ module.exports = function (req, res, next) {
                 } else {
                     callback(null, vacancies);
                 }
-            }
+            },
+            (vacancies, callback) => {
+              let ids = vacancies.map(item => item.id);
+              if(!ids.length) {
+                callback(null, []);
+              }
+              const query = `select * from favoriteVacancies where vacancyId in (${ids.join()}) and userId=${req.user.id}`;
+              console.log(query);
+              connection.query(query, (err, favoriteVacancies) => {
+                callback(null, vacancies.map(item => {
+                item.isFavorited = !!favoriteVacancies.filter(fav => fav.vacancyId === item.id).length;
+              return item;
+            }));
+            } )
+          }
         ],
         (err, result) => {
             if(err) {
@@ -71,6 +85,6 @@ module.exports = function (req, res, next) {
                 })
             }
             res.status(200).send(result);
-        } 
+        }
     );
 }

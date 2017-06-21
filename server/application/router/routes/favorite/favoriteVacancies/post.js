@@ -2,7 +2,7 @@ var connection = require('../../../../../configuration/database/connection');
 
 module.exports = function(req, res, next) {
     const query = 'insert into favoritevacancies set ?';
-    connection.query(query, {userId: req.body.userId, vacancyId: req.body.vacancyId}, (err, result) => {
+    connection.query(query, {userId: req.user.id, vacancyId: req.params.id}, (err, result) => {
         if(err) {
             return next({
                 status : 500,
